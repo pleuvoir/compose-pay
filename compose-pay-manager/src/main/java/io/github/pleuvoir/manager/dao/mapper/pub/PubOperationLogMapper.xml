@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pub.PubOperationLogDao">
+ 
+    <resultMap type="io.github.pleuvoir.manager.model.po.pub.PubOperationLogPO" id="result">
+    	<id column="id" 				property="id"/>
+    	<result column="username" 		property="username"/>
+    	<result column="menu_id" 		property="menuId"/>
+    	<result column="permission_id" 	property="permissionId"/>
+    	<result column="controller" 	property="controller"/>
+    	<result column="method" 		property="method"/>
+    	<result column="status" 		property="status"/>
+    	<result column="ip"				property="ip"/>
+    	<result column="elapsed_time" 	property="elapsedTime"/>
+    	<result column="create_time" 	property="createTime"/>
+    	<result column="menu_name" 		property="menuName"/>
+    	<result column="permission_name" property="permissionName"/>
+    </resultMap>
+    
+    <select id="find" resultMap="result">
+    	SELECT l.id,l.username,l.menu_id,l.permission_id,l.controller,l.method,l.ip,l.status,l.elapsed_time,l.create_time,m.title menu_name,p.name permission_name 
+    	FROM pub_operation_log l JOIN pub_menu m ON l.menu_id = m.id JOIN pub_permission p ON l.permission_id = p.id 
+    	<where>
+    		<if test="log.username!=null and log.username!=''">AND l.username = #{log.username,jdbcType=VARCHAR}</if>
+    		<if test="log.status!=null and log.status!=''">AND l.status = #{log.status,jdbcType=VARCHAR}</if>
+    		<if test="log.startTime!=null">AND l.create_time <![CDATA[ >= ]]> #{log.startTime,jdbcType=TIMESTAMP}</if>
+    		<if test="log.endTime!=null">AND l.create_time <![CDATA[ < ]]> #{log.endTime,jdbcType=TIMESTAMP}</if>
+    	</where>
+    	ORDER BY l.create_time DESC
+    </select>
+    
+</mapper>

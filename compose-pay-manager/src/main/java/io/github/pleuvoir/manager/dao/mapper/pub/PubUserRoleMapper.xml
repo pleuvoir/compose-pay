@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pub.PubUserRoleDao">
+
+ 	<resultMap id="resultMap" type="io.github.pleuvoir.manager.model.po.pub.PubUserRolePO">
+        <result column="user_id" 				property="userId"/>
+        <result column="role_id" 				property="roleId"/>
+    </resultMap>
+    
+    <sql id="select_all">
+		SELECT user_id,role_id FROM pub_user_role 
+	</sql>
+    
+    <select id="getUserRole" resultMap="resultMap" useCache="false" flushCache="true">
+    	<include refid="select_all"/> 
+    	WHERE user_id = #{userId,jdbcType=VARCHAR}
+    	AND role_id = #{roleId,jdbcType=VARCHAR}
+    </select>
+    
+    <delete id="deleteByUserIdAndRoleId">
+    	DELETE FROM pub_user_role 
+    	WHERE user_id = #{userId,jdbcType=VARCHAR}
+    	AND role_Id = #{roleId,jdbcType=VARCHAR}
+    </delete>
+    
+    <delete id="deleteByUserId">
+    	DELETE FROM pub_user_role 
+    	WHERE user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="countByRoleId" resultType="int" useCache="false" flushCache="true">
+    	SELECT COUNT(*) FROM pub_user_role WHERE role_Id = #{roleId,jdbcType=VARCHAR}
+    </select>
+    
+</mapper>

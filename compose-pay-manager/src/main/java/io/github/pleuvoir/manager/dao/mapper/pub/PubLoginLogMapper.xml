@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pub.PubLoginLogDao">
+
+	<sql id="select_all_from_pub_login_log">
+		SELECT username,agent,ip,login_date,status,remark FROM pub_login_log 
+	</sql>
+ 
+ 	<resultMap id="resultMap" type="io.github.pleuvoir.manager.model.po.pub.PubLoginLogPO">
+        <result column="username" 			property="username"/>
+        <result column="agent" 				property="agent"/>
+        <result column="ip" 				property="ip"/>
+        <result column="login_date" 		property="loginDate"/>
+        <result column="status" 			property="status"/>
+        <result column="remark" 			property="remark"/>
+    </resultMap>
+    
+    <select id="find" resultMap="resultMap">
+    	<include refid="select_all_from_pub_login_log"/> 
+    	<where>
+    		<if test="form.username!=null and form.username!=''">AND username like #{form.username,jdbcType=VARCHAR}</if>
+    	</where>
+    </select>
+  
+    
+</mapper>

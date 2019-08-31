@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pub.PubPermissionDao">
+ 
+ 	<resultMap id="resultMap" type="io.github.pleuvoir.manager.model.po.pub.PubPermissionPO">
+        <result column="id" 				property="id"/>
+        <result column="name" 				property="name"/>
+        <result column="code" 				property="code"/>
+        <result column="menu_id" 			property="menuId"/>
+        <result column="remark" 			property="remark"/>
+    </resultMap>
+    
+    <select id="findPermissionsByUsername" resultMap="resultMap" useCache="false" flushCache="true">
+        SELECT DISTINCT p.id,p.name,p.code,p.menu_id,p.remark
+        FROM pub_permission p 
+        JOIN pub_role_permission rp on p.id = rp.permission_id
+        JOIN pub_role r on rp.role_id = r.id
+        JOIN pub_user_role ur on r.id = ur.role_id
+        JOIN pub_user u on ur.user_id = u.id
+        WHERE u.username = #{username,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="getByCode" resultMap="resultMap" useCache="false" flushCache="true">
+    	SELECT id,name,code,menu_id,remark FROM pub_permission WHERE code=#{code,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="findPermissionsByMenuId" resultMap="resultMap" useCache="false" flushCache="true">
+    	SELECT id,name,code,menu_id,remark FROM pub_permission WHERE menu_id=#{menuId,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="maxIdByMenuId" resultType="string" useCache="false" flushCache="true">
+    	SELECT max(t.id) FROM PUB_PERMISSION t WHERE t.menu_id=#{menuId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="nextPermissionId" resultType="string" useCache="false" flushCache="true">
+        select 'UP' || seq_permission_id.nextval from dual
+    </select>
+
+</mapper>

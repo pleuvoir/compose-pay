@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+		
+	<import resource="dev/context-dev.xml"/>
+	<import resource="test/context-test.xml"/>
+	<import resource="prod/context-prod.xml"/>
+		
+	<!-- 自动扫描 -->
+	<context:component-scan base-package="io.github.pleuvoir.manager" />
+	
+	
+	<!-- Mybatis plus -->
+	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="plugins">
+	        <array>
+	            <!-- 分页插件配置 -->
+	            <bean class="com.baomidou.mybatisplus.plugins.PaginationInterceptor"/>
+	            <!-- 乐观锁插件 -->    
+	            <bean class="com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor"/>
+	        </array>
+	    </property>
+	    <property name="configLocation" value="classpath:config/mapping-config.xml"/>
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:io/github/pleuvoir/manager/dao/mapper/**/*Mapper.xml</value>
+			</array>			
+		</property>
+		<!-- 定义全局策略 -->
+		<property name="globalConfig">
+			<bean class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+				<property name="idType" value="3"/>
+				<property name="dbType" value="mysql" />
+				<property name="dbColumnUnderline" value="true" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+		<property name="basePackage" value="io.github.pleuvoir.manager.dao"/>
+	</bean>									
+	
+	<!-- 配置事物管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<constructor-arg ref="dataSource"/>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- spring session -->
+	<bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+		<!-- <property name="cookieSerializer">
+			<bean class="org.springframework.session.web.http.DefaultCookieSerializer">
+				<property name="cookiePath" value="/" />
+			</bean>
+		</property> -->
+		<property name="maxInactiveIntervalInSeconds" value="7200"/>
+	</bean>
+	
+	<!-- shiro -->
+    <bean id="credentialsMatcher" class="io.github.pleuvoir.manager.common.authc.RetryLimitHashedCredentialsMatcher">
+        <property name="storedCredentialsHexEncoded" value="true" />
+    </bean>
+
+    <bean id="userRealm" class="io.github.pleuvoir.manager.common.authc.UserRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher" />
+    </bean>
+    
+    <bean id="servletContainerSessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager"/>
+    
+    <bean id="shiroCacheManager" class="io.github.pleuvoir.manager.common.authc.GuavaShiroCacheManager"/>
+	
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    	<property name="sessionManager" ref="servletContainerSessionManager"/>
+    	<property name="cacheManager" ref="shiroCacheManager"/>
+        <property name="realm" ref="userRealm" />
+    </bean>
+    
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/login" />
+        <property name="successUrl" value="/main"/>
+        <property name="unauthorizedUrl" value="/refuse" />
+        <property name="filters">
+        	<map>
+        		<entry key="authc">
+        			<bean class="io.github.pleuvoir.manager.common.authc.RewriteFormAuthenticationFilter"/>
+        		</entry>
+        	</map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+            	/static/** = anon
+            	/auth = anon
+            	/code = anon
+            	/refuse = anon
+            	/logout = logout
+            	/login = authc
+				/api/** = anon
+            	/** = user
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	
+	<!-- http -->
+	<bean id="syncHttpClient" class="io.github.pleuvoir.manager.common.util.net.SyncHttpClient" init-method="init"/>
+	
+	<bean id="templateFactory" class="io.github.pleuvoir.manager.common.bean.TemplateFactory">
+		<property name="location" value="classpath:ftl"/>
+	</bean>
+	
+	
+	<!-- kaptcha 验证码 -->
+	 <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
+        <property name="config">  
+            <bean class="com.google.code.kaptcha.util.Config">  
+                <constructor-arg>  
+                    <props>  
+                        <prop key="kaptcha.border">no</prop>  
+                        <prop key="kaptcha.border.color">105,179,90</prop>  
+                        <prop key="kaptcha.textproducer.font.color">red</prop>  
+                        <prop key="kaptcha.image.width">250</prop>  
+                        <prop key="kaptcha.textproducer.font.size">90</prop>  
+                        <prop key="kaptcha.image.height">90</prop>  
+                        <prop key="kaptcha.session.key">code</prop>  
+                        <prop key="kaptcha.textproducer.char.length">4</prop>  
+                        <prop key="kaptcha.textproducer.font.names">宋体,楷体,微软雅黑</prop>  
+                    </props>  
+                </constructor-arg>  
+            </bean>  
+        </property>  
+    </bean>
+	
+</beans>

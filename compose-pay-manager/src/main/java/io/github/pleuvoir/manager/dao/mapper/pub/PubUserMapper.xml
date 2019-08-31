@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pub.PubUserDao">
+
+ 	<resultMap id="resultMap" type="io.github.pleuvoir.manager.model.po.pub.PubUserPO">
+        <result column="id" 				property="id"/>
+        <result column="username" 			property="username"/>
+        <result column="password" 			property="password"/>
+        <result column="safe_password" 		property="safePassword"/>
+        <result column="status" 			property="status"/>
+        <result column="salt" 				property="salt"/>
+        <result column="create_by" 			property="createBy"/>
+        <result column="create_time" 		property="createTime"/>
+        <result column="remark" 			property="remark"/>
+    </resultMap>
+    
+    <sql id="select_all">
+		SELECT id,username,password,safe_password,status,salt,create_by,create_time,remark FROM pub_user
+	</sql>
+    
+    <select id="find" resultMap="resultMap" useCache="false" flushCache="true">
+    	<include refid="select_all"/> 
+    	<where>
+    		create_by = #{form.loginUserName,jdbcType=VARCHAR}
+    		<if test="form.username!=null and form.username!=''">AND username like #{form.username,jdbcType=VARCHAR}</if>
+    	</where>
+    	ORDER BY create_time DESC
+    </select>
+    
+    <select id="selectByUserName" resultMap="resultMap" useCache="false" flushCache="true">
+    	<include refid="select_all"/> 
+    	<where>
+    		username = #{userName,jdbcType=VARCHAR}
+    	</where>
+    </select>
+    
+</mapper>

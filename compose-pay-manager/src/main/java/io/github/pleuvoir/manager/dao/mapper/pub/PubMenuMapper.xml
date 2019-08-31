@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pub.PubMenuDao">
+ 
+ 	<resultMap id="resultMap" type="io.github.pleuvoir.manager.model.po.pub.PubMenuPO">
+        <result column="id" 				property="id"/>
+        <result column="has_child" 			property="hasChild"/>
+        <result column="icon" 				property="icon"/>
+        <result column="node" 				property="node"/>
+        <result column="parent_id" 			property="parentId"/>
+        <result column="path" 				property="path"/>
+        <result column="sort" 				property="sort"/>
+        <result column="title" 				property="title"/>
+        <result column="is_show" 			property="isShow"/>
+        <result column="remark" 			property="remark"/>
+        
+        <result column="parentTitle" 			property="parentTitle"/>
+    </resultMap>
+    
+    <select id="find" resultMap="resultMap" useCache="false" flushCache="true">
+    	SELECT m.id,m.has_child,m.icon,m.node,m.parent_id,m.path,m.sort,m.title,m.is_show,m.remark,m1.title parentTitle
+    	FROM pub_menu m
+    	left join pub_menu m1 on m.parent_id = m1.id
+    	<where>
+    		m.node != '0'
+    		<if test="form.id!=null and form.id!=''">AND m.id = #{form.id,jdbcType=VARCHAR}</if>
+    		<if test="form.title!=null and form.title!=''">AND m.title like #{form.title,jdbcType=VARCHAR}</if>
+            <if test="form.node!=null and form.node!=''">AND m.node = #{form.node,jdbcType=VARCHAR}</if>
+    		<if test="form.parentId!=null and form.parentId!=''">AND m.parent_id = #{form.parentId,jdbcType=VARCHAR}</if>
+    	</where>
+    </select>
+    
+    <select id="findMenuByUsername" resultMap="resultMap" useCache="false" flushCache="true">
+    	SELECT DISTINCT m.id,m.has_child,m.icon,m.node,m.parent_id,m.path,m.sort,m.title,m.is_show,m.remark
+    	FROM pub_menu m
+    	JOIN pub_role_menu rm on m.id = rm.menu_id
+    	JOIN pub_role r on rm.role_id = r.id
+    	JOIN pub_user_role ur on r.id = ur.role_id
+    	JOIN pub_user u on ur.user_id = u.id
+        WHERE u.username = #{username,jdbcType=VARCHAR}
+        AND m.is_show = '1'
+        ORDER BY m.sort ASC
+    </select>
+    
+    <select id="findAllMenuByUsername" resultMap="resultMap" useCache="false" flushCache="true">
+    	SELECT DISTINCT m.id,m.has_child,m.icon,m.node,m.parent_id,m.path,m.sort,m.title,m.is_show,m.remark
+    	FROM pub_menu m
+    	JOIN pub_role_menu rm on m.id = rm.menu_id
+    	JOIN pub_role r on rm.role_id = r.id
+    	JOIN pub_user_role ur on r.id = ur.role_id
+    	JOIN pub_user u on ur.user_id = u.id
+        WHERE u.username = #{username,jdbcType=VARCHAR}
+        ORDER BY m.sort ASC
+    </select>
+    
+    <select id="findMenuByUsernameAndNode" resultMap="resultMap" useCache="false" flushCache="true">
+    	SELECT DISTINCT m.id,m.has_child,m.icon,m.node,m.parent_id,m.path,m.sort,m.title,m.is_show,m.remark
+    	FROM pub_menu m
+    	JOIN pub_role_menu rm on m.id = rm.menu_id
+    	JOIN pub_role r on rm.role_id = r.id
+    	JOIN pub_user_role ur on r.id = ur.role_id
+    	JOIN pub_user u on ur.user_id = u.id
+        WHERE u.username = #{username,jdbcType=VARCHAR}
+        AND m.node = #{node,jdbcType=VARCHAR}
+        AND m.is_show = '1'
+        ORDER BY m.sort ASC
+    </select>
+
+    <select id="getNextMenuId" resultType="string" useCache="false" flushCache="true">
+        SELECT 'U' || SEQ_MENU_ID.nextval from dual
+    </select>
+    
+    <select id="getNextSort" resultType="string" useCache="false" flushCache="true">
+    	select max(t.sort)+1 from PUB_MENU t where t.parent_id = #{parentId,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="countByParentMenuId" resultType="int" useCache="false" flushCache="true">
+    	select count(*) from PUB_MENU t where t.parent_id = #{parentId,jdbcType=VARCHAR}
+    </select>
+    
+</mapper>

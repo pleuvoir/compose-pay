@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pub.PubRoleDao">
+ 
+ 	<resultMap id="resultMap" type="io.github.pleuvoir.manager.model.po.pub.PubRolePO">
+        <result column="id" 				property="id"/>
+        <result column="name" 				property="name"/>
+        <result column="create_by" 			property="createBy"/>
+        <result column="create_time" 		property="createTime"/>
+        <result column="is_tmp" 			property="isTmp"/>
+        <result column="remark" 			property="remark"/>
+    </resultMap>
+    
+    <sql id="select_all">
+    	SELECT r.id,r.name,r.create_by,r.create_time,r.is_tmp,r.remark
+        FROM pub_role r 
+    </sql>
+    
+    <select id="findRolesByUsername" resultMap="resultMap" useCache="false" flushCache="true">
+        <include refid="select_all"/>
+        JOIN pub_user_role ur on r.id = ur.role_id
+        JOIN pub_user u on ur.user_id = u.id
+        WHERE u.username = #{username,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="findRliesByCreateBy" resultMap="resultMap" useCache="false" flushCache="true">
+        <include refid="select_all"/>
+        WHERE r.create_by = #{createBy,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="find" resultMap="resultMap" useCache="false" flushCache="true">
+    	<include refid="select_all"/> 
+    	<where>
+    		r.create_by = #{form.loginUserName,jdbcType=VARCHAR}
+    		<if test="form.name!=null and form.name!=''">AND r.name like #{form.name,jdbcType=VARCHAR}</if>
+    	</where>
+    	ORDER BY r.create_time DESC
+    </select>
+    
+</mapper>

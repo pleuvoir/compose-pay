@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:    #ccc;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    #ccc;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    #ccc;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+     color:    #ccc;
+   }
+
+   img {
+     display: block;
+     width: 100%;
+     height: 100%;
+   }
+
+   .clear:after {
+     display: block;
+     clear: both;
+     content: "";
+   }
+
+   .main .left,.main .right{
+     float: left;
+   }
+
+   .left {
+    /*  position: relative; */
+     width: 64%;
+     height: 100vh;
+     background: url("../img/login/p2184680461.jpg") no-repeat;
+     background-size: 100% 100%;
+   }
+
+   .left .platform {
+     display: flex;
+     margin: 8% 0 0 16%;
+   }
+   .left .platform .icon,.left .platform .name{
+     float: left;
+   }
+
+   .left .platform .icon {
+     margin-right:10px;
+     width: 82px;
+     height: 82px;
+   }
+   .left .platform .name{
+     padding:10px 0;
+     height:82px;
+     line-height:40px;
+   }
+   .left .platform .name .chinese{
+     height:40px;
+     line-height:40px;
+     font-size:28px;
+   }
+   .left .platform .name .english{
+     height:20px;
+     line-height:20px;
+     font-size:14px;
+     color:#ccc;
+   }
+
+   .company{
+     position:absolute;
+     left:0;
+     bottom:50px;
+     width:100%;
+     color:#ccc;
+     font-size:14px;
+     text-align: center;
+   }
+
+   .right {
+     position:relative;
+     width: 36%;
+     height: 100vh;
+   }
+   .right .form{
+     position: absolute;
+     top:50%;
+     left:50%;
+     margin:-150px 0 0 -150px;
+     width:300px;
+     height:300px;
+   }
+   .right .form .tittle{
+     height:100px;
+     line-height:50px;
+     text-align:center;
+     font-size:22px;
+     color:#333;
+   }
+   .right .form .tittle .warning{
+   	border-radius:5px;
+    background-color:#f2dede;
+    text-align:center;
+    color:#a94442;
+    font-size:16px;
+   }
+   .iconfont{
+     font-size:20px;
+     font-weight: 900;
+   }
+   .right .form .username-box{
+     border-bottom:1px #ccc solid;
+     height:60px;
+     line-height:60px;
+     font-size:20px;
+     color:#000;
+   }
+   .right .form .username-box .username{
+     margin-left:10px;
+     height:40px;
+     line-height:40px;
+     width:200px;
+   }
+   .right .form .password-box{
+     margin-top:20px;
+     border-bottom:1px #ccc solid;
+     height:60px;
+     line-height:60px;
+     font-size:20px;
+     color:#000;
+   }
+   .right .form .password-box .password{
+     margin-left:10px;
+     height:40px;
+     line-height:40px;
+     width:200px;
+   }
+   .right .form .login{
+     margin-top:40px;
+     height:100px;
+     line-height:100px;
+     text-align:center;
+   }
+   .right .form .login input{
+     border-radius:8px;
+     width:100%;
+     height:46px;
+     font-size:20px;
+     color:#fff;
+     background-color: #91484e;
+     cursor: pointer;
+   }
+   .right .form .login input:hover{
+      background-color:#8d9391 ;
+    }
+	.hide{
+		display:none;
+	}

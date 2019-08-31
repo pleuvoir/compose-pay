@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" version="2.0">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>taglib</short-name>
+    <uri>http://yrartnoc.com/taglib</uri>
+
+    <tag>
+        <description>输出Bootstrap Alert</description>
+        <name>alert</name>
+        <tag-class>io.github.pleuvoir.manager.common.taglib.AlertTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+        	<name>message</name>
+        	<type>io.github.pleuvoir.manager.common.taglib.AlertMessage</type>
+			<required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    
+    <tag>
+		<description>分页</description>
+		<name>pagination</name>
+		<tag-class>io.github.pleuvoir.manager.common.taglib.PaginationTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>跳转的url，包含了查询参数</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>总行数</description>
+			<name>total</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>分页参数名，默认为page</description>
+			<name>pageName</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>full</name>
+			<required>false</required>
+		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
+	</tag>
+	
+	<tag>
+    	<description>卡券码脱敏</description>
+        <name>d15nTicket</name>
+        <tag-class>io.github.pleuvoir.manager.common.taglib.D15nTicketTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+        	<name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+	<tag>
+		<description>日期格式化</description>
+		<name>formatDate</name>
+		<tag-class>io.github.pleuvoir.manager.common.taglib.FormatDateTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>待格式化的日期，支持：java.util.Date, java.time.LocalDate, java.time.LocalDateTime</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>日期格式</description>
+			<name>partten</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+</taglib>

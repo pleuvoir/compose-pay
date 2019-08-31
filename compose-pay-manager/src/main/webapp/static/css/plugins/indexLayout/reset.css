@@ -1,0 +1,57 @@
+body, ul, li, p, h1, h2, h3, h4, dl, dd, form, input,textarea, select {
+  padding: 0;
+  margin: 0;
+
+}
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  font-family: "微软雅黑";
+  line-height: 1;
+}
+
+ul, li {
+  list-style: none;
+}
+
+i {
+  font-style: normal;
+}
+
+img {
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  font-size: 12px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1; /*IE/7/6*/
+}
+
+.fl {
+  float: left !important;
+}
+
+.fr {
+  float: right !important;
+}

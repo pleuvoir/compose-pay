@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pub.PubRoleMenuDao">
+
+ 	<resultMap id="resultMap" type="io.github.pleuvoir.manager.model.po.pub.PubRoleMenuPO">
+        <result column="menu_id" 				property="menuId"/>
+        <result column="role_id" 				property="roleId"/>
+    </resultMap>
+    
+    <delete id="deleteByRoleId">
+    	DELETE FROM pub_role_menu 
+    	WHERE role_id = #{roleId,jdbcType=VARCHAR}
+    </delete>
+    
+    <delete id="deleteByMenuId">
+    	DELETE FROM pub_role_menu 
+    	WHERE menu_id = #{menuId,jdbcType=VARCHAR}
+    </delete>
+    
+    <delete id="deleteByRoleIdAndMenuId">
+    	DELETE FROM pub_role_menu 
+    	WHERE role_id = #{roleId,jdbcType=VARCHAR}
+    	AND menu_id = #{menuId,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="findMenuIdByRoleId" resultType="string" useCache="false" flushCache="true">
+    	SELECT menu_id FROM pub_role_menu WHERE role_id = #{roleId,jdbcType=VARCHAR}
+    </select>
+    
+</mapper>
