@@ -53,6 +53,43 @@ values ('UP0080901', '查看', 'pubOperationLog:list', 'U00809', null);
 
 
 
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100101', '查看', 'payType:list', 'U01001', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100102', '新增', 'payType:add', 'U01001', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100103', '修改', 'payType:edit', 'U01001', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100104', '删除', 'payType:delete', 'U01001', null);
 
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100201', '查看', 'payWay:list', 'U01002', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100202', '新增', 'payWay:add', 'U01002', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100203', '修改', 'payWay:edit', 'U01002', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100204', '删除', 'payWay:delete', 'U01002', null);
+
+
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100301', '查看', 'payProduct:list', 'U01003', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100302', '新增', 'payProduct:add', 'U01003', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100303', '修改', 'payProduct:edit', 'U01003', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100304', '删除', 'payProduct:delete', 'U01003', null);
+
+
+
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100401', '查看', 'channel:list', 'U01004', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100402', '新增', 'channel:add', 'U01004', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100403', '修改', 'channel:edit', 'U01004', null);
+insert into PUB_PERMISSION (ID, NAME, CODE, MENU_ID, REMARK)
+values ('UP0100404', '删除', 'channel:delete', 'U01004', null);
 
 

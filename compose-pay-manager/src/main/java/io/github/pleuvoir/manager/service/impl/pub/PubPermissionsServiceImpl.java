@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import io.github.pleuvoir.manager.common.extension.SequenceGenerator;
 import io.github.pleuvoir.manager.common.util.AssertUtil;
 import io.github.pleuvoir.manager.common.util.SessionUtil;
 import io.github.pleuvoir.manager.dao.pub.PubPermissionDao;
@@ -113,7 +114,7 @@ public class PubPermissionsServiceImpl implements PubPermissionsService {
 		}
 		for(Map.Entry<String, PubPermissionPO> formMapEntry : formMap.entrySet()) {
 			PubPermissionPO nPo = formMapEntry.getValue();
-			nPo.setId(permissionDao.nextPermissionId());
+			nPo.setId("UP" + SequenceGenerator.next("SEQ_PERMISSION_ID"));
 			nPo.setMenuId(dto.getId());
 			Integer iip = permissionDao.insert(nPo);
 			AssertUtil.assertOne(iip, "保存权限失败");

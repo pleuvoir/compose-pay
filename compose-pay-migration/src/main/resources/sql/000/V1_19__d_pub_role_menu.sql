@@ -3,24 +3,6 @@ insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
 values ('100', 'U000');
 
 insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
-values ('100', 'U001');
-insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
-values ('100', 'U00101');
-
-
-insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
-values ('100', 'U002');
-insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
-values ('100', 'U00201');
-insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
-values ('100', 'U00202');
-
-insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
-values ('100', 'U003');
-insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
-values ('100', 'U00301');
-
-insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
 values ('100', 'U008');
 insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
 values ('100', 'U00801');
@@ -59,6 +41,27 @@ values ('100', 'U00817');
 
 
 
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U010');
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U01001');
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U01002');
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U01003');
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U01004');
 
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U011');
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U01101');
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U01102');
+
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U012');
+insert into PUB_ROLE_MENU (ROLE_ID, MENU_ID)
+values ('100', 'U01201');
 
 
