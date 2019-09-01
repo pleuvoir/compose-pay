@@ -11,7 +11,6 @@ import io.github.pleuvoir.manager.model.vo.pub.PubRoleListVO;
 
 /**
  * 角色
- * @author LaoShu
  *
  */
 public interface PubRoleService {

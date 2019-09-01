@@ -12,7 +12,6 @@ import io.github.pleuvoir.manager.model.vo.pub.PubUserListVO;
 
 /**
  * 登录用户
- * @author LaoShu
  *
  */
 public interface PubUserService {

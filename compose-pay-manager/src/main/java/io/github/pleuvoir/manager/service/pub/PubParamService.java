@@ -7,7 +7,6 @@ import io.github.pleuvoir.manager.model.vo.pub.PubParamListVO;
 
 /**
  * 参数Service
- * @author abeir
  *
  */
 public interface PubParamService {
@@ -52,39 +51,4 @@ public interface PubParamService {
 	 */
 	public int getLoginLockTime();
 
-	/**
-	 * 获取文件服务器访问地址
-	 * @return
-	 */
-	String getFileServerAccessUrl();
-
-	/**
-	 * 获取定时任务访问地址
-	 * @return
-	 */
-	String getTaskAddress();
-
-	/**
-	 * 临时文件存放路径
-	 * @return
-	 */
-	String getTempFilePath();
-
-	/**
-	 * 图片压缩高度
-	 */
-	int getCompressImagePixel();
-	/**
-	 * 专场拍品量下限
-	 */
-	int getLotTotalLowerLimit();
-	/**
-	 * 专场拍品量上限
-	 */
-	int getLotTotalUpperLimit();
-	
-	  /**
-     * 获取fastdfs文件存放路径
-     */
-    String getFastdfsFileUrl();
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pay.PayTypeDao">
+
+	<sql id="select_all">
+		SELECT id,pay_type_code,pay_type_name,remark FROM p_pay_type 
+	</sql>
+ 
+ 	<resultMap id="paramRs" type="io.github.pleuvoir.manager.model.po.pay.PayTypePO">
+        <result column="id" 				property="id"/>
+        <result column="pay_type_code" 		property="payTypeCode"/>
+        <result column="pay_type_name" 		property="payTypeName"/>
+        <result column="remark" 			property="remark"/>
+    </resultMap>
+    
+    
+    <select id="find" resultMap="paramRs">
+    	<include refid="select_all"/> 
+   <!--  	<where>
+    		<if test="form.code!=null and form.code!=''">AND code = #{form.code,jdbcType=VARCHAR}</if>
+    		<if test="form.name!=null and form.name!=''">AND name like #{form.name,jdbcType=VARCHAR}</if>
+    	</where> -->
+    </select>
+    
+    
+</mapper>

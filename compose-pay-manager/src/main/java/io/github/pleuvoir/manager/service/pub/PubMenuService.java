@@ -11,7 +11,6 @@ import io.github.pleuvoir.manager.model.vo.pub.PubMenuView;
 
 /**
  * 登录菜单
- * @author LaoShu
  *
  */
 public interface PubMenuService {

@@ -8,7 +8,6 @@ import io.github.pleuvoir.manager.model.po.pub.PubPermissionPO;
 
 /**
  * 权限
- * @author LaoShu
  *
  */
 public interface PubPermissionsService {

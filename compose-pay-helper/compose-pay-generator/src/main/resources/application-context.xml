@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean class="io.github.pleuvoir.sql.MetaDataConfiguration">
+		<!-- 模版位置 -->
+		<property name="ftlLocation" value="classpath:templates" />
+		<!-- 数据源 -->
+		<property name="dataSourceConfig">
+			<bean class="io.github.pleuvoir.sql.bean.DataSourceConfig">
+				<property name="driverClass" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1:3306/compose-pay" />
+				<property name="username" value="compose-pay" />
+				<property name="password" value="compose-pay" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>
