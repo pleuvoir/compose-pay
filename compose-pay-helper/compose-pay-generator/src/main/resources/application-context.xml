@@ -14,7 +14,7 @@
 		<property name="dataSourceConfig">
 			<bean class="io.github.pleuvoir.sql.bean.DataSourceConfig">
 				<property name="driverClass" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://127.0.0.1:3306/compose-pay" />
+				<property name="url" value="jdbc:mysql://39.105.110.40:3306/compose-pay" />
 				<property name="username" value="compose-pay" />
 				<property name="password" value="compose-pay" />
 			</bean>
