@@ -1,8 +1,10 @@
 package io.github.pleuvoir.manager.common;
 
+import io.github.pleuvoir.manager.common.util.UtilMix;
+
 public final class Const {
 	/** 控制是否记录操作日志，设置为true表示需要记录日志 */
-	public static final boolean RECORD_OPERATION_LOG = true;
+	public static final boolean RECORD_OPERATION_LOG = true && !UtilMix.isDev();
 
 	public static final String REDIS_CACHE_PREFIX = "ManagerTemplate:";
 	

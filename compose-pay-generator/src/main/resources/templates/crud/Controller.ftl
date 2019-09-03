@@ -14,85 +14,81 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import io.github.pleuvoir.manager.common.taglib.AlertMessage;
 import io.github.pleuvoir.manager.exception.BusinessException;
-import io.github.pleuvoir.manager.model.dto.pay.PayTypeFormDTO;
-import io.github.pleuvoir.manager.model.po.pay.PayTypePO;
+import io.github.pleuvoir.manager.model.dto.pay.${dataModel.name}FormDTO;
+import io.github.pleuvoir.manager.model.po.pay.${dataModel.name}PO;
 import io.github.pleuvoir.manager.model.vo.ResultMessageVO;
-import io.github.pleuvoir.manager.model.vo.pay.PayTypeListVO;
-import io.github.pleuvoir.manager.service.pay.PayTypeService;
+import io.github.pleuvoir.manager.model.vo.pay.${dataModel.name}ListVO;
+import io.github.pleuvoir.manager.service.pay.${dataModel.name}Service;
 
-/**
- * 支付种类
- * @author pleuvoir
- *
- */
+
 @Controller
-@RequestMapping("/payType")
-public class PayTypeController {
+@RequestMapping("/${dataModel.name?uncap_first}")
+public class ${dataModel.name}Controller {
 	
 	@Autowired
-	private PayTypeService payTypeService;
+	private ${dataModel.name}Service ${dataModel.name?uncap_first}Service;
 
 	/**
 	 * 查询页 
 	 */
-	@RequiresPermissions("payType:list")
+	@RequiresPermissions("${dataModel.name?uncap_first}:list")
 	@RequestMapping("/list")
 	public String list() {
-		return "/pay/payType/list";
+		return "/pay/${dataModel.name?uncap_first}/list";
 	}
 	
 	/**
 	 * 查询结果 
 	 */
-	@RequiresPermissions("payType:list")
+	@RequiresPermissions("${dataModel.name?uncap_first}:list")
 	@RequestMapping("/query")
 	@ResponseBody
-	public PayTypeListVO query(PayTypeFormDTO form) {
-		return payTypeService.queryList(form);
+	public ${dataModel.name}ListVO query(${dataModel.name}FormDTO form) {
+		return ${dataModel.name?uncap_first}Service.queryList(form);
 	}
 	
 	/**
 	 * 新增页面
 	 */
-	@RequiresPermissions("payType:add")
+	@RequiresPermissions("${dataModel.name?uncap_first}:add")
 	@RequestMapping("/create")
 	public ModelAndView create() {
-		ModelAndView view = new ModelAndView("/pay/payType/create");
+		ModelAndView view = new ModelAndView("/pay/${dataModel.name?uncap_first}/create");
 		return view;
 	}
 	
 	/**
 	 * 保存
 	 */
-	@RequiresPermissions("payType:add")
+	@RequiresPermissions("${dataModel.name?uncap_first}:add")
 	@PostMapping("/save")
-	public String save(@Validated PayTypePO po, BindingResult bindingResult, RedirectAttributes ra) {
+	public String save(@Validated ${dataModel.name}PO po, BindingResult bindingResult, RedirectAttributes ra) {
 		if (bindingResult.hasErrors()) {
 			if (bindingResult.getGlobalError() != null) {
 				AlertMessage.error(bindingResult.getGlobalError()).flashAttribute(ra);
 			} else if (bindingResult.getFieldError() != null) {
 				AlertMessage.error(bindingResult.getFieldError()).flashAttribute(ra);
 			}
-			return "redirect:/payType/create";
+			return "redirect:/${dataModel.name?uncap_first}/create";
 		} else {
 			try {
-				payTypeService.save(po);
+				${dataModel.name?uncap_first}Service.save(po);
 				AlertMessage.success("保存成功").flashAttribute(ra);
 			} catch (BusinessException e) {
 				AlertMessage.error(e.getMessage()).flashAttribute(ra);
 			}
 		}
-		return "redirect:/payType/list";
+		return "redirect:/${dataModel.name?uncap_first}/list";
 	}
 	
 	/**
 	 * 修改页面
 	 */
-	@RequiresPermissions("payType:edit")
+	@RequiresPermissions("${dataModel.name?uncap_first}:edit")
 	@RequestMapping("/edit")
 	public ModelAndView edit(String id) {
-		ModelAndView view = new ModelAndView("/pay/payType/edit");
-		PayTypePO old = payTypeService.selectById(id);
+		ModelAndView view = new ModelAndView("/pay/${dataModel.name?uncap_first}/edit");
+		${dataModel.name}PO old = ${dataModel.name?uncap_first}Service.selectById(id);
 		view.addObject("old", old);
 		return view;
 	}
@@ -100,31 +96,31 @@ public class PayTypeController {
 	/**
 	 * 修改
 	 */
-	@RequiresPermissions("payType:edit")
+	@RequiresPermissions("${dataModel.name?uncap_first}:edit")
 	@PostMapping("/update")
-	public String edit(@Validated PayTypePO po, BindingResult bindingResult, RedirectAttributes ra) {
+	public String edit(@Validated ${dataModel.name}PO po, BindingResult bindingResult, RedirectAttributes ra) {
 		if (bindingResult.hasErrors()) {
 			if (bindingResult.getGlobalError() != null) {
 				AlertMessage.error(bindingResult.getGlobalError()).flashAttribute(ra);
 			} else if (bindingResult.getFieldError() != null) {
 				AlertMessage.error(bindingResult.getFieldError()).flashAttribute(ra);
 			}
-			return "redirect:/payType/edit";
+			return "redirect:/${dataModel.name?uncap_first}/edit";
 		}else {
 			try {
-				payTypeService.modify(po);
+				${dataModel.name?uncap_first}Service.modify(po);
 				AlertMessage.success("修改成功").flashAttribute(ra);
 			} catch (BusinessException e) {
 				AlertMessage.error(e.getMessage()).flashAttribute(ra);
 			}
 		}
-		return "redirect:/payType/list";
+		return "redirect:/${dataModel.name?uncap_first}/list";
 	}
 	
 	/**
 	 * 删除
 	 */
-	@RequiresPermissions("payType:delete")
+	@RequiresPermissions("${dataModel.name?uncap_first}:delete")
 	@PostMapping("/delete")
 	@ResponseBody
 	public ResultMessageVO<?> delete(String id) {
@@ -132,7 +128,7 @@ public class PayTypeController {
 			return ResultMessageVO.error("id为空");
 		}else {
 			try {
-				payTypeService.remove(id);
+				${dataModel.name?uncap_first}Service.remove(id);
 				return ResultMessageVO.success("删除成功");
 			} catch (BusinessException e) {
 				return ResultMessageVO.error(e.getMessage());

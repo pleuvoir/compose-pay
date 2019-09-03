@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="io.github.pleuvoir.manager.dao.pay.PayProductDao">
+
+	<sql id="select_all">
+		SELECT id,pay_type_code,pay_way_code,name,status,remark FROM p_pay_product 
+	</sql>
+ 
+ 	<resultMap id="paramRs" type="io.github.pleuvoir.manager.model.po.pay.PayProductPO">
+			  <result column="id" 		property="id"/>
+			  <result column="pay_type_code" 		property="payTypeCode"/>
+			  <result column="pay_way_code" 		property="payWayCode"/>
+			  <result column="name" 		property="name"/>
+			  <result column="status" 		property="status"/>
+			  <result column="remark" 		property="remark"/>
+    </resultMap>
+    
+    <select id="find" resultMap="paramRs">
+    	<include refid="select_all"/> 
+    	<where>
+    			<if test="form.id!=null and form.id!=''">AND id = #{form.id}</if>
+    			<if test="form.payTypeCode!=null and form.payTypeCode!=''">AND pay_type_code = #{form.payTypeCode}</if>
+    			<if test="form.payWayCode!=null and form.payWayCode!=''">AND pay_way_code = #{form.payWayCode}</if>
+    			<if test="form.name!=null and form.name!=''">AND name = #{form.name}</if>
+    			<if test="form.status!=null and form.status!=''">AND status = #{form.status}</if>
+    			<if test="form.remark!=null and form.remark!=''">AND remark = #{form.remark}</if>
+    	</where> 
+    </select>
+    
+</mapper>

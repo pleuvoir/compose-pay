@@ -6,8 +6,10 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class PayTypeFormDTO extends AbstractFormPageDTO {
+public class PayWayFormDTO extends AbstractFormPageDTO {
 
-	private String payTypeCode;
-	private String payTypeName;
+	private String id;
+	private String payWayCode;
+	private String payWayName;
+	private String remark;
 }

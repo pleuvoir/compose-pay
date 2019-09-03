@@ -2,6 +2,7 @@ package io.github.pleuvoir.manager.service.impl.pay;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,11 @@ public class PayTypeServiceImpl implements PayTypeService {
 	public PayTypeListVO queryList(PayTypeFormDTO form) {
 
 		PageCondition pageCondition = PageCondition.create(form);
-
+		
+		if(StringUtils.isNotBlank(form.getPayTypeName())){
+			form.setPayTypeName("%".concat(form.getPayTypeName()).concat("%"));
+		}
+		
 		List<PayTypePO> list = payTypeDao.find(pageCondition, form);
 
 		PayTypeListVO result = new PayTypeListVO(pageCondition);
@@ -35,6 +40,14 @@ public class PayTypeServiceImpl implements PayTypeService {
 
 	@Override
 	public void save(PayTypePO po) throws BusinessException {
+		
+		PayTypePO entity = new PayTypePO();
+		entity.setPayTypeCode(po.getPayTypeCode());
+		PayTypePO prev = payTypeDao.selectOne(entity);
+		
+		if (prev != null) {
+			throw new BusinessException("已存在唯一记录");
+		}
 		Integer rs = payTypeDao.insert(po);
 		AssertUtil.assertOne(rs, "保存失败");
 	}
@@ -49,6 +62,11 @@ public class PayTypeServiceImpl implements PayTypeService {
 	public void remove(String id) throws BusinessException {
 		Integer rs = payTypeDao.deleteById(id);
 		AssertUtil.assertOne(rs, "删除失败");
+	}
+
+	@Override
+	public PayTypePO selectById(String id) {
+		return payTypeDao.selectById(id);
 	}
 
 }

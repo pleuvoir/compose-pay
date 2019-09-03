@@ -1,4 +1,4 @@
-package io.github.pleuvoir.lazy;
+package io.github.pleuvoir.pay;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -7,12 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
-import io.github.pleuvoir.lazy.payload.DefaultGenerator;
-import io.github.pleuvoir.lazy.payload.Generator;
-
 @SpringBootApplication
 @ImportResource(locations = { "classpath:application-context.xml" })
-@Import(DefaultGenerator.class)
+@Import(Generator.class)
 public class Bootstrap implements CommandLineRunner {
 
 	@Autowired
@@ -26,10 +23,12 @@ public class Bootstrap implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// 生成单表实体文件
-		generator.singleTabelePO("p_pay_type","PayTypePO");
-		generator.singleTabelePO("p_pay_way","PayWayPO");
-		generator.singleTabelePO("p_pay_product","PayProductPO");
+//		generator.singleTabelePO("p_pay_type","PayTypePO");
+//		generator.singleTabelePO("p_pay_way","PayWayPO");
+//		generator.singleTabelePO("p_pay_product","PayProductPO");
+//		
 		
+		generator.CRUD("p_pay_product");
 		
 		// 根据 sql 生成 VO
 	

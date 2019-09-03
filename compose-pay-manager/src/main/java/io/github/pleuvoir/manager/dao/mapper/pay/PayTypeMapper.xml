@@ -17,11 +17,10 @@
     
     <select id="find" resultMap="paramRs">
     	<include refid="select_all"/> 
-   <!--  	<where>
-    		<if test="form.code!=null and form.code!=''">AND code = #{form.code,jdbcType=VARCHAR}</if>
-    		<if test="form.name!=null and form.name!=''">AND name like #{form.name,jdbcType=VARCHAR}</if>
-    	</where> -->
+    	<where>
+     		<if test="form.payTypeCode!=null and form.payTypeCode!=''">AND pay_type_code = #{form.payTypeCode,jdbcType=VARCHAR}</if> 
+    		<if test="form.payTypeName!=null and form.payTypeName!=''">AND pay_type_name like #{form.payTypeName,jdbcType=VARCHAR}</if>
+    	</where> 
     </select>
-    
     
 </mapper>

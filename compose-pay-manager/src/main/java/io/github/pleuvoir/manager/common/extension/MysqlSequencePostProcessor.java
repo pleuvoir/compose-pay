@@ -33,7 +33,7 @@ public class MysqlSequencePostProcessor implements BeanFactoryPostProcessor {
 
 		all.forEach(s -> {
 
-			log.info("【序列自增器】开始注册{}", s);
+			log.debug("【序列自增器】开始注册{}", s);
 
 			BeanDefinitionBuilder definition = BeanDefinitionBuilder
 					.genericBeanDefinition(MysqlSequenceIncrementer.class, () -> {

@@ -1,4 +1,4 @@
-package io.github.pleuvoir.lazy.kit;
+package io.github.pleuvoir.pay;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;

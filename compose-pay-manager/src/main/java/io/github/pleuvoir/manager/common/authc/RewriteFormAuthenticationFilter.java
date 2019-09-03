@@ -21,6 +21,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import io.github.pleuvoir.manager.common.Const;
 import io.github.pleuvoir.manager.common.util.RequestUtil;
+import io.github.pleuvoir.manager.common.util.UtilMix;
 import io.github.pleuvoir.manager.exception.KtaAuthenticationException;
 import io.github.pleuvoir.manager.model.po.pub.PubLoginLogPO;
 import io.github.pleuvoir.manager.model.po.pub.PubUserPO;
@@ -54,10 +55,13 @@ public class RewriteFormAuthenticationFilter extends FormAuthenticationFilter {
 
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			String kaptcha1 = (String) session.getAttribute(Const.SESSION_KAPTCHA);
-			boolean f = StringUtils.isNotBlank(kaptcha) && StringUtils.equalsIgnoreCase(kaptcha, kaptcha1);
+			if (!UtilMix.isDev()) {
+				boolean f = StringUtils.isNotBlank(kaptcha) && StringUtils.equalsIgnoreCase(kaptcha, kaptcha1);
 				if (!f) {
 					throw new KtaAuthenticationException("验证码错误");
 				}
+			}
+			
 			PubUserPO userPO = pubUserService.getUser(userName);
 			if (userPO == null) {
 				throw new UnknownAccountException("用户不存在");

@@ -6,8 +6,9 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class PayTypeFormDTO extends AbstractFormPageDTO {
+public class ${dataModel.name}FormDTO extends AbstractFormPageDTO {
 
-	private String payTypeCode;
-	private String payTypeName;
+	<#list dataModel.metaData.columnExtendList as columnExtend>
+	private ${columnExtend.convertedType} ${columnExtend.field};
+	</#list>
 }

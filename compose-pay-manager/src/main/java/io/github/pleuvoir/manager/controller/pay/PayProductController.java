@@ -14,85 +14,81 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import io.github.pleuvoir.manager.common.taglib.AlertMessage;
 import io.github.pleuvoir.manager.exception.BusinessException;
-import io.github.pleuvoir.manager.model.dto.pay.PayTypeFormDTO;
-import io.github.pleuvoir.manager.model.po.pay.PayTypePO;
+import io.github.pleuvoir.manager.model.dto.pay.PayProductFormDTO;
+import io.github.pleuvoir.manager.model.po.pay.PayProductPO;
 import io.github.pleuvoir.manager.model.vo.ResultMessageVO;
-import io.github.pleuvoir.manager.model.vo.pay.PayTypeListVO;
-import io.github.pleuvoir.manager.service.pay.PayTypeService;
+import io.github.pleuvoir.manager.model.vo.pay.PayProductListVO;
+import io.github.pleuvoir.manager.service.pay.PayProductService;
 
-/**
- * 支付种类
- * @author pleuvoir
- *
- */
+
 @Controller
-@RequestMapping("/payType")
-public class PayTypeController {
+@RequestMapping("/payProduct")
+public class PayProductController {
 	
 	@Autowired
-	private PayTypeService payTypeService;
+	private PayProductService payProductService;
 
 	/**
 	 * 查询页 
 	 */
-	@RequiresPermissions("payType:list")
+	@RequiresPermissions("payProduct:list")
 	@RequestMapping("/list")
 	public String list() {
-		return "/pay/payType/list";
+		return "/pay/payProduct/list";
 	}
 	
 	/**
 	 * 查询结果 
 	 */
-	@RequiresPermissions("payType:list")
+	@RequiresPermissions("payProduct:list")
 	@RequestMapping("/query")
 	@ResponseBody
-	public PayTypeListVO query(PayTypeFormDTO form) {
-		return payTypeService.queryList(form);
+	public PayProductListVO query(PayProductFormDTO form) {
+		return payProductService.queryList(form);
 	}
 	
 	/**
 	 * 新增页面
 	 */
-	@RequiresPermissions("payType:add")
+	@RequiresPermissions("payProduct:add")
 	@RequestMapping("/create")
 	public ModelAndView create() {
-		ModelAndView view = new ModelAndView("/pay/payType/create");
+		ModelAndView view = new ModelAndView("/pay/payProduct/create");
 		return view;
 	}
 	
 	/**
 	 * 保存
 	 */
-	@RequiresPermissions("payType:add")
+	@RequiresPermissions("payProduct:add")
 	@PostMapping("/save")
-	public String save(@Validated PayTypePO po, BindingResult bindingResult, RedirectAttributes ra) {
+	public String save(@Validated PayProductPO po, BindingResult bindingResult, RedirectAttributes ra) {
 		if (bindingResult.hasErrors()) {
 			if (bindingResult.getGlobalError() != null) {
 				AlertMessage.error(bindingResult.getGlobalError()).flashAttribute(ra);
 			} else if (bindingResult.getFieldError() != null) {
 				AlertMessage.error(bindingResult.getFieldError()).flashAttribute(ra);
 			}
-			return "redirect:/payType/create";
+			return "redirect:/payProduct/create";
 		} else {
 			try {
-				payTypeService.save(po);
+				payProductService.save(po);
 				AlertMessage.success("保存成功").flashAttribute(ra);
 			} catch (BusinessException e) {
 				AlertMessage.error(e.getMessage()).flashAttribute(ra);
 			}
 		}
-		return "redirect:/payType/list";
+		return "redirect:/payProduct/list";
 	}
 	
 	/**
 	 * 修改页面
 	 */
-	@RequiresPermissions("payType:edit")
+	@RequiresPermissions("payProduct:edit")
 	@RequestMapping("/edit")
 	public ModelAndView edit(String id) {
-		ModelAndView view = new ModelAndView("/pay/payType/edit");
-		PayTypePO old = payTypeService.selectById(id);
+		ModelAndView view = new ModelAndView("/pay/payProduct/edit");
+		PayProductPO old = payProductService.selectById(id);
 		view.addObject("old", old);
 		return view;
 	}
@@ -100,31 +96,31 @@ public class PayTypeController {
 	/**
 	 * 修改
 	 */
-	@RequiresPermissions("payType:edit")
+	@RequiresPermissions("payProduct:edit")
 	@PostMapping("/update")
-	public String edit(@Validated PayTypePO po, BindingResult bindingResult, RedirectAttributes ra) {
+	public String edit(@Validated PayProductPO po, BindingResult bindingResult, RedirectAttributes ra) {
 		if (bindingResult.hasErrors()) {
 			if (bindingResult.getGlobalError() != null) {
 				AlertMessage.error(bindingResult.getGlobalError()).flashAttribute(ra);
 			} else if (bindingResult.getFieldError() != null) {
 				AlertMessage.error(bindingResult.getFieldError()).flashAttribute(ra);
 			}
-			return "redirect:/payType/edit";
+			return "redirect:/payProduct/edit";
 		}else {
 			try {
-				payTypeService.modify(po);
+				payProductService.modify(po);
 				AlertMessage.success("修改成功").flashAttribute(ra);
 			} catch (BusinessException e) {
 				AlertMessage.error(e.getMessage()).flashAttribute(ra);
 			}
 		}
-		return "redirect:/payType/list";
+		return "redirect:/payProduct/list";
 	}
 	
 	/**
 	 * 删除
 	 */
-	@RequiresPermissions("payType:delete")
+	@RequiresPermissions("payProduct:delete")
 	@PostMapping("/delete")
 	@ResponseBody
 	public ResultMessageVO<?> delete(String id) {
@@ -132,7 +128,7 @@ public class PayTypeController {
 			return ResultMessageVO.error("id为空");
 		}else {
 			try {
-				payTypeService.remove(id);
+				payProductService.remove(id);
 				return ResultMessageVO.success("删除成功");
 			} catch (BusinessException e) {
 				return ResultMessageVO.error(e.getMessage());

@@ -26,5 +26,9 @@ public interface PayTypeService {
 	 * 删除
 	 */
 	void remove(String id) throws BusinessException;
-
+	
+	/**
+	 * 根据id查找
+	 */
+	PayTypePO selectById(String id);
 }
