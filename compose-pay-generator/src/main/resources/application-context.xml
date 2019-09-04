@@ -9,14 +9,14 @@
 
 	<bean class="io.github.pleuvoir.sql.MetaDataConfiguration">
 		<!-- 模版位置 -->
-		<property name="ftlLocation" value="classpath:templates" />
+		<property name="ftlLocation" value="${ftlLocation}" />
 		<!-- 数据源 -->
 		<property name="dataSourceConfig">
 			<bean class="io.github.pleuvoir.sql.bean.DataSourceConfig">
-				<property name="driverClass" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://39.105.110.40:3306/compose-pay" />
-				<property name="username" value="compose-pay" />
-				<property name="password" value="compose-pay" />
+				<property name="driverClass" value="${datasource.config.driverClass}" />
+				<property name="url" value="${datasource.config.url}" />
+				<property name="username" value="${datasource.config.username}" />
+				<property name="password" value="${datasource.config.password}" />
 			</bean>
 		</property>
 	</bean>

@@ -8,19 +8,13 @@
 
 #### 修改配置文件
 
-```xml
-<bean class="io.github.pleuvoir.sql.MetaDataConfiguration">
-	<!-- 模版位置， 此为存放 ftl 文件的位置 -->
-	<property name="ftlLocation" value="classpath:templates" />
-	<!-- 数据源 -->
-	<property name="dataSourceConfig">
-		<bean class="io.github.pleuvoir.sql.bean.DataSourceConfig">
-			<property name="driverClass" value="oracle.jdbc.OracleDriver" />
-			<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />
-			<property name="username" value="scott" />
-			<property name="password" value="tiger" />
-		</bean>
-	</property>
+```
+datasource.config.driverClass=com.mysql.jdbc.Driver
+datasource.config.url=jdbc:mysql://39.105.110.40:3306/compose-pay
+datasource.config.username=compose-pay
+datasource.config.password=compose-pay
+
+ftlLocation=classpath:templates
 ```
 
 ### Example
