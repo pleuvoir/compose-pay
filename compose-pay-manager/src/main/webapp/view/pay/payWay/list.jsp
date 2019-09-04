@@ -26,13 +26,13 @@
     			 <div class="col-md-2">
 					<div class="form-group">
 						<label class="control-label">payWayCode</label>
-						<input type="text" class="form-control"  name="payWayCode">
+						<input type="text" class="form-control"  placeholder="payWayCode"  name="payWayCode">
 					</div>
 				</div>
     			 <div class="col-md-2">
 					<div class="form-group">
 						<label class="control-label">payWayName</label>
-						<input type="text" class="form-control"  name="payWayName">
+						<input type="text" class="form-control"  placeholder="payWayName"  name="payWayName">
 					</div>
 				</div>
 				
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                    	${message}
+                    	 <t:alert message="${message}"/>
                         <div class="jqGrid_wrapper">
                             <table id="table-param"></table>
                             <div id="pager-param"></div>

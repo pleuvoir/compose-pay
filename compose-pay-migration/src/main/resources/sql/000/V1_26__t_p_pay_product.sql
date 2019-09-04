@@ -1,10 +1,10 @@
 
 CREATE TABLE p_pay_product(
   id VARCHAR(32) primary key,
-  pay_type_code VARCHAR(4),
-  pay_way_code VARCHAR(3),
-  name VARCHAR(32),
-  status VARCHAR(2),
+  pay_type_code VARCHAR(4)  NOT NULL DEFAULT '',
+  pay_way_code VARCHAR(3)  NOT NULL DEFAULT '',
+  name VARCHAR(32)  NOT NULL DEFAULT '',
+  status VARCHAR(2)  NOT NULL DEFAULT '',
   remark VARCHAR(255)
 ) ENGINE=INNODB CHARSET=utf8 COLLATE=utf8_general_ci;
 

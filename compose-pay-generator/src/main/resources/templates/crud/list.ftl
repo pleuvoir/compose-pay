@@ -28,7 +28,7 @@
     			 <div class="col-md-2">
 					<div class="form-group">
 						<label class="control-label">${columnExtend.field}</label>
-						<input type="text" class="form-control"  name="${columnExtend.field}">
+						<input type="text" class="form-control"  placeholder="${columnExtend.field}"  name="${columnExtend.field}">
 					</div>
 				</div>
     			  </#if>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                    	${r"${message}"}
+                    	 <t:alert message="${r"${message}"}"/>
                         <div class="jqGrid_wrapper">
                             <table id="table-param"></table>
                             <div id="pager-param"></div>

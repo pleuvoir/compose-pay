@@ -26,9 +26,9 @@ public class PayWayServiceImpl implements PayWayService {
 
 		PageCondition pageCondition = PageCondition.create(form);
 		
-	//	if(StringUtils.isNotBlank(form.getPayTypeName())){
-	//		form.setPayTypeName("%".concat(form.getPayTypeName()).concat("%"));
-	//	}
+		if(StringUtils.isNotBlank(form.getPayWayName())){
+			form.setPayWayName("%".concat(form.getPayWayName()).concat("%"));
+		}
 		
 		List<PayWayPO> list = payWayDao.find(pageCondition, form);
 
@@ -41,13 +41,13 @@ public class PayWayServiceImpl implements PayWayService {
 	@Override
 	public void save(PayWayPO po) throws BusinessException {
 		
-	//	PayWayPO entity = new PayWayPO();
-	//	entity.setPayTypeCode(po.getPayTypeCode());
-	//	PayWayPO prev = PayWayDao.selectOne(entity);
+		PayWayPO entity = new PayWayPO();
+		entity.setPayWayCode(po.getPayWayCode());
+		PayWayPO prev = payWayDao.selectOne(entity);
 		
-	//	if (prev != null) {
-	//		throw new BusinessException("已存在唯一记录");
-	//	}
+		if (prev != null) {
+			throw new BusinessException("已存在唯一记录");
+		}
 		Integer rs = payWayDao.insert(po);
 		AssertUtil.assertOne(rs, "保存失败");
 	}

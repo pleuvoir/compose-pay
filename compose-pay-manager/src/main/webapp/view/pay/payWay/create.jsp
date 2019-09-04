@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新增${dataModel.name}</title>
+    <title>新增PayWay</title>
 	
 	<jsp:include page="../../_import.jsp"/>
 	<link rel="stylesheet" href="<c:url value="/static/css/plugins/iCheck/custom.css"/>">
@@ -20,31 +20,39 @@
     		<div class="col-lg-12">
     			<div class="ibox">
                     <div class="ibox-title">
-                        <h5>新增${dataModel.name?uncap_first}</h5>
+                        <h5>新增payWay</h5>
                     </div>
                     <div class="ibox-content">
-	                    <t:alert message="${r"${message}"}"/>
+	                    <t:alert message="${message}"/>
 	                    
-						<form id="create-form" class="form-horizontal" action="<c:url value="/${dataModel.name?uncap_first}/save"/>" method="post">
+						<form id="create-form" class="form-horizontal" action="<c:url value="/payWay/save"/>" method="post">
 						
 						
 						<!-- 插入区域 -->
-		    			<#list dataModel.metaData.columnExtendList as columnExtend>
-		    				<#if "${columnExtend.field}" != "id" >
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">${columnExtend.field}</label>
+                            	<label class="col-lg-2 control-label">payWayCode</label>
                                	<div class="col-lg-8">
-                               		<input type="text" placeholder="${columnExtend.field}"  class="form-control" name="${columnExtend.field}">
+                               		<input type="text" placeholder="payWayCode"  class="form-control" name="payWayCode">
                                	</div>
                            	</div>
-		    			  </#if>
-		    			</#list>
+		    				<div class="form-group">
+                            	<label class="col-lg-2 control-label">payWayName</label>
+                               	<div class="col-lg-8">
+                               		<input type="text" placeholder="payWayName"  class="form-control" name="payWayName">
+                               	</div>
+                           	</div>
+		    				<div class="form-group">
+                            	<label class="col-lg-2 control-label">remark</label>
+                               	<div class="col-lg-8">
+                               		<input type="text" placeholder="remark"  class="form-control" name="remark">
+                               	</div>
+                           	</div>
 					
 	                        <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
                                     <button class="btn btn-primary" type="submit">保存</button>
-                                    <a class="btn btn-white" href="<c:url value="/${dataModel.name?uncap_first}/list"/>">返回</a>
+                                    <a class="btn btn-white" href="<c:url value="/payWay/list"/>">返回</a>
                                 </div>
                             </div>
 						</form>
@@ -67,21 +75,41 @@
     	$("#create-form").validate({
     		rules: {
     			
-    				<#list dataModel.metaData.columnExtendList as columnExtend>
-    					${columnExtend.field}:{
-    						required:<#if "${columnExtend.isNullable}" == "true">false,</#if> <#if "${columnExtend.isNullable}" == "false">true,</#if>
-    						maxlength:${columnExtend.columnDisplaySize}
+    					id:{
+    						required: true,
+    						maxlength:32
     					},
-    				</#list>
+    					payWayCode:{
+    						required: true,
+    						maxlength:4
+    					},
+    					payWayName:{
+    						required: true,
+    						maxlength:32
+    					},
+    					remark:{
+    						required:false, 
+    						maxlength:255
+    					},
     		},
     		messages: {
     		
-    			<#list dataModel.metaData.columnExtendList as columnExtend>
-    				${columnExtend.field}:{
-    					required:icon+'请输入${columnExtend.field}',
+    				id:{
+    					required:icon+'请输入id',
     					maxlength: icon+'长度不能超过{0}'
     				},
-				</#list>
+    				payWayCode:{
+    					required:icon+'请输入payWayCode',
+    					maxlength: icon+'长度不能超过{0}'
+    				},
+    				payWayName:{
+    					required:icon+'请输入payWayName',
+    					maxlength: icon+'长度不能超过{0}'
+    				},
+    				remark:{
+    					required:icon+'请输入remark',
+    					maxlength: icon+'长度不能超过{0}'
+    				},
     		}
     	});
     	

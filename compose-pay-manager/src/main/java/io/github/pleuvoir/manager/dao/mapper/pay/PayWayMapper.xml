@@ -20,7 +20,7 @@
     	<where>
     			<if test="form.id!=null and form.id!=''">AND id = #{form.id}</if>
     			<if test="form.payWayCode!=null and form.payWayCode!=''">AND pay_way_code = #{form.payWayCode}</if>
-    			<if test="form.payWayName!=null and form.payWayName!=''">AND pay_way_name = #{form.payWayName}</if>
+    			<if test="form.payWayName!=null and form.payWayName!=''">AND pay_way_name like #{form.payWayName}</if>
     			<if test="form.remark!=null and form.remark!=''">AND remark = #{form.remark}</if>
     	</where> 
     </select>

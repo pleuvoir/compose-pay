@@ -76,9 +76,7 @@ public class Generator  {
 		//生成DAO
 		dataModel.write("crud/dao.ftl",  LazyKit.javaAbsoluteFilePath(name + "Dao"));		
 		
-		
 		//生成MAPPER
-		
 		String allColumnsBySql = this.getAllColumnsBySql("select * from " + tableName);
 		dataModel.addData("allColumnsBySql", allColumnsBySql);
 		dataModel.write("crud/Mapper.ftl",  LazyKit.defaultFolder() + name + "Mapper.xml");	
@@ -96,6 +94,7 @@ public class Generator  {
 		
 		//生成页面
 		dataModel.write("crud/list.ftl", LazyKit.defaultFolder() + "list.jsp");	
+		dataModel.write("crud/create.ftl", LazyKit.defaultFolder() + "create.jsp");	
 		
 		
 		//生成权限sql
