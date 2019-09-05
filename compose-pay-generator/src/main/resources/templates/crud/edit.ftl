@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>修改支付种类</title>
+    <title>修改${dataModel.name}</title>
 	
 	<jsp:include page="../../_import.jsp"/>
 	<link rel="stylesheet" href="<c:url value="/static/css/plugins/iCheck/custom.css"/>">
@@ -20,36 +20,33 @@
     		<div class="col-lg-12">
     			<div class="ibox">
                     <div class="ibox-title">
-                        <h5>修改参数</h5>
+                        <h5>修改${dataModel.name}</h5>
                     </div>
                     <div class="ibox-content">
-	                    <t:alert message="${message}"/>
+                        <t:alert message="${r"${message}"}"/>
 	                    
-						<form id="edit-form" class="form-horizontal" action="<c:url value="/payType/update"/>" method="post">
-						<input type="hidden" class="form-control" name="id" value="${old.id}" >
-							<div class="form-group">
-                            	<label class="col-lg-2 control-label">支付种类代码</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="支付种类代码" class="form-control" name="payTypeCode" value="${old.payTypeCode}" readonly="readonly">
-                               	</div>
-                           	</div>
-                           	<div class="form-group">
-                            	<label class="col-lg-2 control-label">支付种类名称</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="支付种类名称" class="form-control" name="payTypeName" value="${old.payTypeName}">
-                               	</div>
-                           	</div>
-	                        <div class="form-group">
-                            	<label class="col-lg-2 control-label">备注</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="备注" class="form-control" name="remark" value="${old.remark}">
-                               	</div>
-                           	</div>
+						<form id="edit-form" class="form-horizontal" action="<c:url value="/${dataModel.name?uncap_first}/update"/>" method="post">
+						<input type="hidden" class="form-control" name="id" value="${r"${old.id}"}" >
+
+
+                        <!-- 修改区域 -->
+                        <#list dataModel.metaData.columnExtendList as columnExtend>
+                            <#if "${columnExtend.field}" != "id" >
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">${columnExtend.field}</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" value="${r"${old."}${columnExtend.field}}"  class="form-control" name="${columnExtend.field}">
+                                    </div>
+                                </div>
+                            </#if>
+                        </#list>
+
+
 	                        <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
                                     <button class="btn btn-primary" type="submit">保存</button>
-                                    <a class="btn btn-white" href="<c:url value="/payType/list"/>">返回</a>
+                                    <a class="btn btn-white" href="<c:url value="/${dataModel.name?uncap_first}/list"/>">返回</a>
                                 </div>
                             </div>
 						</form>
@@ -67,31 +64,28 @@
 	<script src="<c:url value="/static/js/plugins/iCheck/icheck.min.js"/>"></script>
     <script>
     $(document).ready(function () {
-    	addValidates();
-    	
-    	var icon = "<i class='fa fa-times-circle'></i> ";
-    	$("#edit-form").validate({
-    		rules: {
-    			payTypeCode:{
-    				required:true,
-    				maxlength:4
-    			},
-    			payTypeName:{
-    				required:true,
-    				maxlength:32
-    			},
-    		},
-    		messages: {
-    			code: {
-    				required:icon+'请输入支付种类代码',
-    				maxlength: icon+'长度不能超过{0}'
-    			},
-    			name: {
-    				required:icon+'请输入支付种类名称',
-    				maxlength: icon+'长度不能超过{0}'
-    			},
-    		}
-    	});
+
+        var icon = "<i class='fa fa-times-circle'></i> ";
+        $("#create-form").validate({
+            rules: {
+
+        <#list dataModel.metaData.columnExtendList as columnExtend>
+        ${columnExtend.field}:{
+            required:<#if "${columnExtend.isNullable}" == "true">false,</#if> <#if "${columnExtend.isNullable}" == "false">true,</#if>
+                maxlength:${columnExtend.columnDisplaySize}
+        },
+        </#list>
+    },
+        messages: {
+
+            <#list dataModel.metaData.columnExtendList as columnExtend>
+            ${columnExtend.field}:{
+                required:icon+'请输入${columnExtend.field}',
+                    maxlength: icon+'长度不能超过{0}'
+            },
+            </#list>
+        }
+    });
     	
     }); 
     

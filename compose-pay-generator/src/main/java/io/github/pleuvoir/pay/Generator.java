@@ -95,7 +95,8 @@ public class Generator  {
 		//生成页面
 		dataModel.write("crud/list.ftl", LazyKit.defaultFolder() + "list.jsp");	
 		dataModel.write("crud/create.ftl", LazyKit.defaultFolder() + "create.jsp");	
-		
+		dataModel.write("crud/edit.ftl", LazyKit.defaultFolder() + "edit.jsp");
+
 		
 		//生成权限sql
 	}

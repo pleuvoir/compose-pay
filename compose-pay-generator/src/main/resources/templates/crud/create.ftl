@@ -40,13 +40,14 @@
 		    			  </#if>
 		    			</#list>
 					
-	                        <div class="hr-line-dashed"></div>
+                        <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
                                     <button class="btn btn-primary" type="submit">保存</button>
                                     <a class="btn btn-white" href="<c:url value="/${dataModel.name?uncap_first}/list"/>">返回</a>
                                 </div>
                             </div>
+
 						</form>
                     </div>
                 </div>
