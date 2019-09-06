@@ -30,7 +30,7 @@
 							<div class="form-group">
                             	<label class="col-lg-2 control-label">支付种类代码</label>
                                	<div class="col-lg-8">
-                               		<input type="text" placeholder="支付种类代码" class="form-control" name="payTypeCode" value="${old.payTypeCode}" readonly="readonly">
+                               		<span class="form-control no-borders"><c:out value="${old.payTypeCode}"/></span>
                                	</div>
                            	</div>
                            	<div class="form-group">
@@ -67,7 +67,6 @@
 	<script src="<c:url value="/static/js/plugins/iCheck/icheck.min.js"/>"></script>
     <script>
     $(document).ready(function () {
-    	addValidates();
     	
     	var icon = "<i class='fa fa-times-circle'></i> ";
     	$("#edit-form").validate({

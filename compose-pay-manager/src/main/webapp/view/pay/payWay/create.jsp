@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新增PayWay</title>
+    <title>新增支付方式</title>
 	
 	<jsp:include page="../../_import.jsp"/>
 	<link rel="stylesheet" href="<c:url value="/static/css/plugins/iCheck/custom.css"/>">
@@ -20,7 +20,7 @@
     		<div class="col-lg-12">
     			<div class="ibox">
                     <div class="ibox-title">
-                        <h5>新增payWay</h5>
+                        <h5>新增支付方式</h5>
                     </div>
                     <div class="ibox-content">
 	                    <t:alert message="${message}"/>
@@ -30,21 +30,21 @@
 						
 						<!-- 插入区域 -->
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">payWayCode</label>
+                            	<label class="col-lg-2 control-label">支付方式代码</label>
                                	<div class="col-lg-8">
-                               		<input type="text" placeholder="payWayCode"  class="form-control" name="payWayCode">
+                               		<input type="text" placeholder="支付方式代码"  class="form-control" name="payWayCode">
                                	</div>
                            	</div>
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">payWayName</label>
+                            	<label class="col-lg-2 control-label">支付方式名称</label>
                                	<div class="col-lg-8">
-                               		<input type="text" placeholder="payWayName"  class="form-control" name="payWayName">
+                               		<input type="text" placeholder="支付方式名称"  class="form-control" name="payWayName">
                                	</div>
                            	</div>
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">remark</label>
+                            	<label class="col-lg-2 control-label">备注</label>
                                	<div class="col-lg-8">
-                               		<input type="text" placeholder="remark"  class="form-control" name="remark">
+                               		<input type="text" placeholder="备注"  class="form-control" name="remark">
                                	</div>
                            	</div>
 					
@@ -74,11 +74,6 @@
     	var icon = "<i class='fa fa-times-circle'></i> ";
     	$("#create-form").validate({
     		rules: {
-    			
-    					id:{
-    						required: true,
-    						maxlength:32
-    					},
     					payWayCode:{
     						required: true,
     						maxlength:4
@@ -93,21 +88,16 @@
     					},
     		},
     		messages: {
-    		
-    				id:{
-    					required:icon+'请输入id',
-    					maxlength: icon+'长度不能超过{0}'
-    				},
     				payWayCode:{
-    					required:icon+'请输入payWayCode',
+    					required:icon+'请输入支付方式代码',
     					maxlength: icon+'长度不能超过{0}'
     				},
     				payWayName:{
-    					required:icon+'请输入payWayName',
+    					required:icon+'请输入支付方式名称',
     					maxlength: icon+'长度不能超过{0}'
     				},
     				remark:{
-    					required:icon+'请输入remark',
+    					required:icon+'请输入备注',
     					maxlength: icon+'长度不能超过{0}'
     				},
     		}

@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PayWay管理</title>
+    <title>支付方式管理</title>
 	
 	<jsp:include page="../../_import.jsp"/>
 	<link href="<c:url value="/static/css/plugins/jqgrid/ui.jqgrid.css?0820"/>" rel="stylesheet">
@@ -25,14 +25,14 @@
     			<!-- 查询条件区域 -->
     			 <div class="col-md-2">
 					<div class="form-group">
-						<label class="control-label">payWayCode</label>
-						<input type="text" class="form-control"  placeholder="payWayCode"  name="payWayCode">
+						<label class="control-label">支付方式代码</label>
+						<input type="text" class="form-control"  placeholder="支付方式代码"  name="payWayCode">
 					</div>
 				</div>
     			 <div class="col-md-2">
 					<div class="form-group">
-						<label class="control-label">payWayName</label>
-						<input type="text" class="form-control"  placeholder="payWayName"  name="payWayName">
+						<label class="control-label">支付方式名称</label>
+						<input type="text" class="form-control"  placeholder="支付方式名称"  name="payWayName">
 					</div>
 				</div>
 				
@@ -52,7 +52,7 @@
             <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>PayWay管理</h5>
+                        <h5>支付方式管理</h5>
                         <div class="ibox-tools">
 	                        <shiro:hasPermission name="payType:add">
 	                            <a class="btn btn-primary btn-xs" href="<c:url value="/payWay/create"/>" title="新增">
@@ -97,11 +97,11 @@
         	j.init({
         		colNames:  [
         					
-        						'payWayCode',
+        						'支付方式代码',
         					
-        						'payWayName',
+        						'支付方式名称',
         					
-        						'remark',
+        						'备注',
         					  '操作'],
                 colModel: [
                     {name: 'payWayCode', width: 50, sortable:false},

@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>修改PayProduct</title>
+    <title>修改PayWay</title>
 	
 	<jsp:include page="../../_import.jsp"/>
 	<link rel="stylesheet" href="<c:url value="/static/css/plugins/iCheck/custom.css"/>">
@@ -20,42 +20,30 @@
     		<div class="col-lg-12">
     			<div class="ibox">
                     <div class="ibox-title">
-                        <h5>修改PayProduct</h5>
+                        <h5>修改支付方式</h5>
                     </div>
                     <div class="ibox-content">
                         <t:alert message="${message}"/>
 	                    
-						<form id="edit-form" class="form-horizontal" action="<c:url value="/payProduct/update"/>" method="post">
+						<form id="edit-form" class="form-horizontal" action="<c:url value="/payWay/update"/>" method="post">
 						<input type="hidden" class="form-control" name="id" value="${old.id}" >
 
 
                         <!-- 修改区域 -->
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">payTypeCode</label>
+                                    <label class="col-lg-2 control-label">支付方式代码</label>
                                     <div class="col-lg-8">
-                                        <input type="text" value="${old.payTypeCode}"  class="form-control" name="payTypeCode">
+                                        	<span class="form-control no-borders"><c:out value="${old.payWayCode}"/></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">payWayCode</label>
+                                    <label class="col-lg-2 control-label">支付方式名称</label>
                                     <div class="col-lg-8">
-                                        <input type="text" value="${old.payWayCode}"  class="form-control" name="payWayCode">
+                                        <input type="text" value="${old.payWayName}"  class="form-control" name="payWayName">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">name</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" value="${old.name}"  class="form-control" name="name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">status</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" value="${old.status}"  class="form-control" name="status">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">remark</label>
+                                    <label class="col-lg-2 control-label">备注</label>
                                     <div class="col-lg-8">
                                         <input type="text" value="${old.remark}"  class="form-control" name="remark">
                                     </div>
@@ -66,7 +54,7 @@
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
                                     <button class="btn btn-primary" type="submit">保存</button>
-                                    <a class="btn btn-white" href="<c:url value="/payProduct/list"/>">返回</a>
+                                    <a class="btn btn-white" href="<c:url value="/payWay/list"/>">返回</a>
                                 </div>
                             </div>
 						</form>
@@ -88,26 +76,13 @@
         var icon = "<i class='fa fa-times-circle'></i> ";
         $("#edit-form").validate({
             rules: {
-
-        id:{
-            required: true,
-                maxlength:32
-        },
-        payTypeCode:{
+        payWayCode:{
             required: true,
                 maxlength:4
         },
-        payWayCode:{
-            required: true,
-                maxlength:3
-        },
-        name:{
+        payWayName:{
             required: true,
                 maxlength:32
-        },
-        status:{
-            required: true,
-                maxlength:2
         },
         remark:{
             required:false, 
@@ -115,29 +90,15 @@
         },
     },
         messages: {
-
-            id:{
-                required:icon+'请输入id',
-                    maxlength: icon+'长度不能超过{0}'
-            },
-            payTypeCode:{
-                required:icon+'请输入payTypeCode',
-                    maxlength: icon+'长度不能超过{0}'
-            },
             payWayCode:{
-                required:icon+'请输入payWayCode',
+                required:icon+'请输入支付方式代码',
                     maxlength: icon+'长度不能超过{0}'
             },
-            name:{
-                required:icon+'请输入name',
-                    maxlength: icon+'长度不能超过{0}'
-            },
-            status:{
-                required:icon+'请输入status',
+            payWayName:{
+                required:icon+'请输入支付方式名称',
                     maxlength: icon+'长度不能超过{0}'
             },
             remark:{
-                required:icon+'请输入remark',
                     maxlength: icon+'长度不能超过{0}'
             },
         }

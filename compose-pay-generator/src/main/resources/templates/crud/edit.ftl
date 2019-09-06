@@ -66,7 +66,7 @@
     $(document).ready(function () {
 
         var icon = "<i class='fa fa-times-circle'></i> ";
-        $("#create-form").validate({
+        $("#edit-form").validate({
             rules: {
 
         <#list dataModel.metaData.columnExtendList as columnExtend>

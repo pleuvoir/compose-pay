@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PayProduct管理</title>
+    <title>支付产品管理</title>
 	
 	<jsp:include page="../../_import.jsp"/>
 	<link href="<c:url value="/static/css/plugins/jqgrid/ui.jqgrid.css?0820"/>" rel="stylesheet">
@@ -25,26 +25,30 @@
     			<!-- 查询条件区域 -->
     			 <div class="col-md-2">
 					<div class="form-group">
-						<label class="control-label">payTypeCode</label>
-						<input type="text" class="form-control"  placeholder="payTypeCode"  name="payTypeCode">
+						<label class="control-label">支付种类代码</label>
+						<input type="text" class="form-control"  placeholder="支付种类代码"  name="payTypeCode">
 					</div>
 				</div>
     			 <div class="col-md-2">
 					<div class="form-group">
-						<label class="control-label">payWayCode</label>
-						<input type="text" class="form-control"  placeholder="payWayCode"  name="payWayCode">
+						<label class="control-label">支付方式代码</label>
+						<input type="text" class="form-control"  placeholder="支付方式代码"  name="payWayCode">
 					</div>
 				</div>
     			 <div class="col-md-2">
 					<div class="form-group">
-						<label class="control-label">name</label>
-						<input type="text" class="form-control"  placeholder="name"  name="name">
+						<label class="control-label">支付产品名称</label>
+						<input type="text" class="form-control"  placeholder="支付产品名称"  name="name">
 					</div>
 				</div>
     			 <div class="col-md-2">
 					<div class="form-group">
-						<label class="control-label">status</label>
-						<input type="text" class="form-control"  placeholder="status"  name="status">
+						<label class="control-label">状态</label>
+							<select class="form-control" name="status">
+								<option value="">-</option>
+								<option value="1">有效</option>
+								<option value="2">无效</option>
+							</select>
 					</div>
 				</div>
 				
@@ -64,7 +68,7 @@
             <div class="col-lg-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>PayProduct管理</h5>
+                        <h5>支付产品管理</h5>
                         <div class="ibox-tools">
 	                        <shiro:hasPermission name="payType:add">
 	                            <a class="btn btn-primary btn-xs" href="<c:url value="/payProduct/create"/>" title="新增">
@@ -109,21 +113,21 @@
         	j.init({
         		colNames:  [
         					
-        						'payTypeCode',
+        						'支付种类代码',
         					
-        						'payWayCode',
+        						'支付方式代码',
         					
-        						'name',
+        						'支付产品名称',
         					
-        						'status',
+        						'状态',
         					
-        						'remark',
+        						'备注',
         					  '操作'],
                 colModel: [
                     {name: 'payTypeCode', width: 50, sortable:false},
                     {name: 'payWayCode', width: 50, sortable:false},
                     {name: 'name', width: 50, sortable:false},
-                    {name: 'status', width: 50, sortable:false},
+                    {name: 'status', width: 50, sortable:false,formatter:formatStatus},
                     {name: 'remark', width: 50, sortable:false},
                     {name: 'id', width:150, fixed:true, sortable:false, resize:false, formatter:dataButton}
                 ],
@@ -151,6 +155,17 @@
         		url: '<c:url value="/payProduct/delete"/>',
         		data: {id:value}
         	});
+        }
+        
+        function formatStatus(cellvalue, options, rowdata){
+        	switch (cellvalue) {
+			case '1':
+				return '有效';
+			case '2':
+				return '无效';
+			default:
+				return emptyString(cellvalue);
+			}
         }
     </script>
 

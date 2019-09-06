@@ -22,6 +22,6 @@ public class Bootstrap implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		generator.CRUD("p_pay_product");
+		generator.CRUD("p_pay_way");
 	}
 }
