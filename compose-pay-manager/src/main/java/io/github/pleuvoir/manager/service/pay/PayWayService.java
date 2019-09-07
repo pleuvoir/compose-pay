@@ -1,5 +1,7 @@
 package io.github.pleuvoir.manager.service.pay;
 
+import java.util.List;
+
 import io.github.pleuvoir.manager.exception.BusinessException;
 import io.github.pleuvoir.manager.model.dto.pay.PayWayFormDTO;
 import io.github.pleuvoir.manager.model.po.pay.PayWayPO;
@@ -31,4 +33,6 @@ public interface PayWayService {
 	 * 根据id查找
 	 */
 	PayWayPO selectById(String id);
+	
+	List<PayWayPO> all();
 }

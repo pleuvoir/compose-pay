@@ -11,20 +11,31 @@
 			  <result column="id" 		property="id"/>
 			  <result column="pay_type_code" 		property="payTypeCode"/>
 			  <result column="pay_way_code" 		property="payWayCode"/>
-			  <result column="name" 		property="name"/>
-			  <result column="status" 		property="status"/>
-			  <result column="remark" 		property="remark"/>
+			  <result column="name" 				property="name"/>
+			  <result column="status" 				property="status"/>
+			  <result column="remark" 				property="remark"/>
+			  <result column="pay_type_name" 		property="payTypeName"/>
+			  <result column="pay_way_name" 		property="payWayName"/>
     </resultMap>
     
     <select id="find" resultMap="paramRs">
-    	<include refid="select_all"/> 
+    	SELECT 
+		  pp.*,
+		  pt.pay_type_name,
+		  pw.pay_way_name 
+		FROM
+		  p_pay_product pp 
+		  LEFT JOIN p_pay_type pt 
+		    ON pp.pay_type_code = pt.pay_type_code 
+		  LEFT JOIN p_pay_way pw 
+		    ON pp.pay_way_code = pw.pay_way_code 
     	<where>
-    			<if test="form.id!=null and form.id!=''">AND id = #{form.id}</if>
-    			<if test="form.payTypeCode!=null and form.payTypeCode!=''">AND pay_type_code = #{form.payTypeCode}</if>
-    			<if test="form.payWayCode!=null and form.payWayCode!=''">AND pay_way_code = #{form.payWayCode}</if>
-    			<if test="form.name!=null and form.name!=''">AND name = #{form.name}</if>
-    			<if test="form.status!=null and form.status!=''">AND status = #{form.status}</if>
-    			<if test="form.remark!=null and form.remark!=''">AND remark = #{form.remark}</if>
+    			<if test="form.id!=null and form.id!=''">AND pp.id = #{form.id}</if>
+    			<if test="form.payTypeCode!=null and form.payTypeCode!=''">AND pp.pay_type_code = #{form.payTypeCode}</if>
+    			<if test="form.payWayCode!=null and form.payWayCode!=''">AND pp.pay_way_code = #{form.payWayCode}</if>
+    			<if test="form.name!=null and form.name!=''">AND pp.name like #{form.name}</if>
+    			<if test="form.status!=null and form.status!=''">AND pp.status = #{form.status}</if>
+    			<if test="form.remark!=null and form.remark!=''">AND pp.remark = #{form.remark}</if>
     	</where> 
     </select>
     

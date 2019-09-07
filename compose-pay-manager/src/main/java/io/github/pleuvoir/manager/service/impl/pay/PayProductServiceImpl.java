@@ -26,9 +26,9 @@ public class PayProductServiceImpl implements PayProductService {
 
 		PageCondition pageCondition = PageCondition.create(form);
 		
-	//	if(StringUtils.isNotBlank(form.getPayTypeName())){
-	//		form.setPayTypeName("%".concat(form.getPayTypeName()).concat("%"));
-	//	}
+		if(StringUtils.isNotBlank(form.getName())){
+			form.setName("%".concat(form.getName()).concat("%"));
+		}
 		
 		List<PayProductPO> list = payProductDao.find(pageCondition, form);
 
@@ -41,20 +41,33 @@ public class PayProductServiceImpl implements PayProductService {
 	@Override
 	public void save(PayProductPO po) throws BusinessException {
 		
-	//	PayProductPO entity = new PayProductPO();
-	//	entity.setPayTypeCode(po.getPayTypeCode());
-	//	PayProductPO prev = payProductDao.selectOne(entity);
+		PayProductPO entity = new PayProductPO();
+		entity.setPayTypeCode(po.getPayTypeCode());
+		entity.setPayWayCode(po.getPayWayCode());
+		PayProductPO prev = payProductDao.selectOne(entity);
 		
-	//	if (prev != null) {
-	//		throw new BusinessException("已存在唯一记录");
-	//	}
+		if (prev != null) {
+			throw new BusinessException("已存在唯一记录");
+		}
+		
+		po.setStatus(PayProductPO.STATUS_ENABLE);
 		Integer rs = payProductDao.insert(po);
 		AssertUtil.assertOne(rs, "保存失败");
 	}
 
 	@Override
 	public void modify(PayProductPO po) throws BusinessException {
-		Integer rs = payProductDao.updateAllColumnById(po);
+		
+		PayProductPO prev = payProductDao.selectById(po.getId());
+		if (prev == null) {
+			throw new BusinessException("未找到记录");
+		}
+		prev.setName(StringUtils.trim(po.getName()));
+		prev.setRemark(StringUtils.trim(po.getRemark()));
+		prev.setStatus(po.getStatus());
+		
+		
+		Integer rs = payProductDao.updateAllColumnById(prev);
 		AssertUtil.assertOne(rs, "修改失败");
 	}
 

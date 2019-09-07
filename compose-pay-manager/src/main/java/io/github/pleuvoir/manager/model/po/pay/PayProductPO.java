@@ -1,6 +1,7 @@
 package io.github.pleuvoir.manager.model.po.pay;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import javax.persistence.Column;
 import lombok.Data;
@@ -9,6 +10,8 @@ import lombok.Data;
 @TableName("p_pay_product")
 public class PayProductPO {
 	
+	public static final String STATUS_ENABLE = "0";
+	public static final String STATUS_DISABLE = "1";
 	
 	@Column(name = "id", length = 32, nullable = false)
 	private String id;
@@ -28,6 +31,10 @@ public class PayProductPO {
 	@Column(name = "remark", length = 255, nullable = true)
 	private String remark;
 	
+	@TableField(exist = false)
+	private String payTypeName;
+	@TableField(exist = false)
+	private String payWayName;
 
 	@Override
 	public String toString() {

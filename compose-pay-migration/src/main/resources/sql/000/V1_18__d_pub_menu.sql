@@ -28,7 +28,7 @@ values ('U00809', 'N', null, '2', 'U008', '/pubOperationLog/list', 8, '操作日
 
 
 insert into PUB_MENU (ID, HAS_CHILD, ICON, NODE, PARENT_ID, PATH, SORT, TITLE, IS_SHOW, REMARK)
-values ('U010', 'Y', 'fa fa-stumbleupon', '1', 'U000', null, 1, '支付配置', '1', null);
+values ('U010', 'Y', 'fa fa-stumbleupon', '1', 'U000', null, 1, '支付模型', '1', null);
 
 insert into PUB_MENU (ID, HAS_CHILD, ICON, NODE, PARENT_ID, PATH, SORT, TITLE, IS_SHOW, REMARK)
 values ('U01001', 'N', null, '2', 'U010', '/payType/list', 1, '支付种类', '1', null);

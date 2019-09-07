@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.mapper.Condition;
+
 import io.github.pleuvoir.manager.common.util.AssertUtil;
 import io.github.pleuvoir.manager.dao.pay.PayTypeDao;
 import io.github.pleuvoir.manager.exception.BusinessException;
@@ -67,6 +69,11 @@ public class PayTypeServiceImpl implements PayTypeService {
 	@Override
 	public PayTypePO selectById(String id) {
 		return payTypeDao.selectById(id);
+	}
+
+	@Override
+	public List<PayTypePO> all() {
+		return payTypeDao.selectList(Condition.empty());
 	}
 
 }

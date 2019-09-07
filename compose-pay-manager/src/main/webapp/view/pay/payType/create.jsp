@@ -26,24 +26,40 @@
 	                    <t:alert message="${message}"/>
 	                    
 						<form id="create-form" class="form-horizontal" action="<c:url value="/payType/save"/>" method="post">
+						
+						  <div class="row">
+						    <div class="col-md-12">
 							<div class="form-group">
                             	<label class="col-lg-2 control-label">支付种类代码</label>
-                               	<div class="col-lg-8">
+                               	<div class="col-lg-6">
                                		<input type="text" placeholder="支付种类代码" class="form-control" name="payTypeCode">
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
+                           	  <div class="row">
+                           	 <div class="col-md-12">
                            	<div class="form-group">
                             	<label class="col-lg-2 control-label">支付种类名称</label>
-                               	<div class="col-lg-8">
+                               	<div class="col-lg-6">
                                		<input type="text" placeholder="支付种类名称" class="form-control" name="payTypeName">
                                	</div>
                            	</div>
+                           </div>
+                           </div>
+                           
+                             <div class="row">
+                              <div class="col-md-12">
                            	<div class="form-group">
                             	<label class="col-lg-2 control-label">备注</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="备注" class="form-control" name="remark">
+                               	<div class="col-lg-6">
+                               		 <textarea rows="5" cols="70" class="form-control" placeholder="请输入备注" name="remark"></textarea>	   
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
 	                        <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">

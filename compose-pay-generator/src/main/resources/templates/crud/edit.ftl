@@ -32,12 +32,16 @@
                         <!-- 修改区域 -->
                         <#list dataModel.metaData.columnExtendList as columnExtend>
                             <#if "${columnExtend.field}" != "id" >
+                             <div class="row">
+						    <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">${columnExtend.field}</label>
                                     <div class="col-lg-8">
                                         <input type="text" value="${r"${old."}${columnExtend.field}}"  class="form-control" name="${columnExtend.field}">
                                     </div>
+                               	 </div>
                                 </div>
+                           	</div>
                             </#if>
                         </#list>
 
@@ -80,7 +84,7 @@
 
             <#list dataModel.metaData.columnExtendList as columnExtend>
             ${columnExtend.field}:{
-                required:icon+'请输入${columnExtend.field}',
+                required:icon+'请输入',
                     maxlength: icon+'长度不能超过{0}'
             },
             </#list>

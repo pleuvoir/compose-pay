@@ -25,14 +25,24 @@
     			<!-- 查询条件区域 -->
     			 <div class="col-md-2">
 					<div class="form-group">
-						<label class="control-label">支付种类代码</label>
-						<input type="text" class="form-control"  placeholder="支付种类代码"  name="payTypeCode">
+						<label class="control-label">支付种类</label>
+							<select class="form-control" name="payTypeCode">
+								<option value="">-</option>
+								<c:forEach items="${payTypes}" var="payType">
+									<option value="${payType.payTypeCode}">${payType.payTypeName} </option>
+								</c:forEach>
+							</select>
 					</div>
 				</div>
     			 <div class="col-md-2">
 					<div class="form-group">
-						<label class="control-label">支付方式代码</label>
-						<input type="text" class="form-control"  placeholder="支付方式代码"  name="payWayCode">
+						<label class="control-label">支付方式</label>
+							<select class="form-control" name="payWayCode">
+								<option value="">-</option>
+								<c:forEach items="${payWays}" var="payWay">
+									<option value="${payWay.payWayCode}">${payWay.payWayName} </option>
+								</c:forEach>
+							</select>
 					</div>
 				</div>
     			 <div class="col-md-2">
@@ -46,8 +56,8 @@
 						<label class="control-label">状态</label>
 							<select class="form-control" name="status">
 								<option value="">-</option>
-								<option value="1">有效</option>
-								<option value="2">无效</option>
+								<option value="0">可用</option>
+								<option value="1">不可用</option>
 							</select>
 					</div>
 				</div>
@@ -114,8 +124,10 @@
         		colNames:  [
         					
         						'支付种类代码',
+        						'支付种类名称',
         					
         						'支付方式代码',
+        						'支付方式名称',
         					
         						'支付产品名称',
         					
@@ -125,7 +137,9 @@
         					  '操作'],
                 colModel: [
                     {name: 'payTypeCode', width: 50, sortable:false},
+                    {name: 'payTypeName', width: 50, sortable:false},
                     {name: 'payWayCode', width: 50, sortable:false},
+                    {name: 'payWayName', width: 50, sortable:false},
                     {name: 'name', width: 50, sortable:false},
                     {name: 'status', width: 50, sortable:false,formatter:formatStatus},
                     {name: 'remark', width: 50, sortable:false},
@@ -159,10 +173,10 @@
         
         function formatStatus(cellvalue, options, rowdata){
         	switch (cellvalue) {
+			case '0':
+				return '可用';
 			case '1':
-				return '有效';
-			case '2':
-				return '无效';
+				return '不可用';
 			default:
 				return emptyString(cellvalue);
 			}

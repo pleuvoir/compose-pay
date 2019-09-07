@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新增PayProduct</title>
+    <title>新增支付产品</title>
 	
 	<jsp:include page="../../_import.jsp"/>
 	<link rel="stylesheet" href="<c:url value="/static/css/plugins/iCheck/custom.css"/>">
@@ -20,7 +20,7 @@
     		<div class="col-lg-12">
     			<div class="ibox">
                     <div class="ibox-title">
-                        <h5>新增payProduct</h5>
+                        <h5>新增支付产品</h5>
                     </div>
                     <div class="ibox-content">
 	                    <t:alert message="${message}"/>
@@ -29,35 +29,74 @@
 						
 						
 						<!-- 插入区域 -->
+						
+						<div class="row">
+						   <div class="col-md-12">
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">payTypeCode</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="payTypeCode"  class="form-control" name="payTypeCode">
+                            	<label class="col-lg-2 control-label">支付种类</label>
+                               	<div class="col-lg-6">
+                              	 	<select class="form-control" name="payTypeCode">
+										<option value="">-</option>
+										<c:forEach items="${payTypes}" var="payType">
+											<option value="${payType.payTypeCode}">${payType.payTypeName} </option>
+										</c:forEach>
+									</select>
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
+                           	<div class="row">
+	                       <div class="col-md-12">      
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">payWayCode</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="payWayCode"  class="form-control" name="payWayCode">
+                            	<label class="col-lg-2 control-label">支付方式</label>
+                               	<div class="col-lg-6">
+                              	 	<select class="form-control" name="payWayCode">
+										<option value="">-</option>
+										<c:forEach items="${payWays}" var="payWay">
+											<option value="${payWay.payWayCode}">${payWay.payWayName} </option>
+										</c:forEach>
+									</select>
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
+                           	<div class="row">
+                           	<div class="col-md-12">      
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">name</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="name"  class="form-control" name="name">
+                            	<label class="col-lg-2 control-label">产品名称</label>
+                               	<div class="col-lg-6">
+                               		<input type="text" placeholder="产品名称"  class="form-control" name="name">
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
+                           	<div class="row">
+                           	<div class="col-md-12">    
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">status</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="status"  class="form-control" name="status">
+                            	<label class="col-lg-2 control-label">状态</label>
+                               	<div class="col-lg-6">
+                               			<select class="form-control" name="status">
+												<!-- <option value="">-</option> -->
+												<option value="0">可用</option>
+												<option value="1">不可用</option>
+										</select>
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
+                           	<div class="row">
+                           	<div class="col-md-12">    
 		    				<div class="form-group">
-                            	<label class="col-lg-2 control-label">remark</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="remark"  class="form-control" name="remark">
+                            	<label class="col-lg-2 control-label">备注</label>
+                               	<div class="col-lg-6">
+                               	 <textarea rows="5" cols="70" class="form-control" placeholder="请输入备注" name="remark"></textarea>	 
                                	</div>
+                           	</div>
+                           	</div>
                            	</div>
 					
 	                        <div class="hr-line-dashed"></div>
@@ -115,27 +154,27 @@
     		messages: {
     		
     				id:{
-    					required:icon+'请输入id',
+    					required:icon+'请输入',
     					maxlength: icon+'长度不能超过{0}'
     				},
     				payTypeCode:{
-    					required:icon+'请输入payTypeCode',
+    					required:icon+'请输入',
     					maxlength: icon+'长度不能超过{0}'
     				},
     				payWayCode:{
-    					required:icon+'请输入payWayCode',
+    					required:icon+'请输入',
     					maxlength: icon+'长度不能超过{0}'
     				},
     				name:{
-    					required:icon+'请输入name',
+    					required:icon+'请输入',
     					maxlength: icon+'长度不能超过{0}'
     				},
     				status:{
-    					required:icon+'请输入status',
+    					required:icon+'请输入',
     					maxlength: icon+'长度不能超过{0}'
     				},
     				remark:{
-    					required:icon+'请输入remark',
+    					required:icon+'请输入',
     					maxlength: icon+'长度不能超过{0}'
     				},
     		}

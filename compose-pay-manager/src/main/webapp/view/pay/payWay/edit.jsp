@@ -27,26 +27,41 @@
 	                    
 						<form id="edit-form" class="form-horizontal" action="<c:url value="/payWay/update"/>" method="post">
 						<input type="hidden" class="form-control" name="id" value="${old.id}" >
+						<input type="hidden" class="form-control" name="payWayCode" value="${old.payWayCode}" >
 
 
                         <!-- 修改区域 -->
+                         	  <div class="row">
+						    <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">支付方式代码</label>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-6">
                                         	<span class="form-control no-borders"><c:out value="${old.payWayCode}"/></span>
                                     </div>
                                 </div>
+                                </div>
+                                </div>
+                                
+                                 	  <div class="row">
+						    <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">支付方式名称</label>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-6">
                                         <input type="text" value="${old.payWayName}"  class="form-control" name="payWayName">
                                     </div>
                                 </div>
+                                </div>
+                                </div>
+                                
+                                 	  <div class="row">
+						    <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">备注</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" value="${old.remark}"  class="form-control" name="remark">
+                                    <div class="col-lg-6">
+                                        	<textarea rows="5" cols="70" class="form-control" placeholder="请输入备注" name="remark">${old.remark}</textarea>	   
                                     </div>
+                                </div>
+                                </div>
                                 </div>
 
 

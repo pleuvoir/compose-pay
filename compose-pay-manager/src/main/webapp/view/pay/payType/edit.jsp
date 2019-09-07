@@ -20,31 +20,48 @@
     		<div class="col-lg-12">
     			<div class="ibox">
                     <div class="ibox-title">
-                        <h5>修改参数</h5>
+                        <h5>修改支付种类</h5>
                     </div>
                     <div class="ibox-content">
 	                    <t:alert message="${message}"/>
 	                    
 						<form id="edit-form" class="form-horizontal" action="<c:url value="/payType/update"/>" method="post">
 						<input type="hidden" class="form-control" name="id" value="${old.id}" >
+						<input type="hidden" class="form-control" name="payTypeCode" value="${old.payTypeCode}" >
+						
+						  <div class="row">
+						    <div class="col-md-12">
 							<div class="form-group">
                             	<label class="col-lg-2 control-label">支付种类代码</label>
-                               	<div class="col-lg-8">
+                               	<div class="col-lg-6">
                                		<span class="form-control no-borders"><c:out value="${old.payTypeCode}"/></span>
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
+                           	  <div class="row">
+						    <div class="col-md-12">
                            	<div class="form-group">
                             	<label class="col-lg-2 control-label">支付种类名称</label>
-                               	<div class="col-lg-8">
+                               	<div class="col-lg-6">
                                		<input type="text" placeholder="支付种类名称" class="form-control" name="payTypeName" value="${old.payTypeName}">
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
+                           	  <div class="row">
+						    <div class="col-md-12">
 	                        <div class="form-group">
                             	<label class="col-lg-2 control-label">备注</label>
-                               	<div class="col-lg-8">
-                               		<input type="text" placeholder="备注" class="form-control" name="remark" value="${old.remark}">
+                               	<div class="col-lg-6">
+                               		<textarea rows="5" cols="70" class="form-control" placeholder="请输入备注" name="remark">${old.remark}</textarea>	   
                                	</div>
                            	</div>
+                           	</div>
+                           	</div>
+                           	
 	                        <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">

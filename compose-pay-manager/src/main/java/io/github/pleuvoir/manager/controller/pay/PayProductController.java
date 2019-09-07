@@ -19,6 +19,8 @@ import io.github.pleuvoir.manager.model.po.pay.PayProductPO;
 import io.github.pleuvoir.manager.model.vo.ResultMessageVO;
 import io.github.pleuvoir.manager.model.vo.pay.PayProductListVO;
 import io.github.pleuvoir.manager.service.pay.PayProductService;
+import io.github.pleuvoir.manager.service.pay.PayTypeService;
+import io.github.pleuvoir.manager.service.pay.PayWayService;
 
 
 @Controller
@@ -27,14 +29,22 @@ public class PayProductController {
 	
 	@Autowired
 	private PayProductService payProductService;
+	@Autowired
+	private PayWayService payWayService;
+	@Autowired
+	private PayTypeService payTypeService;
+	
 
 	/**
 	 * 查询页 
 	 */
 	@RequiresPermissions("payProduct:list")
 	@RequestMapping("/list")
-	public String list() {
-		return "/pay/payProduct/list";
+	public ModelAndView list() {
+		ModelAndView view = new ModelAndView("/pay/payProduct/list");
+		view.addObject("payWays",  payWayService.all());
+		view.addObject("payTypes", payTypeService.all());
+		return view;
 	}
 	
 	/**
@@ -54,6 +64,8 @@ public class PayProductController {
 	@RequestMapping("/create")
 	public ModelAndView create() {
 		ModelAndView view = new ModelAndView("/pay/payProduct/create");
+		view.addObject("payWays",  payWayService.all());
+		view.addObject("payTypes", payTypeService.all());
 		return view;
 	}
 	

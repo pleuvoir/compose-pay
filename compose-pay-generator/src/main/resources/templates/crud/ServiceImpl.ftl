@@ -54,6 +54,14 @@ public class ${dataModel.name}ServiceImpl implements ${dataModel.name}Service {
 
 	@Override
 	public void modify(${dataModel.POName} po) throws BusinessException {
+		${dataModel.POName} prev = ${dataModel.name?uncap_first}Dao.selectById(po.getId());
+		if (prev == null) {
+			throw new BusinessException("未找到记录");
+		}
+		
+		//设置页面修改后的值
+	//	prev.setName(StringUtils.trim(po.getName()));
+		
 		Integer rs = ${dataModel.name?uncap_first}Dao.updateAllColumnById(po);
 		AssertUtil.assertOne(rs, "修改失败");
 	}
