@@ -17,7 +17,7 @@
 2. 聚合码
 
 ## 技术
-springmvc、springboot、dubbo、zookeeper、redis、mybatis-plus、rabbitmq、mysql
+springmvc、springboot、dubbo、zookeeper、redis、mybatis-plus、rabbitmq、mysql、sharding-jdbc
 
 ## 开源协议
 [Apache License](LICENSE)
