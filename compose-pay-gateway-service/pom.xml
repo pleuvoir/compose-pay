@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.pleuvoir</groupId>
-    <artifactId>compose-pay-gateway-contract</artifactId>
-    <version>1.0-SNAPSHOT</version>
+	<groupId>io.github.pleuvoir</groupId>
+	<artifactId>compose-pay-gateway-service</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<modules>
+		<module>compose-pay-gateway-contract</module>
+		<module>compose-pay-gateway-component</module>
+	</modules>
+	<packaging>pom</packaging>
 
 
-    <dependencyManagement>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+	</properties>
 
-        <dependencies>
-            <dependency>
-                <groupId>io.github.pleuvoir</groupId>
-                <artifactId>compose-pay-gateway-contract</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+	<dependencyManagement>
+
+		<dependencies>
+			<dependency>
+				<groupId>io.github.pleuvoir</groupId>
+				<artifactId>compose-pay-gateway-contract</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 
 </project>
