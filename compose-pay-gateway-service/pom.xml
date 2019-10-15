@@ -4,9 +4,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<!-- 在这里定义方便按需继承，同时声明了contract的版本 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.4.RELEASE</version>
+	</parent>
+
 	<groupId>io.github.pleuvoir</groupId>
 	<artifactId>compose-pay-gateway-service</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 
 	<modules>
 		<module>compose-pay-gateway-contract</module>
@@ -18,18 +25,256 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
+
+		<spring.boot.version>2.0.4.RELEASE</spring.boot.version>
+		<uuid.version>3.1.5</uuid.version>
+		<lettuce.version>5.0.5.RELEASE</lettuce.version>
+
+		<mybatis-plus.version>2.3.1</mybatis-plus.version>
+		<mysql.version>5.1.40</mysql.version>
+		<druid.version>1.1.10</druid.version>
+
+		<validator.version>6.0.12.Final</validator.version>
+		<fastjson.version>1.2.49</fastjson.version>
+		<lang3.version>3.7</lang3.version>
+		<pool2.version>2.6.0</pool2.version>
+		<io.version>2.6</io.version>
+		<lombok.version>1.18.2</lombok.version>
+
+		<dubbo.boot.version>0.2.0</dubbo.boot.version>
+		<dubbo.version>2.6.2</dubbo.version>
+		<zookeeper.version>3.4.13</zookeeper.version>
+		<javassist.version>3.23.1-GA</javassist.version>
+		<netty3.version>3.10.6.Final</netty3.version>
+		<netty4.version>4.1.28.Final</netty4.version>
 	</properties>
 
-	<dependencyManagement>
 
+
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>io.github.pleuvoir</groupId>
 				<artifactId>compose-pay-gateway-contract</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-jdbc</artifactId>
+				<version>${spring.boot.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.zaxxer</groupId>
+						<artifactId>HikariCP</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- redis -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis</artifactId>
+				<version>${spring.boot.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>io.lettuce</groupId>
+						<artifactId>lettuce-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>io.lettuce</groupId>
+				<artifactId>lettuce-core</artifactId>
+				<version>${lettuce.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>io.netty</groupId>
+						<artifactId>netty-common</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>io.netty</groupId>
+						<artifactId>netty-transport</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>io.netty</groupId>
+						<artifactId>netty-handler</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- Common -->
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${validator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>${pool2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${io.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>${netty4.version}</version>
+			</dependency>
+
+			<!-- Database -->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+			<!-- druid -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid-spring-boot-starter</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+			<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		
+			<dependency>
+				<groupId>com.fasterxml.uuid</groupId>
+				<artifactId>java-uuid-generator</artifactId>
+				<version>${uuid.version}</version>
+			</dependency>
+
+			<!-- dubbo -->
+			<dependency>
+				<groupId>com.alibaba.boot</groupId>
+				<artifactId>dubbo-spring-boot-starter</artifactId>
+				<version>${dubbo.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.jboss.netty</groupId>
+						<artifactId>netty</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty</artifactId>
+				<version>${netty3.version}</version>
+			</dependency>
+
+			<!-- Test -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring.boot.version}</version>
+				<scope>test</scope>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- 打包的时候跳过单元测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.0</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring.boot.version}</version>
+					<configuration>
+						<fork>true</fork>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
