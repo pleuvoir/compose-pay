@@ -1,5 +1,7 @@
 package io.github.pleuvoir.gateway.component;
 
+import org.springframework.stereotype.Service;
+
 import io.github.pleuvoir.gateway.agent.BasePayAgent;
 import io.github.pleuvoir.gateway.model.dto.PaymentDTO;
 import io.github.pleuvoir.gateway.model.vo.ResultBasePayVO;
@@ -10,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * 
  */
 @Slf4j
+@Service
 public class BasePayAgentImpl implements BasePayAgent {
 
 	@Override
