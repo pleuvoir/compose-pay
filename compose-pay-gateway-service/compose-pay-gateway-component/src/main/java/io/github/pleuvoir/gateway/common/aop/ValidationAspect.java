@@ -11,6 +11,8 @@ import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 
+import io.github.pleuvoir.gateway.common.utils.HibernateValidatorUtils;
+import io.github.pleuvoir.gateway.common.utils.ValidationResult;
 import org.apache.commons.collections4.CollectionUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -29,34 +31,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ValidationAspect {
 
-	@Around("execution(* io.github.pleuvoir.gateway..*.*(..))")
-	public Object around(ProceedingJoinPoint point) throws Throwable {
-		MethodSignature methodSignature = (MethodSignature) point.getSignature();
-		Method method = methodSignature.getMethod();
-		Object[] args = point.getArgs();
-		Parameter[] parameters = method.getParameters();
-		try {
-			for (int i = 0; i < parameters.length; i++) {
-				if (parameters[i].isAnnotationPresent(Valid.class)) {
-					// 需要校验
-					Object val = args[i];
-					if (Objects.isNull(args[i])) {
-						return new ResultSignMessageVO(ResultCodeEnum.PARAM_ERROR, "mid", "参数不能为null");
-					}
-					ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
-					javax.validation.Validator validator = validatorFactory.getValidator();
-					Set<ConstraintViolation<Object>> set = validator.validate(val);
-					if (CollectionUtils.isNotEmpty(set)) {
-						String errorMessage = Joiner.on("; ").join(set.stream().map(ConstraintViolation::getMessage)
-								.sorted(String::compareTo).collect(Collectors.toList()));
-						return new ResultSignMessageVO(ResultCodeEnum.PARAM_ERROR, "mid", errorMessage);
-					}
-				}
-			}
-			return point.proceed();
-		} catch (Exception e) {
-			log.error("验证切面系统异常", e);
-			return new ResultSignMessageVO(ResultCodeEnum.ERROR, "mid", ResultCodeEnum.ERROR.getMsg());
-		}
-	}
+    @Around("execution(* io.github.pleuvoir.gateway..*.*(..))")
+    public Object around(ProceedingJoinPoint point) throws Throwable {
+        MethodSignature methodSignature = (MethodSignature) point.getSignature();
+        Method method = methodSignature.getMethod();
+        Object[] args = point.getArgs();
+        Parameter[] parameters = method.getParameters();
+        try {
+            for (int i = 0; i < parameters.length; i++) {
+                if (parameters[i].isAnnotationPresent(Valid.class)) {
+                    Object val = args[i];
+                    ValidationResult validationResult = HibernateValidatorUtils.validateEntity(val);
+                    if (validationResult.isHasErrors()) {
+                        String errorMsg = validationResult.getErrorMsg().toString();
+                        log.warn("数据验证错误：{}", errorMsg);
+                        return new ResultSignMessageVO(ResultCodeEnum.PARAM_ERROR, "mid", errorMsg);
+                    }
+                }
+            }
+            return point.proceed();
+        } catch (Exception e) {
+            log.error("验证切面系统异常", e);
+            return new ResultSignMessageVO(ResultCodeEnum.ERROR, "mid", ResultCodeEnum.ERROR.getMsg());
+        }
+    }
 }

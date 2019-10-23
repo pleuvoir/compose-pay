@@ -19,6 +19,8 @@ public enum ResultCodeEnum {
 	LACK_PARAM("LACK_PARAM", "缺少参数"),
 	/** 商户不存在 */
 	NO_MERCHANT("NO_MERCHANT", "商户不存在"),
+	/** 无效商户 */
+	INVALID_MERCHANT("INVALID_MERCHANT", "无效商户"),
 	/** 参数错误 */
 	PARAM_ERROR("PARAM_ERROR","参数错误"),
 	

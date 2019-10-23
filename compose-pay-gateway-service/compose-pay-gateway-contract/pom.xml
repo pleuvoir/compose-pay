@@ -16,11 +16,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
 
-		<fastjson.version>1.2.49</fastjson.version>
+		<fastjson.version>1.2.61</fastjson.version>
 		<lang3.version>3.7</lang3.version>
 		<io.version>2.6</io.version>
 		<lombok.version>1.18.2</lombok.version>
-		<validator.version>6.0.12.Final</validator.version>
+		<hibernate.validator>6.0.17.Final</hibernate.validator>
 	</properties>
 
 	<dependencies>
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>${validator.version}</version>
+			<version>${hibernate.validator}</version>
 		</dependency>
 	</dependencies>
 

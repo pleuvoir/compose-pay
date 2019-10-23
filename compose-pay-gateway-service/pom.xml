@@ -33,8 +33,6 @@
 		<mysql.version>5.1.40</mysql.version>
 		<druid.version>1.1.10</druid.version>
 
-		<validator.version>6.0.12.Final</validator.version>
-		
 		<fastjson.version>1.2.49</fastjson.version>
 		<lang3.version>3.7</lang3.version>
 		<pool2.version>2.6.0</pool2.version>
@@ -111,11 +109,6 @@
 			</dependency>
 
 			<!-- Common -->
-			<dependency>
-				<groupId>org.hibernate.validator</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>${validator.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-pool2</artifactId>
