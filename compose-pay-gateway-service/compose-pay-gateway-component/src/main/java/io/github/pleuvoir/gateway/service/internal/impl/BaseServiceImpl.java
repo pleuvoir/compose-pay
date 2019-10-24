@@ -1,7 +1,7 @@
 package io.github.pleuvoir.gateway.service.internal.impl;
 
 import io.github.pleuvoir.gateway.common.Const;
-import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
+import io.github.pleuvoir.gateway.constants.RspCodeEnum;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerchantPO;
 import io.github.pleuvoir.gateway.service.internal.BaseService;
@@ -38,15 +38,15 @@ public class BaseServiceImpl implements BaseService {
     protected void checkMerchant(String mid) throws BusinessException {
         if (StringUtils.isBlank(mid)) {
             log.warn("【检查商户信息】参数错误，mid为空。");
-            throw new BusinessException(ResultCodeEnum.LACK_PARAM);
+            throw new BusinessException(RspCodeEnum.LACK_PARAM);
         }
         MerchantPO merchant = this.getMerchant(mid);
         if (merchant == null) {
-            throw new BusinessException(ResultCodeEnum.NO_MERCHANT);
+            throw new BusinessException(RspCodeEnum.NO_MERCHANT);
         }
         if (!StringUtils.equals(MerchantPO.STATUS_NORMAL, merchant.getStatus())) {
             log.warn("【检查商户信息】商户状态异常，mid={}", mid);
-            throw new BusinessException(ResultCodeEnum.INVALID_MERCHANT);
+            throw new BusinessException(RspCodeEnum.INVALID_MERCHANT);
         }
     }
 }

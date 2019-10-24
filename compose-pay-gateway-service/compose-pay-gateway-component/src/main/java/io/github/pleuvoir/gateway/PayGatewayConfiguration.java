@@ -56,7 +56,7 @@ public class PayGatewayConfiguration {
 
         factoryBean.setConfigLocation(new ClassPathResource("mapping-config.xml"));
         factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
-                .getResources("classpath:com/quanpai/core/dao/mapper/**/*Mapper.xml"));
+                .getResources("classpath:mapper/**/*Mapper.xml"));
 
         GlobalConfiguration globalConfig = new GlobalConfiguration();
         globalConfig.setIdType(IdType.UUID.getKey());

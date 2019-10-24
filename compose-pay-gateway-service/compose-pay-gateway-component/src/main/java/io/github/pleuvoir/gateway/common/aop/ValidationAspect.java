@@ -1,30 +1,20 @@
 package io.github.pleuvoir.gateway.common.aop;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Valid;
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
-
 import io.github.pleuvoir.gateway.common.utils.HibernateValidatorUtils;
 import io.github.pleuvoir.gateway.common.utils.ValidationResult;
-import org.apache.commons.collections4.CollectionUtils;
+import io.github.pleuvoir.gateway.constants.RspCodeEnum;
+import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.google.common.base.Joiner;
-
-import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
-import io.github.pleuvoir.gateway.model.vo.ResultSignMessageVO;
-import lombok.extern.slf4j.Slf4j;
+import javax.validation.Valid;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 @Aspect
 @Component
@@ -43,16 +33,14 @@ public class ValidationAspect {
                     Object val = args[i];
                     ValidationResult validationResult = HibernateValidatorUtils.validateEntity(val);
                     if (validationResult.isHasErrors()) {
-                        String errorMsg = validationResult.getErrorMsg().toString();
-                        log.warn("数据验证错误：{}", errorMsg);
-                        return new ResultSignMessageVO(ResultCodeEnum.PARAM_ERROR, "mid", errorMsg);
+                        return ResultMessageVO.fail(RspCodeEnum.PARAM_ERROR, validationResult.getErrorMessageOneway());
                     }
                 }
             }
             return point.proceed();
         } catch (Exception e) {
             log.error("验证切面系统异常", e);
-            return new ResultSignMessageVO(ResultCodeEnum.ERROR, "mid", ResultCodeEnum.ERROR.getMsg());
+            return ResultMessageVO.fail(RspCodeEnum.ERROR, RspCodeEnum.ERROR.getMsg());
         }
     }
 }

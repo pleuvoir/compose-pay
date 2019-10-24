@@ -7,10 +7,12 @@ import lombok.Getter;
  * @author pleuvoir
  * 
  */
-public enum ResultCodeEnum {
+public enum RspCodeEnum {
 
 	/** 成功 */
 	SUCCESS("SUCCESS", "ok"),
+	/** 操作失败 */
+	FAIL("FAIL", "操作失败"),
 	/** 系统错误 */
 	ERROR("ERROR", "系统繁忙，请稍后再试。"),
 	/** 验签失败 */
@@ -32,7 +34,7 @@ public enum ResultCodeEnum {
 	@Getter
 	private String msg;
 
-	private ResultCodeEnum(String code, String msg) {
+	private RspCodeEnum(String code, String msg) {
 		this.code = code;
 		this.msg = msg;
 	}
@@ -53,8 +55,8 @@ public enum ResultCodeEnum {
 		}
 		if (obj instanceof String) {
 			return this.getCode().equals((String) obj);
-		} else if (obj instanceof ResultCodeEnum) {
-			return this.getCode().equals(((ResultCodeEnum) obj).getCode());
+		} else if (obj instanceof RspCodeEnum) {
+			return this.getCode().equals(((RspCodeEnum) obj).getCode());
 		}
 		return false;
 	}
