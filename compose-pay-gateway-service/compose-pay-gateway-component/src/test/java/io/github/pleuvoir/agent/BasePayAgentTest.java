@@ -25,14 +25,15 @@ public class BasePayAgentTest extends BaseTest {
     @Test
     public void test() {
         PaymentDTO dto = new PaymentDTO();
-        dto.setType(PayTypeEnum.TYPE_WECHAT.getCode());
+        dto.setType(PayTypeEnum.TYPE_WECHAT.getName());
         dto.setMid("88258920223");
         dto.setOrderNo(System.currentTimeMillis() + "");
         dto.setBody("body");
         dto.setIp("127.0.0.1");
         dto.setSubject("subject");
         dto.setAmount(BigDecimal.TEN);
-        ResultMessageVO<ResultBasePayVO> pay = agent.pay(dto);
+        dto.setNotifyUrl("http://www.baidu.com");
+        ResultMessageVO<ResultBasePayVO> pay = agent.payCode(dto);
         if (pay.isSuccess()) {
             ResultBasePayVO data = pay.getData();
             System.out.println(data);

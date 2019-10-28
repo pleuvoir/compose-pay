@@ -1,7 +1,9 @@
 package io.github.pleuvoir.gateway.model.po;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.sun.tools.corba.se.idl.InterfaceGen;
 import io.github.pleuvoir.gateway.common.utils.ToJSON;
 import lombok.Data;
 
@@ -17,28 +19,25 @@ public class MerchantPO implements ToJSON {
     /**
      * 商户状态-冻结
      */
-    public static final String STATUS_FREEZE = "0";
+    public static final Integer STATUS_FREEZE = 0;
 
     /**
      * 商户状态-正常
      */
-    public static final String STATUS_NORMAL = "1";
+    public static final Integer STATUS_NORMAL = 1;
 
     @TableId("id")
     private String id;
 
-    @TableId("mid")
+    @TableField("mid")
     private String mid;
 
-    @TableId("merName")
+    @TableField("mer_name")
     private String merName;        //商户名称
 
-    @TableId("merAlias")
-    private String merAlias;    //商户简称
-
-    @TableId("encryptKey")
+    @TableField("encrypt_key")
     private String encryptKey;        //加密签名密钥
 
-    @TableId("status")
-    private String status;        //状态
+    @TableField("status")
+    private Integer status;        //状态
 }

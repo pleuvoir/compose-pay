@@ -12,5 +12,5 @@ import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
  */
 public interface BasePayAgent {
 
-    ResultMessageVO<ResultBasePayVO> pay(PaymentDTO dto);
+    ResultMessageVO<ResultBasePayVO> payCode(PaymentDTO dto);
 }

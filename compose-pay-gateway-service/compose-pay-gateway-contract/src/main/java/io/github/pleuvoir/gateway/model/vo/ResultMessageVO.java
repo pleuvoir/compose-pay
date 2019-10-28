@@ -65,6 +65,12 @@ public class ResultMessageVO<T> implements Serializable {
         return new ResultMessageVO<>(RspCodeEnum.SUCCESS, RspCodeEnum.SUCCESS.getMsg());
     }
 
+    public static <T> ResultMessageVO<T> success(T data) {
+        ResultMessageVO<T> messageVO = new ResultMessageVO<>(RspCodeEnum.SUCCESS, RspCodeEnum.SUCCESS.getMsg());
+        messageVO.setData(data);
+        return messageVO;
+    }
+
     public static <T> ResultMessageVO<T> fail(String message) {
         return new ResultMessageVO<>(RspCodeEnum.FAIL, message);
     }
@@ -73,6 +79,9 @@ public class ResultMessageVO<T> implements Serializable {
         return new ResultMessageVO<>(rspCode, message);
     }
 
+    public static <T> ResultMessageVO<T> fail(RspCodeEnum rspCode) {
+        return new ResultMessageVO<>(rspCode, rspCode.getMsg());
+    }
 
     public ResultMessageVO<T> setFail(String message) {
         return this.setResult(RspCodeEnum.FAIL, message);

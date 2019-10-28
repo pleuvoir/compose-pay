@@ -25,7 +25,10 @@ public enum RspCodeEnum {
 	INVALID_MERCHANT("INVALID_MERCHANT", "无效商户"),
 	/** 参数错误 */
 	PARAM_ERROR("PARAM_ERROR","参数错误"),
-	
+	/** 无效的支付方式*/
+	INVALID_PAYTYPE("INVALID_PAYTYPE","无效的支付方式"),
+
+
 	;
 
 	@Getter

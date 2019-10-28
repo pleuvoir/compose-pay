@@ -9,7 +9,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
@@ -27,20 +26,15 @@ public class ValidationAspect {
         Method method = methodSignature.getMethod();
         Object[] args = point.getArgs();
         Parameter[] parameters = method.getParameters();
-        try {
-            for (int i = 0; i < parameters.length; i++) {
-                if (parameters[i].isAnnotationPresent(Valid.class)) {
-                    Object val = args[i];
-                    ValidationResult validationResult = HibernateValidatorUtils.validateEntity(val);
-                    if (validationResult.isHasErrors()) {
-                        return ResultMessageVO.fail(RspCodeEnum.PARAM_ERROR, validationResult.getErrorMessageOneway());
-                    }
+        for (int i = 0; i < parameters.length; i++) {
+            if (parameters[i].isAnnotationPresent(Valid.class)) {
+                Object val = args[i];
+                ValidationResult validationResult = HibernateValidatorUtils.validateEntity(val);
+                if (validationResult.isHasErrors()) {
+                    return ResultMessageVO.fail(RspCodeEnum.PARAM_ERROR, validationResult.getErrorMessageOneway());
                 }
             }
-            return point.proceed();
-        } catch (Exception e) {
-            log.error("验证切面系统异常", e);
-            return ResultMessageVO.fail(RspCodeEnum.ERROR, RspCodeEnum.ERROR.getMsg());
         }
+        return point.proceed();
     }
 }

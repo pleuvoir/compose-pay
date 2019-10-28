@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -45,9 +46,9 @@ public class PaymentDTO implements Serializable {
 
     private String ip;
 
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
-    }
+    @Length(max = 256)
+    @NotEmpty(message = "商户通知地址不能为空")
+    private String notifyUrl;	//商户通知地址
+
 
 }
