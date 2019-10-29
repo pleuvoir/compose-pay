@@ -23,11 +23,14 @@ public enum RspCodeEnum {
 	NO_MERCHANT("NO_MERCHANT", "商户不存在"),
 	/** 无效商户 */
 	INVALID_MERCHANT("INVALID_MERCHANT", "无效商户"),
+	/** 商户IP未绑定 */
+	IP_NO_BIND("IP_NO_BIND", "商户IP未绑定"),
 	/** 参数错误 */
 	PARAM_ERROR("PARAM_ERROR","参数错误"),
 	/** 无效的支付方式*/
 	INVALID_PAYTYPE("INVALID_PAYTYPE","无效的支付方式"),
-
+	/** 商户未签约该支付种类和支付方式*/
+	MER_UN_SIGN_ERROR("MER_UN_SIGN_ERROR","商户未签约该支付种类和支付方式"),
 
 	;
 

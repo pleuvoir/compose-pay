@@ -22,17 +22,20 @@ public class MerSignFeeServiceImpl implements MerSignFeeService {
     private MerSignFeeDao merSignFeeDao;
 
     @Override
-    public List<MerSignFeePO> getByMidAndPayProductCode(String mid, String payProductCode) {
-
+    public MerSignFeePO getByMidAndPayProductCode(String mid, String payProductCode) {
         MerSignFeePO query = new MerSignFeePO();
         query.setMid(mid);
         query.setPayProduct(payProductCode);
+        return merSignFeeDao.selectOne(query);
+    }
 
-        EntityWrapper<MerSignFeePO> wrapper = Condition.wrapper();
-        wrapper.setEntity(query);
-
-        List<MerSignFeePO> signFeePOList = merSignFeeDao.selectList(wrapper);
-        return signFeePOList;
+    @Override
+    public MerSignFeePO getMerSignsByMidAndPayWayAndPayType(String mid, String payType, String payWay) {
+        MerSignFeePO query = new MerSignFeePO();
+        query.setMid(mid);
+        query.setPayType(payType);
+        query.setPayWay(payWay);
+        return merSignFeeDao.selectOne(query);
     }
 
 }

@@ -11,8 +11,18 @@ public interface MerSignFeeService {
 
     /**
      * 查询商户签约的支付产品
-     * @param mid 商户号
+     *
+     * @param mid            商户号
      * @param payProductCode 支付产品
      */
-    List<MerSignFeePO> getByMidAndPayProductCode(String mid, String payProductCode);
+    MerSignFeePO getByMidAndPayProductCode(String mid, String payProductCode);
+
+    /**
+     * 查询商户签约的支付产品
+     *
+     * @param mid     商户号
+     * @param payType 支付种类
+     * @param payWay  支付方式
+     */
+    MerSignFeePO getMerSignsByMidAndPayWayAndPayType(String mid, String payType, String payWay);
 }
