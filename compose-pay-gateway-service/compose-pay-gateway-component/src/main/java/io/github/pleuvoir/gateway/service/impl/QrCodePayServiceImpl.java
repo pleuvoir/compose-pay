@@ -8,8 +8,8 @@ import io.github.pleuvoir.gateway.model.po.MerChannelPO;
 import io.github.pleuvoir.gateway.model.po.MerSignFeePO;
 import io.github.pleuvoir.gateway.model.po.MerchantPO;
 import io.github.pleuvoir.gateway.model.vo.ResultBasePayVO;
+import io.github.pleuvoir.gateway.route.RouteService;
 import io.github.pleuvoir.gateway.service.QrCodePayService;
-import io.github.pleuvoir.gateway.service.internal.RouteService;
 import io.github.pleuvoir.gateway.service.internal.impl.BaseServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +35,10 @@ public class QrCodePayServiceImpl extends BaseServiceImpl implements QrCodePaySe
 
         PayTypeEnum payTypeEnum = PayTypeEnum.getThisByName(paymentDTO.getType());
 
-        //获取商户签约的支付产品
-        MerSignFeePO merSignFeePO = checkMerSignFee(paymentDTO.getMid(), payTypeEnum.getCode(), PayWayEnum.SCAN_CODE.getCode());
-
         //渠道路由
-        MerChannelPO merChannelPO = routeService.find(merSignFeePO.getMid(), merSignFeePO.getPayProduct());
-        if (merChannelPO == null) {
+        MerChannelPO merChannelPO = routeService.find(merchantPO.getMid(), payTypeEnum.getCode(), PayWayEnum.SCAN_CODE.getCode());
 
-        }
+        //创建订单
 
         ResultBasePayVO basePayVO = new ResultBasePayVO();
         basePayVO.setOrderNo(merchantPO.getMerName());

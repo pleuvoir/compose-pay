@@ -34,8 +34,11 @@ public class MerChannelPO {
     @TableField("channel_code")
     private String channelCode;        //通道编号
 
-    @TableField("product_code")
-    private String productCode;        //支付产品
+    @TableField("pay_type")
+    private String payType;        //支付种类
+
+    @TableField("pay_way")
+    private String payWay;        //支付方式
 
     @TableField("channel_mid")
     private String channelMid;        //上游商户号

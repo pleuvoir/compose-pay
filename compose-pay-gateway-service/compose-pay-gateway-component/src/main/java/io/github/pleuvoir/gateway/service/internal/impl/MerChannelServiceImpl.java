@@ -3,55 +3,45 @@ package io.github.pleuvoir.gateway.service.internal.impl;
 import com.baomidou.mybatisplus.mapper.Condition;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import io.github.pleuvoir.gateway.dao.mer.MerChannelDao;
-import io.github.pleuvoir.gateway.dao.mer.MerChantDao;
 import io.github.pleuvoir.gateway.model.po.MerChannelPO;
-import io.github.pleuvoir.gateway.service.internal.RouteService;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ArrayUtils;
+import io.github.pleuvoir.gateway.service.internal.MerChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
-@Slf4j
 @Service
-public class RouteServiceImpl implements RouteService {
+public class MerChannelServiceImpl implements MerChannelService {
 
     @Autowired
     private MerChannelDao merChannelDao;
 
     @Override
-    public MerChannelPO find(String mid, String productCode) {
-
-        log.info("-=-=-=-=-=-=-=-=-=-=-=-=-=-=渠道路由开始-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+    public List<MerChannelPO> getUsableMerCnlList(String mid, String payType, String payWay) {
         MerChannelPO query = new MerChannelPO();
         query.setMid(mid);
-        query.setProductCode(productCode);
+        query.setPayType(payType);
+        query.setPayWay(payWay);
         query.setIsPay(MerChannelPO.CAN_PAY);
-
         EntityWrapper<MerChannelPO> wrapper = Condition.wrapper();
         wrapper.setEntity(query);
-
         final List<MerChannelPO> merCnlList = merChannelDao.selectList(wrapper);
-
-
-        MerChannelPO merChannelPO = maxPriority(merCnlList);
-
-        log.info("-=-=-=-=-=-=-=-=-=-=-=-=-=-=渠道路由结束-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-
-        return merChannelPO;
+        return merCnlList;
     }
 
+    @Override
+    public MerChannelPO maxPriority(String mid, String payType, String payWay) {
+        return maxPriority(this.getUsableMerCnlList(mid, payType, payWay));
+    }
 
     /**
      * 选取优先级最高的
      */
-    private MerChannelPO maxPriority(List<MerChannelPO> merCnlList) {
+    public MerChannelPO maxPriority(List<MerChannelPO> merCnlList) {
         if (CollectionUtils.isEmpty(merCnlList)) {
             return null;
         }

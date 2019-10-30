@@ -3,7 +3,6 @@ package io.github.pleuvoir.gateway.model.po;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.sun.tools.corba.se.idl.InterfaceGen;
 import io.github.pleuvoir.gateway.common.utils.ToJSON;
 import lombok.Data;
 
