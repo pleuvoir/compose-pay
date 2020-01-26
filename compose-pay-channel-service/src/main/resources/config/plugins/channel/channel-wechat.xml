@@ -1,0 +1,10 @@
+<plugin-channel>
+    <channel>wechat</channel>
+    <service>
+        <!-- 支付结果查询 -->
+        <bean id="PAY_QUERY" class="io.github.pleuvoir.channel.channels.wechat.WechatPayQuery"/>
+        <!-- 预下单 -->
+        <bean id="PAY" class="io.github.pleuvoir.channel.channels.wechat.WechatPay"/>
+    </service>
+
+</plugin-channel>

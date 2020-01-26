@@ -1,0 +1,10 @@
+<plugin-channel>
+    <channel>test</channel>
+    <service>
+        <!-- 支付结果查询 -->
+        <bean id="PAY_QUERY" class="io.github.pleuvoir.channel.channels.test.TestPayQuery"/>
+        <!-- 预下单 -->
+        <bean id="PAY" class="io.github.pleuvoir.channel.channels.test.TestPay"/>
+    </service>
+
+</plugin-channel>
