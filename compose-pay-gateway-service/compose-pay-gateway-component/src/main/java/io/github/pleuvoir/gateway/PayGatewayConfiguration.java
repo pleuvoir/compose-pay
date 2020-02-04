@@ -59,7 +59,7 @@ public class PayGatewayConfiguration {
                 .getResources("classpath:mapper/**/*Mapper.xml"));
 
         GlobalConfiguration globalConfig = new GlobalConfiguration();
-        globalConfig.setIdType(IdType.UUID.getKey());
+        globalConfig.setIdType(IdType.ID_WORKER.getKey());
         globalConfig.setDbType(DBType.MYSQL.getDb());
         globalConfig.setDbColumnUnderline(true);
         factoryBean.setGlobalConfig(globalConfig);
