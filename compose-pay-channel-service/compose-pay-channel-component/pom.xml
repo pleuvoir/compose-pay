@@ -22,14 +22,28 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<spring.boot.version>2.0.4.RELEASE</spring.boot.version>
+		<uuid.version>3.1.5</uuid.version>
+		<lettuce.version>5.0.5.RELEASE</lettuce.version>
+
+		<mybatis-plus.version>2.3.1</mybatis-plus.version>
+		<mysql.version>5.1.40</mysql.version>
+		<druid.version>1.1.10</druid.version>
 
 		<fastjson.version>1.2.49</fastjson.version>
 		<lang3.version>3.7</lang3.version>
+		<pool2.version>2.6.0</pool2.version>
 		<io.version>2.6</io.version>
 		<lombok.version>1.18.2</lombok.version>
+		<aspectjweaver.version>1.7.4</aspectjweaver.version>
 		<commons-collections4.version>4.1</commons-collections4.version>
-		<dom4j.version>1.6.1</dom4j.version>
-		<guava.version>19.0</guava.version>
+
+
+		<dubbo.boot.version>0.2.0</dubbo.boot.version>
+		<dubbo.version>2.6.2</dubbo.version>
+		<zookeeper.version>3.4.14</zookeeper.version>
+		<javassist.version>3.23.1-GA</javassist.version>
+		<netty3.version>3.10.6.Final</netty3.version>
+		<netty4.version>4.1.42.Final</netty4.version>
 	</properties>
 
 	<dependencies>
@@ -69,6 +83,49 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- dubbo -->
+		<dependency>
+			<groupId>com.alibaba.boot</groupId>
+			<artifactId>dubbo-spring-boot-starter</artifactId>
+			<version>${dubbo.boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>${dubbo.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.netty</groupId>
+					<artifactId>netty</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javassist.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty</artifactId>
+			<version>${netty3.version}</version>
+		</dependency>
+
 		<!-- test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
