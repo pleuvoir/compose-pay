@@ -18,10 +18,13 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 默认的渠道服务工厂<br>
+ * 通过读取服务插件信息并将对应的实现注册到spring容器中
+ *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 @Slf4j
-public class DefaultChannelServicePluginFactory implements InitializingBean, ApplicationContextAware {
+public class DefaultChannelServiceFactory implements IChannelServiceFactory, InitializingBean, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
@@ -42,10 +45,11 @@ public class DefaultChannelServicePluginFactory implements InitializingBean, App
      * @param channel 渠道枚举
      * @param trans   交易枚举
      */
+    @Override
     public IChannelService getChannelService(ChannelEnum channel, TransEnum trans) {
         IChannelService channelService = channelTransServiceTable.get(channel, trans);
         if (channelService == null) {
-            log.warn("获取服务失败，channel={}，trans={}", channel, trans);
+            log.error("获取服务失败，channel={}，trans={}", channel, trans);
             //  throw new BusinessException(ResultCodeEnum.COMMON_CODE_FAIL, "暂无可用的服务");
             // TODO
         }

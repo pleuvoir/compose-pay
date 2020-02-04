@@ -22,7 +22,12 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 默认的服务插件实现
+ * 默认的渠道服务插件实现
+ *
+ * <p>
+ * 该类解析XML文件，并保存渠道、交易类型，实现类的关系
+ * <p>
+ * 该类可以以spring bean的形式进行初始化
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
