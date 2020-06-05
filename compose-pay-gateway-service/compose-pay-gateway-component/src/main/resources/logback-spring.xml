@@ -67,6 +67,7 @@
     <!-- 测试环境 -->
     <springProfile name="test">
         <root level="INFO">
+            <appender-ref ref="CONSOLE" />
             <appender-ref ref="INFO_FILE" />
             <appender-ref ref="ERROR_FILE" />
         </root>
@@ -75,6 +76,7 @@
     <!-- 生产环境 -->
     <springProfile name="prod">
         <root level="INFO">
+            <appender-ref ref="CONSOLE" />
             <appender-ref ref="INFO_FILE" />
             <appender-ref ref="ERROR_FILE" />
         </root>
