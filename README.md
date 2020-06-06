@@ -20,13 +20,15 @@
 
 |              模块              |      名称      | 简介 | 备注 |
 | :----------------------------: | :------------: | :--: | :--: |
-| ` compose-pay-channel-service` |  三方通道服务  |      |      |
-| `compose-pay-gateway-service`  |    支付网关    |      |      |
-|    `compose-pay-job-admin`     | 定时任务控制台 |      |      |
-|       `compose-pay-job`        |    定时任务    |      |      |
-|     `compose-pay-manager`      |  运营管理平台  |      |      |
+|     `compose-pay-open-api`     | 支付 HTTP 服务 | WEB  |      |
+| `compose-pay-gateway-service`  |  支付网关服务  | RPC  |      |
+| ` compose-pay-channel-service` |  三方通道服务  | RPC  |      |
+|   `compose-pay-risk-service`   |    风控服务    | RPC  |      |
+|   `compose-pay-router-service`   |    支付路由服务    | RPC  |     TODO  |
+|    `compose-pay-job-admin`     | 定时任务控制台 | WEB  |      |
+|       `compose-pay-job`        |    定时任务    | WEB  |      |
+|     `compose-pay-manager`      |  运营管理平台  | WEB  |      |
 |    `compose-pay-migration`     |  系统迁移脚本  |      |      |
-|     `compose-pay-open-api`     | 支付 HTTP 服务 |      |      |
 
 
 
