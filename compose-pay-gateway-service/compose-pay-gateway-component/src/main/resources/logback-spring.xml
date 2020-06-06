@@ -3,7 +3,7 @@
     <!-- 项目名 -->
     <property name="APP_NAME" value="compose-pay-gateway-service" />
     <!-- 文件路径 -->
-    <property name="LOG_HOME" value="logs" />
+    <property name="LOG_HOME" value="/opt/logs/${APP_NAME}" />
 
     <contextName>${APP_NAME}</contextName>
     <timestamp key="datetime" datePattern="yyyy-MM-dd HH:mm:ss" />
@@ -58,7 +58,7 @@
     </appender>
 
     <!-- 开发环境 -->
-    <springProfile name="dev">
+    <springProfile name="rd">
         <root level="info">
             <appender-ref ref="CONSOLE" />
         </root>
@@ -67,16 +67,14 @@
     <!-- 测试环境 -->
     <springProfile name="test">
         <root level="INFO">
-            <appender-ref ref="CONSOLE" />
             <appender-ref ref="INFO_FILE" />
             <appender-ref ref="ERROR_FILE" />
         </root>
     </springProfile>
 
     <!-- 生产环境 -->
-    <springProfile name="prod">
+    <springProfile name="online">
         <root level="INFO">
-            <appender-ref ref="CONSOLE" />
             <appender-ref ref="INFO_FILE" />
             <appender-ref ref="ERROR_FILE" />
         </root>
