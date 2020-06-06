@@ -31,9 +31,23 @@
 |    `compose-pay-migration`     |  系统迁移脚本  |      |      |
 |    `compose-pay-generator`     |  代码生成器 |      | 非业务，可忽略 |
 
-
 ## 技术栈
-springmvc、springboot、dubbo、zookeeper、redis、mybatis-plus、rabbitmq、mysql、sharding-jdbc
+
+| 			框架 					| 	简介	 |  备注 |
+| :----------------------------: | :------------: | :-: |
+| [Spring Boot](https://spring.io/projects/spring-boot) | 应用开发框架 ||
+| [Dubbo](http://dubbo.apache.org/) | 分布式 RPC 服务框架 |  |
+| [MySQL](https://www.mysql.com/cn/) | 数据库服务器 |  |
+| [Druid](https://github.com/alibaba/druid) | JDBC 连接池、监控组件 |  |
+| [MyBatis](http://www.mybatis.org/mybatis-3/zh/index.html) | 数据持久层框架 |  |
+| [MyBatis-Plus](https://mp.baomidou.com/) | Mybatis 增强工具包 |  |
+| [Redis](https://redis.io/) | key-value 数据库 |  |
+| [Elasticsearch](https://www.elastic.co/cn/) | 分布式搜索引擎 |  |
+| [RocketMQ](http://dubbo.apache.org/) | 消息中间件 |  |
+| [Seata](https://github.com/seata/seata) | 分布式事务中间件 | 待引入 |
+| [XXL-Job](http://www.xuxueli.com/xxl-job/) | 分布式任务调度平台 |  |
+| [sharding-jdbc](http://www.xuxueli.com/xxl-job/) | 分库分表中间件 | 待引入|
+
 
 ## 开源协议
 [Apache License](LICENSE)
