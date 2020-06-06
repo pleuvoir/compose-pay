@@ -16,7 +16,21 @@
 1. 传统支付
 2. 聚合码
 
-## 技术
+## 项目结构
+
+|              模块              |      名称      | 简介 | 备注 |
+| :----------------------------: | :------------: | :--: | :--: |
+| ` compose-pay-channel-service` |  三方通道服务  |      |      |
+| `compose-pay-gateway-service`  |    支付网关    |      |      |
+|    `compose-pay-job-admin`     | 定时任务控制台 |      |      |
+|       `compose-pay-job`        |    定时任务    |      |      |
+|     `compose-pay-manager`      |  运营管理平台  |      |      |
+|    `compose-pay-migration`     |  系统迁移脚本  |      |      |
+|     `compose-pay-open-api`     | 支付 HTTP 服务 |      |      |
+
+
+
+## 技术栈
 springmvc、springboot、dubbo、zookeeper、redis、mybatis-plus、rabbitmq、mysql、sharding-jdbc
 
 ## 开源协议
