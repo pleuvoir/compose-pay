@@ -29,7 +29,7 @@
 |       `compose-pay-job`        |    定时任务    | WEB  |      |
 |     `compose-pay-manager`      |  运营管理平台  | WEB  |      |
 |    `compose-pay-migration`     |  系统迁移脚本  |      |      |
-
+|    `compose-pay-generator`     |  代码生成器 |      | 非业务，可忽略 |
 
 
 ## 技术栈
