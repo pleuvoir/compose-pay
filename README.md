@@ -46,7 +46,7 @@
 | [RocketMQ](http://dubbo.apache.org/) | 消息中间件 |  |
 | [Seata](https://github.com/seata/seata) | 分布式事务中间件 | 待引入 |
 | [XXL-Job](http://www.xuxueli.com/xxl-job/) | 分布式任务调度平台 |  |
-| [sharding-jdbc](http://www.xuxueli.com/xxl-job/) | 分库分表中间件 | 待引入|
+| [sharding-jdbc]() | 分库分表中间件 | 待引入|
 
 
 ## 开源协议
