@@ -29,13 +29,12 @@
 |       `compose-pay-job`        |    定时任务    | WEB  |      |
 |     `compose-pay-manager`      |  运营管理平台  | WEB  |      |
 |    `compose-pay-migration`     |  系统迁移脚本  |      |      |
-|    `compose-pay-generator`     |  代码生成器 |      | 非业务，可忽略 |
 
 ## 技术栈
 
 | 			框架 					| 	简介	 |  备注 |
 | :----------------------------: | :------------: | :-: |
-| [Spring Boot](https://spring.io/projects/spring-boot) | 应用开发框架 ||
+| [Spring Boot](https://spring.io/projects/spring-boot) | 应用开发 + MVC 框架 ||
 | [Dubbo](http://dubbo.apache.org/) | 分布式 RPC 服务框架 |  |
 | [MySQL](https://www.mysql.com/cn/) | 数据库服务器 |  |
 | [Druid](https://github.com/alibaba/druid) | JDBC 连接池、监控组件 |  |
@@ -47,7 +46,18 @@
 | [Seata](https://github.com/seata/seata) | 分布式事务中间件 | 待引入 |
 | [XXL-Job](http://www.xuxueli.com/xxl-job/) | 分布式任务调度平台 |  |
 | [sharding-jdbc]() | 分库分表中间件 | 待引入|
+| [Lombok](https://github.com/rzwitserloot/lombok) | 简化对象封装工具 | |
+| [Hibernator-Validator](http://hibernate.org/validator) | 验证框架 | |
 
+## 架构图
+
+### 系统架构图
+
+// TODO
+
+### 业务架构图
+
+// TODO
 
 ## 开源协议
 [Apache License](LICENSE)
