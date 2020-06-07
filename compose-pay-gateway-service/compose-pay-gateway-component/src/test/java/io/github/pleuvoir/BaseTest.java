@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import io.github.pleuvoir.gateway.PayGatewayLauncher;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles("dev")
+@ActiveProfiles("rd")
 @SpringBootTest(classes = PayGatewayLauncher.class)
 public abstract class BaseTest {
 
