@@ -28,6 +28,7 @@
 		<javassist.version>3.23.1-GA</javassist.version>
 		<netty3.version>3.10.6.Final</netty3.version>
 		<mybatis-plus.version>2.3.1</mybatis-plus.version>
+		<sharding-sphere.version>4.0.0-RC1</sharding-sphere.version>
 	</properties>
 
 	<dependencies>
@@ -35,6 +36,18 @@
 		<dependency>
 			<groupId>io.github.pleuvoir</groupId>
 			<artifactId>compose-pay-gateway-contract</artifactId>
+		</dependency>
+
+		<!--sharding-jdbc -->
+		<dependency>
+			<groupId>org.apache.shardingsphere</groupId>
+			<artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+			<version>${sharding-sphere.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shardingsphere</groupId>
+			<artifactId>sharding-core-common</artifactId>
+			<version>${sharding-sphere.version}</version>
 		</dependency>
 
 		<dependency>
