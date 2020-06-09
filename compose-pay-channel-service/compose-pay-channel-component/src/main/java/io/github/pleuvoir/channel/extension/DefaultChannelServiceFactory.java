@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.core;
+package io.github.pleuvoir.channel.extension;
 
 import com.google.common.base.Supplier;
 import com.google.common.collect.Table;
@@ -19,7 +19,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 默认的渠道服务工厂<br>
- * 通过读取服务插件信息并将对应的实现注册到spring容器中
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
@@ -42,7 +41,7 @@ public class DefaultChannelServiceFactory implements IChannelServiceFactory, Ini
     /**
      * 获取通道交易处理类
      *
-     * @param channel 渠道枚举
+     * @param channel 通道枚举
      * @param trans   交易枚举
      */
     @Override
@@ -50,8 +49,6 @@ public class DefaultChannelServiceFactory implements IChannelServiceFactory, Ini
         IChannelService channelService = channelTransServiceTable.get(channel, trans);
         if (channelService == null) {
             log.error("获取服务失败，channel={}，trans={}", channel, trans);
-            //  throw new BusinessException(ResultCodeEnum.COMMON_CODE_FAIL, "暂无可用的服务");
-            // TODO
         }
         return channelService;
     }

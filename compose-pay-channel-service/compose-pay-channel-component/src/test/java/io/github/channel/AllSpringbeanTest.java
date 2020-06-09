@@ -16,7 +16,7 @@ public class AllSpringbeanTest extends BaseTest {
     public void test(){
         for (String definitionName : context.getBeanDefinitionNames()) {
 
-//            System.out.println(definitionName);
+            System.out.println(definitionName);
         }
 
     }

@@ -10,12 +10,12 @@
 
 
     <!-- 通道服务插件配置 -->
-    <bean id="channelServicePlugin" class="io.github.pleuvoir.channel.core.DefaultChannelServicePlugin" init-method="load">
+    <bean id="channelServicePlugin" class="io.github.pleuvoir.channel.extension.DefaultChannelServicePlugin" init-method="load">
         <property name="location" value="classpath:config/plugins/channel/*.xml"/>
     </bean>
 
     <!-- 服务工厂-->
-    <bean class="io.github.pleuvoir.channel.core.DefaultChannelServiceFactory" >
+    <bean class="io.github.pleuvoir.channel.extension.DefaultChannelServiceFactory" >
         <property name="channelServicePlugin" ref="channelServicePlugin"></property>
     </bean>
 

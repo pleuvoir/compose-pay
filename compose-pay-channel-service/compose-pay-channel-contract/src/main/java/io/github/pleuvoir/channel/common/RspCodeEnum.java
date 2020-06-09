@@ -74,9 +74,6 @@ public enum RspCodeEnum {
     /**
      * 若参数是字符串，判断字符串是否与code相同<br>
      * 若参数是ResultCode对象，判断其中的code是否相同
-     *
-     * @param obj
-     * @return
      */
     public boolean isEquals(Object obj) {
         if (this == obj) {

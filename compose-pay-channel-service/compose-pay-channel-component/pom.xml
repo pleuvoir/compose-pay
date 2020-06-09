@@ -48,6 +48,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>io.github.pleuvoir</groupId>
+			<artifactId>compose-pay-channel-contract</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>

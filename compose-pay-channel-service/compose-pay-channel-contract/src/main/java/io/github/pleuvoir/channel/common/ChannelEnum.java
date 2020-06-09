@@ -3,7 +3,7 @@ package io.github.pleuvoir.channel.common;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * 渠道
+ * 渠道枚举
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
@@ -11,7 +11,7 @@ public enum ChannelEnum {
 
     WECHAT,
     ALIPAY,
-    TEST;
+    MOCK;
 
 
     /**

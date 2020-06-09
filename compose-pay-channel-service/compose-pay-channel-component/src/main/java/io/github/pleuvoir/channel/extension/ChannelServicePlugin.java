@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.core;
+package io.github.pleuvoir.channel.extension;
 
 import io.github.pleuvoir.channel.common.ChannelEnum;
 import io.github.pleuvoir.channel.common.TransEnum;
@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 通道服务插件
+ *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 public interface ChannelServicePlugin extends Plugin {
@@ -28,7 +30,7 @@ public interface ChannelServicePlugin extends Plugin {
     Class<?> getServiceName(ChannelEnum channel, TransEnum trans);
 
     /**
-     * 获取所有的渠道
+     * 获取所有的通道
      */
     Set<ChannelEnum> getChannels();
 

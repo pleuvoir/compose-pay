@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.common;
+package io.github.pleuvoir.channel.model.shared;
 
 import lombok.Data;
 
@@ -8,5 +8,5 @@ import lombok.Data;
 @Data
 public class AbstractModel {
 
-    private String mid;                    //商户号
+    private String mid;   //商户号
 }

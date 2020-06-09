@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.core;
+package io.github.pleuvoir.channel.extension;
 
 /**
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>

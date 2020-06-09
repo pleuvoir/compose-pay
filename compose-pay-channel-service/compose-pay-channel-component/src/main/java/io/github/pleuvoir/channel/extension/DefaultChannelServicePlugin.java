@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.core;
+package io.github.pleuvoir.channel.extension;
 
 import com.google.common.base.Supplier;
 import com.google.common.collect.Table;
@@ -27,7 +27,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * <p>
  * 保存渠道、交易类型，实现类的关系
  * <p>
- * 该类可以以spring bean的形式进行初始化
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
@@ -43,7 +42,7 @@ public class DefaultChannelServicePlugin implements ChannelServicePlugin {
 
     private String location;
 
-    //交易服务类：渠道、交易类型，实现类
+    //交易服务类：通道、交易类型，实现类
     private Table<ChannelEnum, TransEnum, Class<?>> services = Tables.newCustomTable(new ConcurrentHashMap<ChannelEnum, Map<TransEnum, Class<?>>>(), new Supplier<Map<TransEnum, Class<?>>>() {
         @Override
         public Map<TransEnum, Class<?>> get() {
@@ -112,7 +111,7 @@ public class DefaultChannelServicePlugin implements ChannelServicePlugin {
     /**
      * 获取交易类型和服务类
      *
-     * @param channel 渠道
+     * @param channel 通道
      */
     @Override
     public Map<TransEnum, Class<?>> getTransMap(ChannelEnum channel) {
@@ -122,7 +121,7 @@ public class DefaultChannelServicePlugin implements ChannelServicePlugin {
     /**
      * 获取服务类名
      *
-     * @param channel 渠道
+     * @param channel 通道
      * @param trans   交易类型
      */
     @Override
