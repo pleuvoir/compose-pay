@@ -11,7 +11,7 @@ import java.util.Collection;
 public class MerPayPreciseShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
 
     @Override
-    public String doSharding(Collection<String> collection, PreciseShardingValue<Long> preciseShardingValue) {
+    public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Long> preciseShardingValue) {
 
         Long payId = preciseShardingValue.getValue();
 
