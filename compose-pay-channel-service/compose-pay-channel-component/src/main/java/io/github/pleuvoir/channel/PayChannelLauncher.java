@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * 通道服务启动
+ *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 @SpringBootApplication

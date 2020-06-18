@@ -2,17 +2,17 @@ package io.github.pleuvoir.channel.agent;
 
 import io.github.pleuvoir.channel.common.RspCodeEnum;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
-import io.github.pleuvoir.channel.extension.IChannelService;
-import io.github.pleuvoir.channel.extension.IChannelServiceFactory;
 import io.github.pleuvoir.channel.model.request.*;
 import io.github.pleuvoir.channel.model.response.*;
 import io.github.pleuvoir.channel.model.shared.AbstractReqModel;
 import io.github.pleuvoir.channel.model.shared.AbstractRspModel;
+import io.github.pleuvoir.channel.plugin.IChannelService;
+import io.github.pleuvoir.channel.plugin.IChannelServiceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * 渠道服务实现
+ * 通道服务实现
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
@@ -29,8 +29,8 @@ public class ChannelServiceAgentImpl implements ChannelServiceAgent {
     }
 
     @Override
-    public OrderQueryResultDTO orderQuery(OrderQueryDTO orderQueryDTO) throws ChannelServiceException {
-        return this.proxy(orderQueryDTO);
+    public PayQueryResultDTO payQuery(PayQueryDTO payQueryDTO) throws ChannelServiceException {
+        return this.proxy(payQueryDTO);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ChannelServiceAgentImpl implements ChannelServiceAgent {
 
 
     private <R extends AbstractRspModel> R proxy(AbstractReqModel reqModel) throws ChannelServiceException {
-        IChannelService channelService = channelServiceFactory.getChannelService(reqModel.getChannel(), reqModel.getTrans());
+        IChannelService channelService = channelServiceFactory.getChannelService(reqModel.getChannel(), reqModel.getServiceId());
         if (channelService == null) {
             throw new ChannelServiceException(RspCodeEnum.PARAM_ERROR);
         }

@@ -2,9 +2,7 @@
     <channel>mock</channel>
     <service>
         <!-- 支付结果查询 -->
-        <bean id="PAY_QUERY" class="io.github.pleuvoir.channel.channels.mock.MockOrderQuery"/>
-        <!-- 下单 -->
-        <bean id="PAY" class="io.github.pleuvoir.channel.channels.mock.MockNativeQrCode"/>
+        <bean id="pay_query" class="io.github.pleuvoir.channel.channels.mock.MockPayQuery"/>
     </service>
 
 </plugin-channel>

@@ -15,8 +15,8 @@ import java.util.Map;
 public class NotifyParamDTO {
 
 
-    //http请求的head
-    private Map<String, String> head = new HashMap<>();
+    //http请求的header
+    private Map<String, String> header = new HashMap<>();
 
     //http请求的body
     private String body;
@@ -25,16 +25,16 @@ public class NotifyParamDTO {
     private Map<String, String> param = new HashMap<>();
 
     /**
-     * 添加head参数
+     * 添加header参数
      */
-    public void putHead(String key, String val) {
-        head.put(key, val);
+    public void putHeader(String key, String value) {
+        header.put(key, value);
     }
 
     /**
      * 添加查询参数
      */
-    public void putParam(String key, String val) {
-        param.put(key, val);
+    public void putParam(String key, String value) {
+        param.put(key, value);
     }
 }

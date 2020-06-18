@@ -1,9 +1,10 @@
 package io.github.channel;
 
 import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.TransEnum;
-import io.github.pleuvoir.channel.extension.DefaultChannelServiceFactory;
-import io.github.pleuvoir.channel.extension.IChannelService;
+import io.github.pleuvoir.channel.common.ServiceIdEnum;
+import io.github.pleuvoir.channel.plugin.DefaultChannelServiceFactory;
+import io.github.pleuvoir.channel.plugin.IChannelService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,11 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class FactoryTest extends BaseTest {
 
     @Autowired
-    private DefaultChannelServiceFactory servicePluginFactory;
+    private DefaultChannelServiceFactory channelServiceFactory;
     @Test
     public void test(){
-        IChannelService channelService = servicePluginFactory.getChannelService(ChannelEnum.MOCK, TransEnum.PAY_QUERY);
+        IChannelService channelService = channelServiceFactory.getChannelService(ChannelEnum.MOCK, ServiceIdEnum.PAY_QUERY);
 
         System.out.println("-=-=-=" + channelService);
+
+        Assert.assertNotNull(channelService);
     }
 }

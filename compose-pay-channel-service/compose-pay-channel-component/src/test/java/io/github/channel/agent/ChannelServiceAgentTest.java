@@ -3,9 +3,7 @@ package io.github.channel.agent;
 import io.github.channel.BaseTest;
 import io.github.pleuvoir.channel.agent.ChannelServiceAgent;
 import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.TransEnum;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
-import io.github.pleuvoir.channel.model.ChannelMerDTO;
 import io.github.pleuvoir.channel.model.request.PaymentDTO;
 import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
 import org.junit.Assert;
@@ -26,9 +24,7 @@ public class ChannelServiceAgentTest extends BaseTest {
 
         PaymentDTO paymentDTO = new PaymentDTO();
 
-
         paymentDTO.setChannel(ChannelEnum.MOCK);
-        paymentDTO.setTrans(TransEnum.PAY_QUERY);
 
         String mid = String.valueOf(System.currentTimeMillis());
         paymentDTO.setMid(mid);

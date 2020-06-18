@@ -19,7 +19,7 @@ public interface ChannelServiceAgent {
     /**
      * 订单支付结果查询
      */
-    OrderQueryResultDTO orderQuery(OrderQueryDTO orderQueryDTO) throws ChannelServiceException;
+    PayQueryResultDTO payQuery(PayQueryDTO payQueryDTO) throws ChannelServiceException;
 
     /**
      * 关闭订单
