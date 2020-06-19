@@ -2,7 +2,7 @@
     <channel>alipay</channel>
     <service>
 
-        <!-- 微信当面付扫码支付 -->
+        <!-- 当面付扫码支付 -->
         <bean id="scan_code" class="io.github.pleuvoir.channel.channels.alipay.AlipayScanCode"/>
         <!-- APP支付 -->
         <bean id="app" class="io.github.pleuvoir.channel.channels.alipay.AlipayApp"/>

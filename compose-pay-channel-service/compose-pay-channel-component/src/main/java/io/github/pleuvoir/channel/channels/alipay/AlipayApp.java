@@ -20,22 +20,5 @@ public class AlipayApp implements IChannelService<PaymentDTO, PaymentResultDTO> 
         return null;
     }
 
-    /**
-     * 微信JSAPI扫码支付
-     *
-     * <p>使用场景：
-     * 线下场所：调用接口生成二维码，用户扫描二维码后在微信浏览器中打开页面后完成支付
-     * PC网站场景：在网站中展示二维码，用户扫描二维码后在微信浏览器中打开页面后完成支付
-     *
-     * <p>和原生扫码的区别是：原生不需要输入金额，这种的需要用户输入支付金额
-     *
-     * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
-     */
-    public static class AlipayScanCode implements IChannelService<PaymentDTO, PaymentResultDTO> {
 
-        @Override
-        public PaymentResultDTO invoke(PaymentDTO request) throws ChannelServiceException {
-            return null;
-        }
-    }
 }

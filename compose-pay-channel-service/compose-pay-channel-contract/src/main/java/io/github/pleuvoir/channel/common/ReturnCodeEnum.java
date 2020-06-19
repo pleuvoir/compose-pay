@@ -7,7 +7,7 @@ import lombok.Getter;
  *
  * @author pleuvoir
  */
-public enum RspCodeEnum {
+public enum ReturnCodeEnum {
 
     /**
      * 成功
@@ -66,7 +66,7 @@ public enum RspCodeEnum {
     @Getter
     private String msg;
 
-    private RspCodeEnum(String code, String msg) {
+    private ReturnCodeEnum(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
@@ -84,8 +84,8 @@ public enum RspCodeEnum {
         }
         if (obj instanceof String) {
             return this.getCode().equals((String) obj);
-        } else if (obj instanceof RspCodeEnum) {
-            return this.getCode().equals(((RspCodeEnum) obj).getCode());
+        } else if (obj instanceof ReturnCodeEnum) {
+            return this.getCode().equals(((ReturnCodeEnum) obj).getCode());
         }
         return false;
     }

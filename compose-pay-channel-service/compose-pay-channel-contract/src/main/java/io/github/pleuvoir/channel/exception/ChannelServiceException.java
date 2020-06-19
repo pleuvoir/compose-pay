@@ -1,6 +1,6 @@
 package io.github.pleuvoir.channel.exception;
 
-import io.github.pleuvoir.channel.common.RspCodeEnum;
+import io.github.pleuvoir.channel.common.ReturnCodeEnum;
 
 public class ChannelServiceException extends Exception {
 
@@ -23,25 +23,25 @@ public class ChannelServiceException extends Exception {
 		this.msg = message;
 	}
 
-	public ChannelServiceException(RspCodeEnum rsCode){
+	public ChannelServiceException(ReturnCodeEnum rsCode){
 		super(rsCode.getCode() + ":" + rsCode.getMsg());
 		this.code = rsCode.getCode();
 		this.msg = rsCode.getMsg();
 	}
 	
-	public ChannelServiceException(RspCodeEnum rsCode, String message){
+	public ChannelServiceException(ReturnCodeEnum rsCode, String message){
 		super(rsCode.getCode() + ":" + message);
 		this.code = rsCode.getCode();
 		this.msg = message;
 	}
 	
-	public ChannelServiceException(RspCodeEnum rsCode, Throwable cause) {
+	public ChannelServiceException(ReturnCodeEnum rsCode, Throwable cause) {
 		super(rsCode.getCode() + ":" + rsCode.getMsg(), cause);
 		this.code = rsCode.getCode();
 		this.msg = rsCode.getMsg();
 	}
 	
-	public ChannelServiceException(RspCodeEnum rsCode, String message, Throwable cause) {
+	public ChannelServiceException(ReturnCodeEnum rsCode, String message, Throwable cause) {
 		super(rsCode.getCode() + ":" + message, cause);
 		this.code = rsCode.getCode();
 		this.msg = message;

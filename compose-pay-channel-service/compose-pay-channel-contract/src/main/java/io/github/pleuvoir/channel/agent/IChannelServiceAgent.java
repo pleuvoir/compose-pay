@@ -9,7 +9,7 @@ import io.github.pleuvoir.channel.model.response.*;
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
-public interface ChannelServiceAgent {
+public interface IChannelServiceAgent {
 
     /**
      * 下单
