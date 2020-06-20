@@ -1,5 +1,8 @@
 # compose-pay
 
+[![HitCount](http://hits.dwyl.io/pleuvoir/compose-pay.svg)](http://hits.dwyl.io/pleuvoir/compose-pay) 
+[![GitHub issues](https://img.shields.io/github/issues/pleuvoir/compose-pay.svg)](https://github.com/pleuvoir/compose-pay/issues)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?label=license)](https://github.com/pleuvoir/compose-pay/blob/master/LICENSE)
 
 > doing..
 
