@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.plugin;
+package io.github.pleuvoir.channel.channels;
 
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.shared.AbstractReqModel;

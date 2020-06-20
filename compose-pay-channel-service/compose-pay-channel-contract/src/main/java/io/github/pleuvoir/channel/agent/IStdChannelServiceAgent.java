@@ -5,11 +5,11 @@ import io.github.pleuvoir.channel.model.request.*;
 import io.github.pleuvoir.channel.model.response.*;
 
 /**
- * 通道服务
+ * 标准通道服务
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
-public interface IChannelServiceAgent {
+public interface IStdChannelServiceAgent {
 
     /**
      * 下单
@@ -36,8 +36,4 @@ public interface IChannelServiceAgent {
      */
     RefundQueryResultDTO refundQuery(RefundQueryDTO refundQueryDTO) throws ChannelServiceException;
 
-    /**
-     * 处理通道支付结果通知
-     */
-    NotifyParamResultDTO payNotifyReceive(NotifyParamDTO notifyParamDTO);
 }

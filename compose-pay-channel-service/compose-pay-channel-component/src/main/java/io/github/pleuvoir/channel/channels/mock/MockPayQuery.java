@@ -3,7 +3,7 @@ package io.github.pleuvoir.channel.channels.mock;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.request.PayQueryDTO;
 import io.github.pleuvoir.channel.model.response.PayQueryResultDTO;
-import io.github.pleuvoir.channel.plugin.IChannelService;
+import io.github.pleuvoir.channel.channels.IChannelService;
 
 /**
  * 模拟支付结果查询

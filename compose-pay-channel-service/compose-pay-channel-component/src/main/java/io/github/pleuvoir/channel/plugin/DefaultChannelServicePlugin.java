@@ -3,7 +3,6 @@ package io.github.pleuvoir.channel.plugin;
 import com.google.common.collect.Table;
 import com.google.common.collect.Tables;
 import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.SceneEnum;
 import io.github.pleuvoir.channel.common.ServiceIdEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -25,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 默认的通道服务插件实现
  *
  * <p>
- * 保存通道、支付场景，实现类的关系
+ * 保存通道、服务插件类别，实现类的关系
  * <p>
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>

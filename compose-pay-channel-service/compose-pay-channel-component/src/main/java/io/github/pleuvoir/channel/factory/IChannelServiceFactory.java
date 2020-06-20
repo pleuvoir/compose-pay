@@ -1,5 +1,6 @@
-package io.github.pleuvoir.channel.plugin;
+package io.github.pleuvoir.channel.factory;
 
+import io.github.pleuvoir.channel.channels.IChannelService;
 import io.github.pleuvoir.channel.common.ChannelEnum;
 import io.github.pleuvoir.channel.common.ServiceIdEnum;
 

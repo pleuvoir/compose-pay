@@ -3,7 +3,7 @@ package io.github.pleuvoir.channel.channels.alipay;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.request.PaymentDTO;
 import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
-import io.github.pleuvoir.channel.plugin.IChannelService;
+import io.github.pleuvoir.channel.channels.IChannelService;
 
 /**
  * 支付宝手机网站支付

@@ -1,10 +1,10 @@
 package io.github.pleuvoir.channel;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import io.github.pleuvoir.channel.factory.IChannelServiceFactory;
+import io.github.pleuvoir.channel.factory.DefaultChannelServiceFactory;
 import io.github.pleuvoir.channel.plugin.ChannelServicePlugin;
-import io.github.pleuvoir.channel.plugin.DefaultChannelServiceFactory;
 import io.github.pleuvoir.channel.plugin.DefaultChannelServicePlugin;
-import io.github.pleuvoir.channel.plugin.IChannelServiceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

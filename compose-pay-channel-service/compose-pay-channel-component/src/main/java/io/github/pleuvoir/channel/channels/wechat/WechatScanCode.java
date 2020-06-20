@@ -1,6 +1,6 @@
 package io.github.pleuvoir.channel.channels.wechat;
 
-import io.github.pleuvoir.channel.plugin.IChannelService;
+import io.github.pleuvoir.channel.channels.IChannelService;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.request.PaymentDTO;
 import io.github.pleuvoir.channel.model.response.PaymentResultDTO;

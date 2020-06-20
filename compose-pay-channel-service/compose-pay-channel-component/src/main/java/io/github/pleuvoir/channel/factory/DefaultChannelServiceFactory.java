@@ -1,9 +1,11 @@
-package io.github.pleuvoir.channel.plugin;
+package io.github.pleuvoir.channel.factory;
 
 import com.google.common.collect.Table;
 import com.google.common.collect.Tables;
+import io.github.pleuvoir.channel.channels.IChannelService;
 import io.github.pleuvoir.channel.common.ChannelEnum;
 import io.github.pleuvoir.channel.common.ServiceIdEnum;
+import io.github.pleuvoir.channel.plugin.ChannelServicePlugin;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -32,7 +34,7 @@ public class DefaultChannelServiceFactory implements IChannelServiceFactory, Ini
     private Table<ChannelEnum, ServiceIdEnum, IChannelService> channelTransServiceTable = Tables.newCustomTable(new ConcurrentHashMap<>(), ConcurrentHashMap::new);
 
     /**
-     * 获取通道交易处理类
+     * 获取通道服务处理类
      *
      * @param channel   通道枚举
      * @param serviceId 服务类别
@@ -51,7 +53,7 @@ public class DefaultChannelServiceFactory implements IChannelServiceFactory, Ini
         BeanDefinitionRegistry beanRegistry = (BeanDefinitionRegistry) applicationContext;
         channelServicePlugin.getChannels().forEach((ChannelEnum channel) -> {
             channelServicePlugin.getServiceMap(channel).forEach((ServiceIdEnum serviceId, Class<?> service) -> {
-                String serviceName = String.format("%s_%s", channel.name(), service.getSimpleName());
+                String serviceName = channel.name() + "_" + service.getSimpleName();
                 BeanDefinitionBuilder beanBuilder = BeanDefinitionBuilder.genericBeanDefinition(service);
                 beanRegistry.registerBeanDefinition(serviceName, beanBuilder.getBeanDefinition());
                 channelTransServiceTable.put(channel, serviceId, (IChannelService) applicationContext.getBean(serviceName));
