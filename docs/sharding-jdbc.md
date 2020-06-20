@@ -55,7 +55,7 @@ spring.shardingsphere.sharding.tables.t_order.table-strategy.inline.algorithm-ex
 #spring.shardingsphere.sharding.tables.t_order.table-strategy.standard.precise-algorithm-class-name=MyPreciseShardingAlgorithm
 
 
-# 默认内置的分布式id生成策略 （给自增主键指定id生成规则，插入的时候不需要写order_id字段会自动赋值）
+# 默认内置的分布式id生成策略 （给自增列指定id生成规则，插入的时候不需要写order_id字段会自动赋值）
 spring.shardingsphere.sharding.tables.t_order.key-generator.column=order_id
 spring.shardingsphere.sharding.tables.t_order.key-generator.type=SNOWFLAKE
 
