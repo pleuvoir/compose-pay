@@ -1,5 +1,6 @@
 package io.github.pleuvoir.channel.agent;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import io.github.pleuvoir.channel.dispatch.ServiceDispatcher;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.request.*;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 @Component
+@Service
 public class StdChannelServiceAgentImpl implements IStdChannelServiceAgent {
 
     @Autowired

@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.plugin;
+package io.github.pleuvoir.channel.plugins;
 
 import com.google.common.collect.Table;
 import com.google.common.collect.Tables;

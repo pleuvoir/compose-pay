@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.plugin;
+package io.github.pleuvoir.channel.plugins;
 
 /**
  * 插件

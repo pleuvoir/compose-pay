@@ -5,7 +5,7 @@ import com.google.common.collect.Tables;
 import io.github.pleuvoir.channel.channels.IChannelService;
 import io.github.pleuvoir.channel.common.ChannelEnum;
 import io.github.pleuvoir.channel.common.ServiceIdEnum;
-import io.github.pleuvoir.channel.plugin.ChannelServicePlugin;
+import io.github.pleuvoir.channel.plugins.ChannelServicePlugin;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;

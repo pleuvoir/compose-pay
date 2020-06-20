@@ -1,13 +1,16 @@
 package io.github.pleuvoir.channel;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import io.github.pleuvoir.channel.common.util.RetryRejectedExecutionHandler;
 import io.github.pleuvoir.channel.factory.IChannelServiceFactory;
 import io.github.pleuvoir.channel.factory.DefaultChannelServiceFactory;
-import io.github.pleuvoir.channel.plugin.ChannelServicePlugin;
-import io.github.pleuvoir.channel.plugin.DefaultChannelServicePlugin;
+import io.github.pleuvoir.channel.plugins.ChannelServicePlugin;
+import io.github.pleuvoir.channel.plugins.DefaultChannelServicePlugin;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * 通道服务配置
@@ -38,6 +41,17 @@ public class PayChannelConfiguration {
         DefaultChannelServiceFactory channelServiceFactory = new DefaultChannelServiceFactory();
         channelServiceFactory.setChannelServicePlugin(servicePlugin);
         return channelServiceFactory;
+    }
+
+    /**
+     * 最大努力重试线程池
+     */
+    @ConfigurationProperties(prefix = "spring.executor")
+    @Bean(name = "threadPoolTaskExecutor", initMethod = "initialize")
+    public ThreadPoolTaskExecutor getThreadPoolTaskExecutor() {
+        ThreadPoolTaskExecutor poolTaskExecutor = new ThreadPoolTaskExecutor();
+        poolTaskExecutor.setRejectedExecutionHandler(new RetryRejectedExecutionHandler());
+        return new ThreadPoolTaskExecutor();
     }
 
 }
