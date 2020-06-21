@@ -1,23 +1,21 @@
 package io.github.pleuvoir.gateway.model.dto;
 
-import com.alibaba.fastjson.JSON;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 支付入参
+ * 支付入参父类
  *
- * @author pleuvoir
+ * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 @Data
-public class PaymentDTO implements Serializable {
+public class PayBaseRequestDTO implements Serializable {
 
     private static final long serialVersionUID = -1699831686561099489L;
 
@@ -42,13 +40,13 @@ public class PaymentDTO implements Serializable {
     private BigDecimal amount;        //金额
 
     @Length(max = 16)
-    private String type;        //类型：wechat：微信 alipay：支付宝
-
-    private String ip;
+    private String payType;        //类型：wechat：微信 alipay：支付宝
 
     @Length(max = 256)
-    @NotEmpty(message = "商户通知地址不能为空")
-    private String notifyUrl;	//商户通知地址
+    @NotBlank(message = "商户通知地址不能为空")
+    private String notifyUrl;    //商户通知地址
+
+    private String ip;
 
 
 }

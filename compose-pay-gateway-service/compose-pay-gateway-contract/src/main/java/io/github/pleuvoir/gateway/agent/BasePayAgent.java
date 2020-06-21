@@ -1,7 +1,7 @@
 package io.github.pleuvoir.gateway.agent;
 
-import io.github.pleuvoir.gateway.exception.BusinessException;
-import io.github.pleuvoir.gateway.model.dto.PaymentDTO;
+import io.github.pleuvoir.gateway.model.dto.QrCodePayRequestDTO;
+import io.github.pleuvoir.gateway.model.dto.QrCodePayResultDTO;
 import io.github.pleuvoir.gateway.model.vo.ResultBasePayVO;
 import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
 
@@ -12,5 +12,5 @@ import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
  */
 public interface BasePayAgent {
 
-    ResultMessageVO<ResultBasePayVO> payCode(PaymentDTO dto);
+    ResultMessageVO<QrCodePayResultDTO> payCode(QrCodePayRequestDTO dto);
 }

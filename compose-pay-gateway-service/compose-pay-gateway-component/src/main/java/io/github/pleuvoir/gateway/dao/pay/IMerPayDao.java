@@ -7,6 +7,6 @@ import io.github.pleuvoir.gateway.model.po.PayProductPO;
 /**
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
-public interface MerPayDao extends BaseMapper<MerPayPO> {
+public interface IMerPayDao extends BaseMapper<MerPayPO> {
 
 }

@@ -2,8 +2,8 @@ package io.github.channel;
 
 import io.github.pleuvoir.channel.common.ChannelEnum;
 import io.github.pleuvoir.channel.common.ServiceIdEnum;
-import io.github.pleuvoir.channel.channels.DefaultChannelServiceFactory;
 import io.github.pleuvoir.channel.channels.IChannelService;
+import io.github.pleuvoir.channel.factory.DefaultChannelServiceFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

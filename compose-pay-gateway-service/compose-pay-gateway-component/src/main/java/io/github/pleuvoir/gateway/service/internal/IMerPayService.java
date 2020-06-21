@@ -14,4 +14,9 @@ public interface IMerPayService {
      */
     MerPayPO getBySerialNo(String serialNo);
 
+    /**
+     * 保存支付订单
+     */
+    void save(MerPayPO merPayPO);
+
 }

@@ -1,8 +1,7 @@
 package io.github.channel.agent;
 
 import io.github.channel.BaseTest;
-import io.github.pleuvoir.channel.agent.IChannelServiceAgent;
-import io.github.pleuvoir.channel.agent.IChannelServiceAgent;
+import io.github.pleuvoir.channel.agent.IStdChannelServiceAgent;
 import io.github.pleuvoir.channel.common.ChannelEnum;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.request.PaymentDTO;
@@ -18,7 +17,7 @@ public class ChannelServiceAgentTest extends BaseTest {
 
 
     @Autowired
-    private IChannelServiceAgent serviceAgent;
+    private IStdChannelServiceAgent serviceAgent;
 
     @Test
     public void pay() throws ChannelServiceException {

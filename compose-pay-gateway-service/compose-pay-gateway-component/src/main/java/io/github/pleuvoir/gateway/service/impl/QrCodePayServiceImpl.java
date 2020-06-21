@@ -1,15 +1,23 @@
 package io.github.pleuvoir.gateway.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.rpc.RpcException;
+import com.alibaba.fastjson.JSON;
+import io.github.pleuvoir.channel.agent.IStdChannelServiceAgent;
+import io.github.pleuvoir.channel.exception.ChannelServiceException;
+import io.github.pleuvoir.channel.model.request.PaymentDTO;
+import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
 import io.github.pleuvoir.gateway.constants.PayTypeEnum;
 import io.github.pleuvoir.gateway.constants.PayWayEnum;
 import io.github.pleuvoir.gateway.exception.BusinessException;
-import io.github.pleuvoir.gateway.model.dto.PaymentDTO;
+import io.github.pleuvoir.gateway.model.dto.QrCodePayRequestDTO;
 import io.github.pleuvoir.gateway.model.po.MerChannelPO;
-import io.github.pleuvoir.gateway.model.po.MerSignFeePO;
+import io.github.pleuvoir.gateway.model.po.MerPayPO;
 import io.github.pleuvoir.gateway.model.po.MerchantPO;
 import io.github.pleuvoir.gateway.model.vo.ResultBasePayVO;
 import io.github.pleuvoir.gateway.route.RouteService;
-import io.github.pleuvoir.gateway.service.QrCodePayService;
+import io.github.pleuvoir.gateway.service.IQrCodePayService;
+import io.github.pleuvoir.gateway.service.ITransactionService;
 import io.github.pleuvoir.gateway.service.internal.impl.BaseServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,27 +30,61 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class QrCodePayServiceImpl extends BaseServiceImpl implements QrCodePayService {
+public class QrCodePayServiceImpl extends BaseServiceImpl implements IQrCodePayService {
+
+    @Reference(version = "${dubbo.service.channel}")
+    private IStdChannelServiceAgent channelServiceAgent;
 
     @Autowired
     private RouteService routeService;
+    @Autowired
+    private ITransactionService transactionService;
 
     @Override
-    public ResultBasePayVO qrCodePayUrl(PaymentDTO paymentDTO) throws BusinessException {
+    public ResultBasePayVO qrCodePayUrl(QrCodePayRequestDTO payRequestDTO) throws BusinessException {
 
         //检查商户并校验状态
-        MerchantPO merchantPO = checkMerchant(paymentDTO.getMid());
+        MerchantPO merchantPO = checkMerchant(payRequestDTO.getMid());
 
-        PayTypeEnum payTypeEnum = PayTypeEnum.getThisByName(paymentDTO.getType());
+        PayTypeEnum payTypeEnum = PayTypeEnum.toEumByName(payRequestDTO.getPayType());
 
         //渠道路由
         MerChannelPO merChannelPO = routeService.find(merchantPO.getMid(), payTypeEnum.getCode(), PayWayEnum.SCAN_CODE.getCode());
 
+        MerPayPO merPayPO = this.installMerPayPO();
+
         //创建订单
+        MerPayPO order = transactionService.createOrder(merPayPO, merchantPO);
+
 
         ResultBasePayVO basePayVO = new ResultBasePayVO();
         basePayVO.setOrderNo(merchantPO.getMerName());
 
+        PaymentDTO paymentDTO = new PaymentDTO();
+
+        try {
+            log.info("请求通道服务，获取二维码 入参 paymentDTO：{}", JSON.toJSONString(paymentDTO));
+            PaymentResultDTO resultDTO = channelServiceAgent.payOrder(paymentDTO);
+            log.info("请求通道服务，获取二维码 入参 paymentDTO：{}，响应 resultDTO：{}", JSON.toJSONString(paymentDTO)
+                    , JSON.toJSONString(resultDTO));
+        } catch (ChannelServiceException e) {
+            log.info("请求通道服务异常，获取二维码 入参 paymentDTO={}，msg={}", JSON.toJSONString(paymentDTO),
+                    e.getMsg());
+
+        } catch (RpcException e) {
+            log.error("获取二维码失败，远程调用失败。入参：{}", JSON.toJSONString(paymentDTO), e);
+        } catch (Throwable e) {
+
+        }
+
         return basePayVO;
     }
+
+
+    private MerPayPO installMerPayPO(){
+
+        MerPayPO payPO = new MerPayPO();
+        return payPO;
+    }
+
 }

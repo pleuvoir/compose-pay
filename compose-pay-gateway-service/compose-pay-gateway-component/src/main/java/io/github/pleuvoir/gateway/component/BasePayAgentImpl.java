@@ -7,9 +7,10 @@ import io.github.pleuvoir.gateway.constants.PayTypeEnum;
 import io.github.pleuvoir.gateway.constants.RspCodeEnum;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.dto.PaymentDTO;
+import io.github.pleuvoir.gateway.model.dto.QrCodePayRequestDTO;
 import io.github.pleuvoir.gateway.model.vo.ResultBasePayVO;
 import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
-import io.github.pleuvoir.gateway.service.QrCodePayService;
+import io.github.pleuvoir.gateway.service.IQrCodePayService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,13 @@ import javax.validation.Valid;
 public class BasePayAgentImpl implements BasePayAgent {
 
     @Autowired
-    private QrCodePayService qrCodePayService;
+    private IQrCodePayService qrCodePayService;
 
     @MethodTimeLog("获取支付二维码")
     @Override
-    public ResultMessageVO<ResultBasePayVO> payCode(@Valid PaymentDTO dto) {
+    public ResultMessageVO<ResultBasePayVO> payCode(@Valid QrCodePayRequestDTO dto) {
 
-        if (!this.validatePayType(dto.getType())) {
+        if (!this.validatePayType(dto.getPayType())) {
             return ResultMessageVO.fail(RspCodeEnum.INVALID_PAYTYPE);
         }
 
@@ -53,7 +54,7 @@ public class BasePayAgentImpl implements BasePayAgent {
     }
 
     /**
-     * 判断支付方式是否正确
+     * 判断支付种类是否正确
      */
     private boolean validatePayType(String payType) {
         if (StringUtils.equals(PayTypeEnum.TYPE_ALIPAY.getName(), payType)

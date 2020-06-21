@@ -39,7 +39,7 @@ public enum PayTypeEnum {
      *
      * @param name 支付种类名称
      */
-    public static PayTypeEnum getThisByName(String name) {
+    public static PayTypeEnum toEumByName(String name) {
         PayTypeEnum[] payTypeEnums = PayTypeEnum.values();
         for (PayTypeEnum value : payTypeEnums) {
             if (StringUtils.equalsIgnoreCase(value.getName(), name)) {

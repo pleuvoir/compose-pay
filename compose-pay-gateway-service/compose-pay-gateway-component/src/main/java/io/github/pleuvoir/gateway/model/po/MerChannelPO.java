@@ -1,16 +1,16 @@
 package io.github.pleuvoir.gateway.model.po;
 
-/**
- * 商户通道关系
- *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
- */
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 
+/**
+ * 商户通道关系
+ *
+ * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ */
 @Data
 @TableName("t_mer_channel")
 public class MerChannelPO {
@@ -59,5 +59,5 @@ public class MerChannelPO {
     private String publicKey;        //公钥	通道的公钥，非对称加密时有效
 
     @TableField("priority")
-    private Integer priority;		//优先级	 2比1大
+    private Integer priority;        //优先级	 2比1大
 }
