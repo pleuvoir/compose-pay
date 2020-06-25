@@ -13,12 +13,12 @@ public enum PayTypeEnum {
     /**
      * 支付宝支付
      */
-    TYPE_ALIPAY("01", "alipay"),
+    TYPE_ALIPAY("01", "wechat"),
 
     /**
      * 微信支付
      */
-    TYPE_WECHAT("02", "wechat"),
+    TYPE_WECHAT("02", "alipay"),
 
     ;
 

@@ -17,6 +17,6 @@ public interface IMerPayService {
     /**
      * 保存支付订单
      */
-    void save(MerPayPO merPayPO);
+    Integer save(MerPayPO merPayPO);
 
 }

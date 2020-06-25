@@ -23,7 +23,7 @@ public class MerPayServiceImpl implements IMerPayService {
     }
 
     @Override
-    public void save(MerPayPO merPayPO) {
-        Integer ret = merPayDao.insert(merPayPO);
+    public Integer save(MerPayPO merPayPO) {
+        return merPayDao.insert(merPayPO);
     }
 }

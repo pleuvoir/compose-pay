@@ -1,7 +1,6 @@
 package io.github.pleuvoir.gateway.common.aop;
 
 import com.alibaba.fastjson.JSON;
-import io.github.pleuvoir.gateway.common.utils.MonitorLogger;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -57,40 +56,17 @@ public class MethodTimeAspect {
         }
 
         Object retObj = null;
-        long startTime = System.currentTimeMillis();
-        long endTime = 0L;
         try {
-            MonitorLogger.getLogger().info("-=- {} 入参={}",businessName, Arrays.asList(arguments));
+            log.info("-=- {} 入参={}",businessName, Arrays.asList(arguments));
             retObj = joinPoint.proceed(arguments);
-            endTime = System.currentTimeMillis();
         } catch (Throwable e) {
             String remark = "异常信息：" + e.getMessage();
-            endTime = System.currentTimeMillis();
-            printExecTime(arguments, businessName, startTime, endTime, className, methodName, remark);
             throw e;
         }
-        MonitorLogger.getLogger().info("-=- {} 出参={}",businessName, JSON.toJSONString(retObj));
-        printExecTime(arguments, businessName, startTime, endTime, className, methodName, "");
+        log.info("-=- {} 出参={}",businessName, JSON.toJSONString(retObj));
         return retObj;
     }
 
-    /**
-     * 打印方法执行耗时的信息，如果超过了一定的时间，才打印
-     */
-    private void printExecTime(Object[] arguments, String businessName, long startTime, long endTime,
-                               String className, String methodName, String remark) {
-
-        String mid = getFieldValueByNameFromArguments(arguments, MID_FIELD);
-        String orderNo = getFieldValueByNameFromArguments(arguments, SERIAL_NO_FIELD);
-        if (StringUtils.isEmpty(orderNo)) {
-            orderNo = getFieldValueByNameFromArguments(arguments, ORDER_NO_FIELD);
-        }
-
-        long costTime = endTime - startTime;
-        if (costTime > MILLISECOND) {
-            MonitorLogger.print(businessName, costTime, startTime, endTime, className, methodName, mid, orderNo, "");
-        }
-    }
 
     private String getFieldValueByNameFromArguments(Object[] arguments, String fieldName) {
         if (arguments == null || arguments.length == 0) {

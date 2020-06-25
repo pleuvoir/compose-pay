@@ -1,7 +1,7 @@
 package io.github.pleuvoir.dao;
 
 import io.github.pleuvoir.BaseTest;
-import io.github.pleuvoir.gateway.dao.pay.MerPayDao;
+import io.github.pleuvoir.gateway.dao.pay.IMerPayDao;
 import io.github.pleuvoir.gateway.model.po.MerPayPO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MerPayDaoTest extends BaseTest {
 
     @Autowired
-    private MerPayDao dao;
+    private IMerPayDao dao;
 
     @Test
     public void createOrderTest() {

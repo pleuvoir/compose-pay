@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -27,6 +28,9 @@ public class PayBaseRequestDTO implements Serializable {
     @NotBlank(message = "商户订单号不能为空")
     private String orderNo;        //商户系统中的订单号
 
+    @NotEmpty(message = "交易唯一ID不能为空")
+    private Long transUniqueId;  //交易唯一ID，支持同一笔业务订单发起多次支付请求
+
     @Length(max = 128)
     @NotBlank(message = "商品名称不能为空")
     private String subject;        //商品名称
@@ -39,8 +43,11 @@ public class PayBaseRequestDTO implements Serializable {
     @DecimalMin(value = "0.01", message = "金额必须大于或等于0.01")
     private BigDecimal amount;        //金额
 
-    @Length(max = 16)
-    private String payType;        //类型：wechat：微信 alipay：支付宝
+    @NotBlank(message = "支付种类不能为空")
+    private String payType;
+
+    @NotBlank(message = "支付方式不能为空")
+    private String payWay;
 
     @Length(max = 256)
     @NotBlank(message = "商户通知地址不能为空")

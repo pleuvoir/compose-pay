@@ -1,5 +1,6 @@
 package io.github.pleuvoir.gateway.service;
 
+import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerPayPO;
 import io.github.pleuvoir.gateway.model.po.MerchantPO;
 
@@ -8,7 +9,7 @@ import io.github.pleuvoir.gateway.model.po.MerchantPO;
  */
 public interface ITransactionService {
 
-    MerPayPO createOrder(MerPayPO order, MerchantPO merchant);
+    MerPayPO createOrder(MerPayPO order, MerchantPO merchant) throws BusinessException;
 
     MerPayPO queryOrderbyES();
 }

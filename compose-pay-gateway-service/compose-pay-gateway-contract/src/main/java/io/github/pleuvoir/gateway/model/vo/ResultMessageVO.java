@@ -1,13 +1,12 @@
 package io.github.pleuvoir.gateway.model.vo;
 
-import java.io.Serializable;
-
 import com.alibaba.fastjson.JSON;
-
 import com.alibaba.fastjson.annotation.JSONField;
-import io.github.pleuvoir.gateway.constants.RspCodeEnum;
+import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * 返回消息
@@ -29,7 +28,7 @@ public class ResultMessageVO<T> implements Serializable {
     public ResultMessageVO() {
     }
 
-    public ResultMessageVO(RspCodeEnum rspCode) {
+    public ResultMessageVO(ResultCodeEnum rspCode) {
         this.code = rspCode.getCode();
         this.msg = rspCode.getMsg();
     }
@@ -39,18 +38,18 @@ public class ResultMessageVO<T> implements Serializable {
         this.msg = msg;
     }
 
-    public ResultMessageVO(RspCodeEnum rspCode, String msg) {
+    public ResultMessageVO(ResultCodeEnum rspCode, String msg) {
         this.code = rspCode.getCode();
         this.msg = msg;
     }
 
-    public ResultMessageVO<T> setResult(RspCodeEnum rspCode) {
+    public ResultMessageVO<T> setResult(ResultCodeEnum rspCode) {
         this.code = rspCode.getCode();
         this.msg = rspCode.getMsg();
         return this;
     }
 
-    public ResultMessageVO<T> setResult(RspCodeEnum rspCode, String msg) {
+    public ResultMessageVO<T> setResult(ResultCodeEnum rspCode, String msg) {
         this.code = rspCode.getCode();
         this.msg = msg;
         return this;
@@ -58,33 +57,33 @@ public class ResultMessageVO<T> implements Serializable {
 
     @JSONField(serialize = false, deserialize = false)
     public boolean isSuccess() {
-        return RspCodeEnum.SUCCESS.isEquals(code);
+        return ResultCodeEnum.SUCCESS.isEquals(code);
     }
 
     public static <T> ResultMessageVO<T> success() {
-        return new ResultMessageVO<>(RspCodeEnum.SUCCESS, RspCodeEnum.SUCCESS.getMsg());
+        return new ResultMessageVO<>(ResultCodeEnum.SUCCESS, ResultCodeEnum.SUCCESS.getMsg());
     }
 
     public static <T> ResultMessageVO<T> success(T data) {
-        ResultMessageVO<T> messageVO = new ResultMessageVO<>(RspCodeEnum.SUCCESS, RspCodeEnum.SUCCESS.getMsg());
+        ResultMessageVO<T> messageVO = new ResultMessageVO<>(ResultCodeEnum.SUCCESS, ResultCodeEnum.SUCCESS.getMsg());
         messageVO.setData(data);
         return messageVO;
     }
 
     public static <T> ResultMessageVO<T> fail(String message) {
-        return new ResultMessageVO<>(RspCodeEnum.FAIL, message);
+        return new ResultMessageVO<>(ResultCodeEnum.FAIL, message);
     }
 
-    public static <T> ResultMessageVO<T> fail(RspCodeEnum rspCode, String message) {
+    public static <T> ResultMessageVO<T> fail(ResultCodeEnum rspCode, String message) {
         return new ResultMessageVO<>(rspCode, message);
     }
 
-    public static <T> ResultMessageVO<T> fail(RspCodeEnum rspCode) {
+    public static <T> ResultMessageVO<T> fail(ResultCodeEnum rspCode) {
         return new ResultMessageVO<>(rspCode, rspCode.getMsg());
     }
 
     public ResultMessageVO<T> setFail(String message) {
-        return this.setResult(RspCodeEnum.FAIL, message);
+        return this.setResult(ResultCodeEnum.FAIL, message);
     }
 
     public String toJSON() {

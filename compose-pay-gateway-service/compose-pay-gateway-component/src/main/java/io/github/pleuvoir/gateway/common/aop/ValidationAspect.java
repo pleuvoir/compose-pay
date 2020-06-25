@@ -2,7 +2,7 @@ package io.github.pleuvoir.gateway.common.aop;
 
 import io.github.pleuvoir.gateway.common.utils.HibernateValidatorUtils;
 import io.github.pleuvoir.gateway.common.utils.ValidationResult;
-import io.github.pleuvoir.gateway.constants.RspCodeEnum;
+import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -31,7 +31,7 @@ public class ValidationAspect {
                 Object val = args[i];
                 ValidationResult validationResult = HibernateValidatorUtils.validateEntity(val);
                 if (validationResult.isHasErrors()) {
-                    return ResultMessageVO.fail(RspCodeEnum.PARAM_ERROR, validationResult.getErrorMessageOneway());
+                    return ResultMessageVO.fail(ResultCodeEnum.PARAM_ERROR, validationResult.getErrorMessageOneway());
                 }
             }
         }

@@ -1,6 +1,6 @@
 package io.github.pleuvoir.gateway.service.internal.impl;
 
-import io.github.pleuvoir.gateway.constants.RspCodeEnum;
+import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import io.github.pleuvoir.gateway.dao.mer.MerIpDao;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerIpPO;
@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * IP服务
+ *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 @Service
@@ -24,7 +26,7 @@ public class MerIpServiceIImpl implements MerIpService {
         query.setIp(ip);
         MerIpPO merIpPO = merIpDao.selectOne(query);
         if (merIpPO == null) {
-            throw new BusinessException(RspCodeEnum.IP_NO_BIND);
+            throw new BusinessException(ResultCodeEnum.IP_NO_BIND);
         }
     }
 }

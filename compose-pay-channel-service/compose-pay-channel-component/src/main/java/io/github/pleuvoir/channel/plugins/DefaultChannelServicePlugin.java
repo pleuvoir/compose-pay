@@ -83,7 +83,7 @@ public class DefaultChannelServicePlugin implements ChannelServicePlugin {
 
     private ChannelEnum parseChannel(Element rootElem) {
         String channel = rootElem.elementTextTrim(ELEM_CHANNEL);
-        return ChannelEnum.toEnum(channel);
+        return ChannelEnum.toEnumByName(channel);
     }
 
     private Resource[] scanning() {

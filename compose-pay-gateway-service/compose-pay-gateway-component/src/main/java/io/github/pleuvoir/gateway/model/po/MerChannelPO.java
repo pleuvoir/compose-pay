@@ -32,7 +32,7 @@ public class MerChannelPO {
     private String mid;             //商户号
 
     @TableField("channel_code")
-    private String channelCode;        //通道编号
+    private Integer channelCode;        //通道编号
 
     @TableField("pay_type")
     private String payType;        //支付种类

@@ -2,6 +2,7 @@ package io.github.pleuvoir.gateway.service;
 
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.dto.QrCodePayRequestDTO;
+import io.github.pleuvoir.gateway.model.dto.QrCodePayResultDTO;
 import io.github.pleuvoir.gateway.model.vo.ResultBasePayVO;
 
 /**
@@ -10,5 +11,5 @@ import io.github.pleuvoir.gateway.model.vo.ResultBasePayVO;
  */
 public interface IQrCodePayService {
 
-    ResultBasePayVO qrCodePayUrl(QrCodePayRequestDTO payRequestDTO) throws BusinessException;
+    QrCodePayResultDTO qrCodePayUrl(QrCodePayRequestDTO payRequestDTO) throws BusinessException;
 }

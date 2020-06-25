@@ -1,22 +1,14 @@
 package io.github.pleuvoir.gateway.route;
 
-import com.baomidou.mybatisplus.mapper.Condition;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import io.github.pleuvoir.gateway.constants.PayWayEnum;
-import io.github.pleuvoir.gateway.constants.RspCodeEnum;
-import io.github.pleuvoir.gateway.dao.mer.MerChannelDao;
+import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerChannelPO;
 import io.github.pleuvoir.gateway.model.po.MerSignFeePO;
 import io.github.pleuvoir.gateway.service.internal.MerChannelService;
 import io.github.pleuvoir.gateway.service.internal.MerSignFeeService;
-import io.github.pleuvoir.gateway.service.internal.impl.BaseServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import java.util.List;
 
 /**
  * 路由服务
@@ -40,15 +32,15 @@ public class RouteServiceImpl implements RouteService {
         //获取商户签约的支付产品
         final MerSignFeePO merSignFeePO = signFeeService.getMerSignsByMidAndPayWayAndPayType(mid, payType, payWay);
         if (merSignFeePO == null) {
-            logException(mid, payType, payWay, RspCodeEnum.MER_UN_SIGN_ERROR.getMsg());
-            throw new BusinessException(RspCodeEnum.MER_UN_SIGN_ERROR);
+            logException(mid, payType, payWay, ResultCodeEnum.MER_UN_SIGN_ERROR.getMsg());
+            throw new BusinessException(ResultCodeEnum.MER_UN_SIGN_ERROR);
         }
 
         //获取商户通道关系
         MerChannelPO merChannelPO = merChannelService.maxPriority(mid, payType, payWay);
         if (merChannelPO == null) {
-            logException(mid, payType, payWay, RspCodeEnum.NOT_FOUND_CHANNEL_MID.getMsg());
-            throw new BusinessException(RspCodeEnum.NOT_FOUND_CHANNEL_MID);
+            logException(mid, payType, payWay, ResultCodeEnum.NOT_FOUND_CHANNEL_MID.getMsg());
+            throw new BusinessException(ResultCodeEnum.NOT_FOUND_CHANNEL_MID);
         }
 
         //获取商户通道支付产品

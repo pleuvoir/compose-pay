@@ -1,8 +1,8 @@
 package io.github.pleuvoir.utils;
 
+import io.github.pleuvoir.channel.model.request.PaymentDTO;
 import io.github.pleuvoir.gateway.common.utils.HibernateValidatorUtils;
 import io.github.pleuvoir.gateway.common.utils.ValidationResult;
-import io.github.pleuvoir.gateway.model.dto.PaymentDTO;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
@@ -26,12 +26,6 @@ public class HibernateValidatorUtilsTest {
     public void validateEntityTest() {
         ValidationResult validationResult = HibernateValidatorUtils.validateEntity(dto);
         log.info("{}，{}", validationResult.isHasErrors(), validationResult.getErrorMsg());
-
-        dto.setOrderNo(String.valueOf(System.currentTimeMillis()));
-        dto.setSubject("subject");
-        dto.setMid("810123993089");
-        //   dto.setBody("body");
-        dto.setAmount(new BigDecimal("22.2222"));
 
         ValidationResult validationResult2 = HibernateValidatorUtils.validateEntity(dto);
         log.info("{}，{}", validationResult2.isHasErrors(), validationResult2.getErrorMsg());
