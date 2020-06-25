@@ -41,7 +41,7 @@ public class DefaultChannelServicePlugin implements ChannelServicePlugin {
 
     private String location;
 
-    //交服务类：通道、服务类别，实现类
+    //通道、服务类别，实现类
     private Table<ChannelEnum, ServiceIdEnum, Class<?>> services = Tables.newCustomTable(new ConcurrentHashMap<>(), ConcurrentHashMap::new);
 
 
