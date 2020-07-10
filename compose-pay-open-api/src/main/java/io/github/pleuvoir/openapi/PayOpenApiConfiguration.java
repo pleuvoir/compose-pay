@@ -1,10 +1,9 @@
-package io.github.pleuvoir.redpack;
+package io.github.pleuvoir.openapi;
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
-import io.github.pleuvoir.redpack.common.AppConfig;
-import io.github.pleuvoir.redpack.common.utils.Locker;
-import org.mybatis.spring.annotation.MapperScan;
+import io.github.pleuvoir.openapi.common.AppConfig;
+import io.github.pleuvoir.openapi.common.utils.Locker;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -32,7 +31,6 @@ import java.util.List;
 @Configuration
 @EnableCaching
 @AutoConfigureAfter({RedisAutoConfiguration.class})
-@MapperScan("io.github.pleuvoir.redpack.dao")
 public class PayOpenApiConfiguration implements WebMvcConfigurer {
 
 

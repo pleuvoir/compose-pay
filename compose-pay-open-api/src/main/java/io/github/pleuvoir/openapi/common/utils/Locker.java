@@ -1,4 +1,4 @@
-package io.github.pleuvoir.redpack.common.utils;
+package io.github.pleuvoir.openapi.common.utils;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -8,7 +8,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.integration.redis.util.RedisLockRegistry;
 import org.springframework.integration.support.locks.LockRegistry;
 
-import io.github.pleuvoir.redpack.exception.LockInterruptedException;
+import io.github.pleuvoir.openapi.exception.LockInterruptedException;
 
 public class Locker {
 

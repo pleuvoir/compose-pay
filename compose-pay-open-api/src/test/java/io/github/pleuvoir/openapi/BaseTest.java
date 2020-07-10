@@ -1,4 +1,4 @@
-package io.github.pleuvoir.redpack;
+package io.github.pleuvoir.openapi;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

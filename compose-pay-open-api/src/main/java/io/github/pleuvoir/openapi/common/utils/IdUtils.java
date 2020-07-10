@@ -1,4 +1,4 @@
-package io.github.pleuvoir.redpack.common.utils;
+package io.github.pleuvoir.openapi.common.utils;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;

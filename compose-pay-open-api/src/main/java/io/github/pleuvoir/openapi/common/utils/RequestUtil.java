@@ -1,9 +1,8 @@
-package io.github.pleuvoir.redpack.common.utils;
+package io.github.pleuvoir.openapi.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,9 +18,6 @@ public class RequestUtil {
     /**
      * 将请求参数转换成可视的json格式<br>
      * <b>注意</b>，该方法不考虑参数值的类型，统一按字符串处理，并且不考虑一个参数名多个值的问题，均按一个值处理
-     *
-     * @param req
-     * @return
      */
     public static String paramsToJsonString(HttpServletRequest req) {
         Enumeration<String> names = req.getParameterNames();
@@ -69,9 +65,6 @@ public class RequestUtil {
 
     /**
      * 检查是否是ajax请求
-     *
-     * @param request
-     * @return
      */
     public static boolean isAjax(HttpServletRequest request) {
         String requestType = request.getHeader("X-Requested-With");
@@ -83,9 +76,6 @@ public class RequestUtil {
 
     /**
      * 提取User-Agent
-     *
-     * @param request
-     * @return
      */
     public static String userAgent(HttpServletRequest request) {
         return request.getHeader("User-Agent");
@@ -93,11 +83,6 @@ public class RequestUtil {
 
     /**
      * 提取User-Agent，并截取指定的长度
-     *
-     * @param request
-     * @param start
-     * @param length
-     * @return
      */
     public static String userAgent(HttpServletRequest request, int start, int length) {
         return StringUtils.substring(userAgent(request), start, start + length);
@@ -105,9 +90,6 @@ public class RequestUtil {
 
     /**
      * 获取请求的IP
-     *
-     * @param request
-     * @return
      */
     public static String ipAddress(HttpServletRequest request) {
         String ip = validIp(request.getHeader("x-forwarded-for"));
@@ -128,9 +110,6 @@ public class RequestUtil {
 
     /**
      * 获取请求查询参数
-     *
-     * @param request
-     * @return
      */
     public static Map<String, String> getParameterMap(HttpServletRequest request) {
         Enumeration<String> names = request.getParameterNames();
@@ -146,9 +125,6 @@ public class RequestUtil {
 
     /**
      * 获取请求头信息
-     *
-     * @param request
-     * @return
      */
     public static Map<String, String> getHeaders(HttpServletRequest request) {
         Enumeration<String> names = request.getHeaderNames();
@@ -161,22 +137,6 @@ public class RequestUtil {
 
         return headers;
     }
-
-    /**
-     * 获取请求body（使用 CachingRequestWrapper）
-     *
-     * @return
-     * @throws IOException
-     */
-//    public static String getBody(HttpServletRequest request) throws IOException {
-//        String body = StringUtils.EMPTY;
-//
-//        if (request instanceof CachingRequestWrapper) {
-//            CachingRequestWrapper requestWrapper = (CachingRequestWrapper) request;
-//            body = IOUtils.toString(requestWrapper.getBody(), request.getCharacterEncoding());
-//        }
-//        return body;
-//    }
 
     private static String validIp(String ipStr) {
         if (StringUtils.isBlank(ipStr)) {

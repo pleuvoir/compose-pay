@@ -1,4 +1,4 @@
-package io.github.pleuvoir.redpack.model.dto;
+package io.github.pleuvoir.openapi.model.dto;
 
 import com.google.common.base.Objects;
 import lombok.Data;

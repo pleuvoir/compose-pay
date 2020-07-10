@@ -1,6 +1,6 @@
-package io.github.pleuvoir.redpack.model.dto;
+package io.github.pleuvoir.openapi.model.dto;
 
-import io.github.pleuvoir.redpack.common.utils.ToJSON;
+import io.github.pleuvoir.openapi.common.utils.ToJSON;
 import lombok.*;
 
 import java.math.BigDecimal;

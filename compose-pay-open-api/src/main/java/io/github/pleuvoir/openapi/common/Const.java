@@ -1,4 +1,4 @@
-package io.github.pleuvoir.redpack.common;
+package io.github.pleuvoir.openapi.common;
 
 /**
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>

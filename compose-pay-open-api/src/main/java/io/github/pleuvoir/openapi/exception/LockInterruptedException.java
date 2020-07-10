@@ -1,4 +1,4 @@
-package io.github.pleuvoir.redpack.exception;
+package io.github.pleuvoir.openapi.exception;
 
 public class LockInterruptedException extends Exception {
 

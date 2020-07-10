@@ -13,13 +13,10 @@
     <groupId>io.github.pleuvoir</groupId>
     <artifactId>compose-pay-open-api</artifactId>
     <version>1.0.0</version>
-    <name>redpack-webapp</name>
+    <name>compose-pay-open-api</name>
 
     <properties>
         <java.version>1.8</java.version>
-        <mybatis-plus.version>2.3.1</mybatis-plus.version>
-        <mysql.version>5.1.40</mysql.version>
-        <druid.version>1.1.10</druid.version>
         <fastjson.version>1.2.60</fastjson.version>
         <lang3.version>3.7</lang3.version>
         <pool2.version>2.6.0</pool2.version>
@@ -30,32 +27,6 @@
     </properties>
 
     <dependencies>
-        <!-- Database -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis-plus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.zaxxer</groupId>
-                    <artifactId>HikariCP</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!-- Commons -->
         <dependency>
             <groupId>com.google.guava</groupId>

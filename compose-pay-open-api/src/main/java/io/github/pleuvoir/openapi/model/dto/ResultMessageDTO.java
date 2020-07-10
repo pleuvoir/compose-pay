@@ -1,8 +1,8 @@
-package io.github.pleuvoir.redpack.model.dto;
+package io.github.pleuvoir.openapi.model.dto;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
-import io.github.pleuvoir.redpack.common.RspCode;
+import io.github.pleuvoir.openapi.common.RspCode;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

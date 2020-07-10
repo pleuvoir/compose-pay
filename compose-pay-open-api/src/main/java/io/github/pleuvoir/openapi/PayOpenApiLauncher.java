@@ -1,14 +1,11 @@
-package io.github.pleuvoir.redpack;
+package io.github.pleuvoir.openapi;
 
-import com.google.common.collect.Sets;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @SpringBootApplication
 public class PayOpenApiLauncher extends SpringBootServletInitializer {

@@ -1,4 +1,4 @@
-package io.github.pleuvoir.redpack;
+package io.github.pleuvoir.openapi;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
