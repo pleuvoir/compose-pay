@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
-public class RedpackLauncher extends SpringBootServletInitializer {
+public class PayOpenApiLauncher extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
 
