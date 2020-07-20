@@ -19,6 +19,14 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -26,8 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 开放API配置
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
+@EnableSwagger2
 @Configuration
 @EnableCaching
 @AutoConfigureAfter({RedisAutoConfiguration.class})
@@ -88,5 +98,26 @@ public class PayOpenApiConfiguration implements WebMvcConfigurer {
         converters.add(stringConverter);
         converters.add(jsonConverter);
     }
+
+    @Bean
+    public Docket customDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    private ApiInfo apiInfo() {
+        Contact contact = new Contact("pleuvoir", "https://github.com/pleuvoir/compose-pay", "pleuvoir@foxmail.com");
+        return new ApiInfoBuilder()
+                .title("支付系统开放API")
+                .description("支付系统开放API")
+                .contact(contact)
+                .version("1.0.0")
+                .build();
+    }
+
 
 }
