@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 pleuvoir (pleuvoir@foxmail.com)
+ * Copyright © 2020 pleuvoir (pleuvior@foxmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,9 @@ import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import javax.sql.DataSource;
 import org.apache.ibatis.plugin.Interceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -41,10 +44,6 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
-import java.io.IOException;
-import java.nio.charset.Charset;
-
 @Configuration
 @EnableTransactionManagement
 @EnableCaching
@@ -53,61 +52,64 @@ import java.nio.charset.Charset;
 @MapperScan("io.github.pleuvoir.gateway.dao")
 public class PayGatewayConfiguration {
 
-    /**
-     * mybatis-plus
-     */
-    @Bean("sqlSessionFactory")
-    public MybatisSqlSessionFactoryBean getMybatisSqlSessionFactoryBean(DataSource dataSource) throws IOException {
-        MybatisSqlSessionFactoryBean factoryBean = new MybatisSqlSessionFactoryBean();
-        factoryBean.setDataSource(dataSource);
+  /**
+   * mybatis-plus
+   */
+  @Bean("sqlSessionFactory")
+  public MybatisSqlSessionFactoryBean getMybatisSqlSessionFactoryBean(DataSource dataSource)
+      throws IOException {
+    MybatisSqlSessionFactoryBean factoryBean = new MybatisSqlSessionFactoryBean();
+    factoryBean.setDataSource(dataSource);
 
-        factoryBean.setConfigLocation(new ClassPathResource("mapping-config.xml"));
-        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
-                .getResources("classpath:mapper/**/*Mapper.xml"));
+    factoryBean.setConfigLocation(new ClassPathResource("mapping-config.xml"));
+    factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+        .getResources("classpath:mapper/**/*Mapper.xml"));
 
-        GlobalConfiguration globalConfig = new GlobalConfiguration();
-        globalConfig.setIdType(IdType.ID_WORKER.getKey());
-        globalConfig.setDbType(DBType.MYSQL.getDb());
-        globalConfig.setDbColumnUnderline(true);
-        factoryBean.setGlobalConfig(globalConfig);
+    GlobalConfiguration globalConfig = new GlobalConfiguration();
+    globalConfig.setIdType(IdType.ID_WORKER.getKey());
+    globalConfig.setDbType(DBType.MYSQL.getDb());
+    globalConfig.setDbColumnUnderline(true);
+    factoryBean.setGlobalConfig(globalConfig);
 
-        factoryBean.setPlugins(new Interceptor[]{
-                new PaginationInterceptor(),
-                new OptimisticLockerInterceptor()
-        });
-        return factoryBean;
-    }
+    factoryBean.setPlugins(new Interceptor[]{
+        new PaginationInterceptor(),
+        new OptimisticLockerInterceptor()
+    });
+    return factoryBean;
+  }
 
 
-    @Bean("transactionManager")
-    public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
-    }
+  @Bean("transactionManager")
+  public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
+    return new DataSourceTransactionManager(dataSource);
+  }
 
-    /**
-     * redis
-     */
-    @Bean("redisTemplate")
-    public RedisTemplate<String, Object> getRedisTemplate(LettuceConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setKeySerializer(new StringRedisSerializer(Charset.forName("UTF-8")));
-        template.setValueSerializer(new GenericFastJsonRedisSerializer());
-        template.setHashKeySerializer(new StringRedisSerializer(Charset.forName("UTF-8")));
-        template.setHashValueSerializer(new GenericFastJsonRedisSerializer());
-        template.setConnectionFactory(redisConnectionFactory);
-        return template;
-    }
+  /**
+   * redis
+   */
+  @Bean("redisTemplate")
+  public RedisTemplate<String, Object> getRedisTemplate(
+      LettuceConnectionFactory redisConnectionFactory) {
+    RedisTemplate<String, Object> template = new RedisTemplate<>();
+    template.setKeySerializer(new StringRedisSerializer(Charset.forName("UTF-8")));
+    template.setValueSerializer(new GenericFastJsonRedisSerializer());
+    template.setHashKeySerializer(new StringRedisSerializer(Charset.forName("UTF-8")));
+    template.setHashValueSerializer(new GenericFastJsonRedisSerializer());
+    template.setConnectionFactory(redisConnectionFactory);
+    return template;
+  }
 
-    @Bean("stringRedisTemplate")
-    public StringRedisTemplate getStringRedisTemplate(LettuceConnectionFactory redisConnectionFactory) {
-        StringRedisTemplate template = new StringRedisTemplate();
-        template.setConnectionFactory(redisConnectionFactory);
-        return template;
-    }
+  @Bean("stringRedisTemplate")
+  public StringRedisTemplate getStringRedisTemplate(
+      LettuceConnectionFactory redisConnectionFactory) {
+    StringRedisTemplate template = new StringRedisTemplate();
+    template.setConnectionFactory(redisConnectionFactory);
+    return template;
+  }
 
-    @ConfigurationProperties(prefix = "spring.executor")
-    @Bean(name = "threadPoolTaskExecutor", initMethod = "initialize")
-    public ThreadPoolTaskExecutor getThreadPoolTaskExecutor() {
-        return new ThreadPoolTaskExecutor();
-    }
+  @ConfigurationProperties(prefix = "spring.executor")
+  @Bean(name = "threadPoolTaskExecutor", initMethod = "initialize")
+  public ThreadPoolTaskExecutor getThreadPoolTaskExecutor() {
+    return new ThreadPoolTaskExecutor();
+  }
 }
