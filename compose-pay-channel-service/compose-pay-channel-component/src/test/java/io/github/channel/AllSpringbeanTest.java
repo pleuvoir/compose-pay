@@ -9,15 +9,14 @@ import org.springframework.context.ApplicationContext;
  */
 public class AllSpringbeanTest extends BaseTest {
 
-    @Autowired
-    private ApplicationContext context;
+  @Autowired
+  private ApplicationContext context;
 
-    @Test
-    public void test(){
-        for (String definitionName : context.getBeanDefinitionNames()) {
+  @Test public void test() {
+    for (String definitionName : context.getBeanDefinitionNames()) {
 
-            System.out.println(definitionName);
-        }
-
+      System.out.println(definitionName);
     }
+
+  }
 }
