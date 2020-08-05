@@ -15,29 +15,45 @@
  */
 package io.github.pleuvoir.dao;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import io.github.pleuvoir.BaseTest;
 import io.github.pleuvoir.gateway.dao.pay.IMerPayDao;
 import io.github.pleuvoir.gateway.model.po.MerPayPO;
+import java.util.Map;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shardingsphere.shardingjdbc.jdbc.core.datasource.ShardingDataSource;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 public class MerPayDaoTest extends BaseTest {
 
-    @Autowired
-    private IMerPayDao dao;
+  @Resource
+  private IMerPayDao dao;
 
-    @Test
-    public void createOrderTest() {
+  @Resource
+  private ShardingDataSource dataSource;
 
-        MerPayPO merPayPO = new MerPayPO();
-        merPayPO.setSerialNo(Long.valueOf(4));
-        merPayPO.setTransUniqueId(System.currentTimeMillis());
+  @Test
+  public void createOrderTest() throws InterruptedException {
 
-        Integer ret = dao.insert(merPayPO);
-        System.out.println(ret > 0);
+    Map<String, DataSource> dataSourceMap = dataSource.getDataSourceMap();
 
+    DruidDataSource m1 = (DruidDataSource) dataSourceMap.get("m1");
+    System.out.println(StringUtils.repeat("*", 20));
+
+    for (int i = 0; i < 4; i++) {
+      MerPayPO merPayPO = new MerPayPO();
+      merPayPO.setSerialNo((long) i);
+
+      Integer ret = dao.insert(merPayPO);
+      System.out.println(ret > 0);
     }
+
+    Thread.currentThread().join();
+
+  }
 }

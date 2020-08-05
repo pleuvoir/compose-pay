@@ -38,7 +38,7 @@
 		<mysql.version>5.1.40</mysql.version>
 		<druid.version>1.1.10</druid.version>
 
-		<fastjson.version>1.2.49</fastjson.version>
+		<fastjson.version>1.2.60</fastjson.version>
 		<lang3.version>3.7</lang3.version>
 		<pool2.version>2.6.0</pool2.version>
 		<io.version>2.6</io.version>
