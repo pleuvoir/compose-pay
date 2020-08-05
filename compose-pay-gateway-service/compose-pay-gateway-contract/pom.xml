@@ -5,12 +5,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.github.pleuvoir</groupId>
-	<version>1.0.0</version>
-	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>io.github.pleuvoir</groupId>
+		<artifactId>compose-pay-gateway-service</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
 	<artifactId>compose-pay-gateway-contract</artifactId>
 
 	<name>compose-pay-gateway-contract</name>
+
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

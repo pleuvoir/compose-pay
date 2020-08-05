@@ -13,6 +13,10 @@
 	<groupId>io.github.pleuvoir</groupId>
 	<artifactId>compose-pay-gateway-service</artifactId>
 	<version>1.0.0</version>
+	<inceptionYear>2020</inceptionYear>
+	<name>compose-pay</name>
+	<description>HA distributed payment gateway.</description>
+	<url>https://github.com/pleuvoir/compose-pay</url>
 
 	<modules>
 		<module>compose-pay-gateway-contract</module>
@@ -20,10 +24,11 @@
 	</modules>
 	<packaging>pom</packaging>
 
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
+		<main.user.dir>${user.dir}</main.user.dir>
+		<license-maven-plugin.version>3.0</license-maven-plugin.version>
 
 		<spring.boot.version>2.0.4.RELEASE</spring.boot.version>
 		<uuid.version>3.1.5</uuid.version>
@@ -259,6 +264,50 @@
 				<version>2.22.0</version>
 				<configuration>
 					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+
+			<!--license-->
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${license-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>remove</goal>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<quiet>true</quiet>
+					<header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+					<properties>
+						<owner>pleuvoir</owner>
+						<email>pleuvior@foxmail.com</email>
+					</properties>
+					<excludes>
+						<exclude>*.sh</exclude>
+						<exclude>*.yml</exclude>
+						<exclude>.editorconfig</exclude>
+						<exclude>.gitignore</exclude>
+						<exclude>LICENSE</exclude>
+						<exclude>**/*.md</exclude>
+						<exclude>**/*.xml</exclude>
+						<exclude>**/codestyle/HEADER</exclude>
+						<exclude>**/.gitkeep</exclude>
+						<exclude>**/mvnw</exclude>
+						<exclude>**/.mvn/**</exclude>
+						<exclude>**/.gitkeep</exclude>
+						<exclude>**/spring.factories</exclude>
+						<exclude>**/resources/template/**</exclude>
+					</excludes>
+					<strictCheck>true</strictCheck>
+					<mapping>
+						<java>SLASHSTAR_STYLE</java>
+					</mapping>
 				</configuration>
 			</plugin>
 
