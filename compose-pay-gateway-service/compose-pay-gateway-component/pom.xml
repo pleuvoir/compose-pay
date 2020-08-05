@@ -122,10 +122,7 @@
 			<groupId>io.netty</groupId>
 			<artifactId>netty</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.netty</groupId>
-			<artifactId>netty-all</artifactId>
-		</dependency>
+
 
 		<!-- Test -->
 		<dependency>
