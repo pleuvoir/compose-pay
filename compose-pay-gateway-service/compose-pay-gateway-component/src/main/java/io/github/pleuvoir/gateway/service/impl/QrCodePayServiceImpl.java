@@ -38,8 +38,8 @@ import io.github.pleuvoir.gateway.route.RouteService;
 import io.github.pleuvoir.gateway.service.IQrCodePayService;
 import io.github.pleuvoir.gateway.service.ITransactionService;
 import io.github.pleuvoir.gateway.service.internal.impl.BaseServiceImpl;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -54,9 +54,9 @@ public class QrCodePayServiceImpl extends BaseServiceImpl implements IQrCodePayS
     @Reference(version = "${dubbo.service.channel}")
     private IStdChannelServiceAgent channelServiceAgent;
 
-    @Autowired
+    @Resource
     private RouteService routeService;
-    @Autowired
+    @Resource
     private ITransactionService transactionService;
 
     @Override
@@ -65,7 +65,7 @@ public class QrCodePayServiceImpl extends BaseServiceImpl implements IQrCodePayS
         //检查商户并校验状态
         MerchantPO merchantPO = checkMerchant(payRequestDTO.getMid());
 
-        PayTypeEnum payTypeEnum = PayTypeEnum.toEumByName(payRequestDTO.getPayType());
+        PayTypeEnum payTypeEnum = PayTypeEnum.toEnum(payRequestDTO.getPayType());
         if (payTypeEnum == null) {
             throw new BusinessException(ResultCodeEnum.INVALID_PAY_TYPE);
         }
@@ -86,7 +86,7 @@ public class QrCodePayServiceImpl extends BaseServiceImpl implements IQrCodePayS
 
         try {
             log.info("请求通道服务，获取二维码 入参 paymentDTO：{}", JSON.toJSONString(paymentDTO));
-            PaymentResultDTO resultDTO = channelServiceAgent.payOrder(paymentDTO);
+            PaymentResultDTO resultDTO = this.channelServiceAgent.payOrder(paymentDTO);
             log.info("请求通道服务，获取二维码 入参 paymentDTO：{}，响应 resultDTO：{}", JSON.toJSONString(paymentDTO)
                     , JSON.toJSONString(resultDTO));
 
@@ -106,7 +106,7 @@ public class QrCodePayServiceImpl extends BaseServiceImpl implements IQrCodePayS
     private MerPayPO installMerPayPO(QrCodePayRequestDTO payRequestDTO, MerChannelPO merChannelPO) {
         MerPayPO payPO = new MerPayPO();
         payPO.setId(IdUtils.nextId());
-        payPO.setSerialNo(1L);  //保证两个分到一张表中
+        payPO.setSerialNo(IdUtils.nextId());  //保证两个分到一张表中
         payPO.setTransUniqueId(payRequestDTO.getTransUniqueId()); //保证两个分到一张表中
         payPO.setOrderNo(payRequestDTO.getOrderNo());
         payPO.setPayType(payRequestDTO.getPayType());

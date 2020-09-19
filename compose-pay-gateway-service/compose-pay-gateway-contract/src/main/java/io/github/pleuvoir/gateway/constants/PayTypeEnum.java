@@ -25,43 +25,43 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum PayTypeEnum {
 
-    /**
-     * 支付宝支付
-     */
-    TYPE_ALIPAY("01", "wechat"),
+  /**
+   * 支付宝支付
+   */
+  TYPE_ALIPAY("01", "wechat"),
 
-    /**
-     * 微信支付
-     */
-    TYPE_WECHAT("02", "alipay"),
+  /**
+   * 微信支付
+   */
+  TYPE_WECHAT("02", "alipay"),
 
-    ;
+  ;
 
-    @Getter
-    private String code;    //编号，数据库中存储的值
+  @Getter
+  private String code;    //编号，数据库中存储的值
 
-    @Getter
-    private String name;    //支付种类名称
+  @Getter
+  private String name;    //支付种类名称
 
-    PayTypeEnum(String code, String name) {
-        this.code = code;
-        this.name = name;
+  PayTypeEnum(String code, String name) {
+    this.code = code;
+    this.name = name;
+  }
+
+
+  /**
+   * 获取支付种类
+   *
+   * @param name 支付种类名称
+   */
+  public static PayTypeEnum toEnum(String name) {
+    PayTypeEnum[] payTypeEnums = PayTypeEnum.values();
+    for (PayTypeEnum value : payTypeEnums) {
+      if (StringUtils.equalsIgnoreCase(value.getName(), name)) {
+        return value;
+      }
     }
-
-
-    /**
-     * 获取支付种类
-     *
-     * @param name 支付种类名称
-     */
-    public static PayTypeEnum toEumByName(String name) {
-        PayTypeEnum[] payTypeEnums = PayTypeEnum.values();
-        for (PayTypeEnum value : payTypeEnums) {
-            if (StringUtils.equalsIgnoreCase(value.getName(), name)) {
-                return value;
-            }
-        }
-        return null;
-    }
+    return null;
+  }
 
 }

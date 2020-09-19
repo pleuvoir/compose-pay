@@ -15,18 +15,11 @@
  */
 package io.github.pleuvoir.agent;
 
-import io.github.pleuvoir.channel.model.request.PaymentDTO;
-import io.github.pleuvoir.gateway.constants.PayTypeEnum;
-import io.github.pleuvoir.gateway.exception.BusinessException;
-import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import io.github.pleuvoir.BaseTest;
 import io.github.pleuvoir.gateway.agent.BasePayAgent;
-import io.github.pleuvoir.gateway.model.vo.ResultBasePayVO;
-
-import java.math.BigDecimal;
 
 /**
  * @author pleuvoir

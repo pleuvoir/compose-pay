@@ -17,7 +17,7 @@ package io.github.pleuvoir.gateway.agent;
 
 import io.github.pleuvoir.gateway.model.dto.QrCodePayRequestDTO;
 import io.github.pleuvoir.gateway.model.dto.QrCodePayResultDTO;
-import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
+import io.github.pleuvoir.gateway.model.vo.Result;
 
 /**
  * 传统支付
@@ -26,5 +26,5 @@ import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
  */
 public interface BasePayAgent {
 
-  ResultMessageVO<QrCodePayResultDTO> payCode(QrCodePayRequestDTO dto);
+  Result<QrCodePayResultDTO> payCode(QrCodePayRequestDTO dto);
 }

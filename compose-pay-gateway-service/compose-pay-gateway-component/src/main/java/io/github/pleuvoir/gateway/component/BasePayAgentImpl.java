@@ -23,7 +23,7 @@ import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.dto.QrCodePayRequestDTO;
 import io.github.pleuvoir.gateway.model.dto.QrCodePayResultDTO;
-import io.github.pleuvoir.gateway.model.vo.ResultMessageVO;
+import io.github.pleuvoir.gateway.model.vo.Result;
 import io.github.pleuvoir.gateway.service.IQrCodePayService;
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -43,10 +43,10 @@ public class BasePayAgentImpl implements BasePayAgent {
 
   @MethodTimeLog("获取支付二维码")
   @Override
-  public ResultMessageVO<QrCodePayResultDTO> payCode(@Valid QrCodePayRequestDTO dto) {
+  public Result<QrCodePayResultDTO> payCode(@Valid QrCodePayRequestDTO dto) {
 
     if (!this.validatePayType(dto.getPayType())) {
-      return ResultMessageVO.fail(ResultCodeEnum.INVALID_PAY_TYPE);
+      return Result.fail(ResultCodeEnum.INVALID_PAY_TYPE);
     }
 
     QrCodePayResultDTO result = null;
@@ -56,14 +56,14 @@ public class BasePayAgentImpl implements BasePayAgent {
         log.info("获取支付二维码响应参数：{}", result);
       } else {
         log.error("获取二维码响应参数：null，ResultCodeEnum：{}", JSON.toJSONString(dto));
-        return ResultMessageVO.fail(ResultCodeEnum.ERROR);
+        return Result.fail(ResultCodeEnum.ERROR);
       }
     } catch (BusinessException e) {
       log.warn("获取支付二维码业务异常，{}", e.getMessage());
-      return ResultMessageVO.fail(e.getResultCode());
+      return Result.fail(e.getResultCode());
     }
 
-    return ResultMessageVO.success(result);
+    return Result.success(result);
   }
 
   /**

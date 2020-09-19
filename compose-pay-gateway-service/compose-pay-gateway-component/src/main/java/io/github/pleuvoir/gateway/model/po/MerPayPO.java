@@ -84,7 +84,7 @@ public class MerPayPO implements ToJSON {
     @TableField("channel_fee")
     private BigDecimal channelFee; //通道手续费
 
-    @TableField("channle_fee_real")
+    @TableField("channel_fee_real")
     private BigDecimal channelFeeReal; //通道精准手续费
 
     @TableField("total_amount")
