@@ -53,7 +53,7 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
             throw new BusinessException(ResultCodeEnum.INVALID_PAY_TYPE);
         }
 
-        PayTypeEnum payTypeEnum = PayTypeEnum.toEumByName(payRequestDTO.getPayType());
+        PayTypeEnum payTypeEnum = PayTypeEnum.toEnum(payRequestDTO.getPayType());
         if (payTypeEnum == null) {
             throw new BusinessException(ResultCodeEnum.INVALID_PAY_TYPE);
         }
