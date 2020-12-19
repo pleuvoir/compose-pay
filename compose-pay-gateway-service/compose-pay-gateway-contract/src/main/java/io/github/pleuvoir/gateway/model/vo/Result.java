@@ -15,13 +15,11 @@
  */
 package io.github.pleuvoir.gateway.model.vo;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.experimental.Accessors;
-
-import java.io.Serializable;
 
 /**
  * 返回消息
@@ -34,7 +32,7 @@ public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 7781316982699830573L;
 
-    private String code;//返回码
+    private Integer code;//返回码
 
     private String msg;//返回信息
 
@@ -48,7 +46,7 @@ public class Result<T> implements Serializable {
         this.msg = rspCode.getMsg();
     }
 
-    public Result(String code, String msg) {
+    public Result(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }
@@ -80,9 +78,9 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> success(T data) {
-        Result<T> messageVO = new Result<>(ResultCodeEnum.SUCCESS, ResultCodeEnum.SUCCESS.getMsg());
-        messageVO.setData(data);
-        return messageVO;
+        Result<T> result = new Result<>(ResultCodeEnum.SUCCESS, ResultCodeEnum.SUCCESS.getMsg());
+        result.setData(data);
+        return result;
     }
 
     public static <T> Result<T> fail(String message) {
@@ -95,14 +93,6 @@ public class Result<T> implements Serializable {
 
     public static <T> Result<T> fail(ResultCodeEnum rspCode) {
         return new Result<>(rspCode, rspCode.getMsg());
-    }
-
-    public Result<T> setFail(String message) {
-        return this.setResult(ResultCodeEnum.FAIL, message);
-    }
-
-    public String toJSON() {
-        return JSON.toJSONString(this);
     }
 
 }
