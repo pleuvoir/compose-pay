@@ -20,7 +20,7 @@ import io.github.pleuvoir.gateway.dao.mer.MerIpDao;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerIpPO;
 import io.github.pleuvoir.gateway.service.internal.MerIpService;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 /**
@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MerIpServiceIImpl implements MerIpService {
 
-    @Autowired
+    @Resource
     private MerIpDao merIpDao;
 
     @Override
