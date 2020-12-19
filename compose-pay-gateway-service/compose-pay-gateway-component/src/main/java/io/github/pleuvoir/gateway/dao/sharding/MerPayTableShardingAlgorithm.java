@@ -32,8 +32,8 @@ import java.util.Map;
 @Slf4j
 public class MerPayTableShardingAlgorithm implements ComplexKeysShardingAlgorithm<Long> {
 
-    private final String KEY_SERIAL_NO = "serial_no";
-    private final String KEY_TRANS_UNIQUE_ID = "trans_unique_id";
+    private static final String KEY_SERIAL_NO = "serial_no";
+    private static final String KEY_TRANS_UNIQUE_ID = "trans_unique_id";
 
     @Override
     public Collection<String> doSharding(Collection<String> availableTargetNames, ComplexKeysShardingValue<Long> complexKeysShardingValue) {

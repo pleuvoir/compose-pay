@@ -26,10 +26,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface MethodTimeLog {
+public @interface Log {
 
     /**
      * 业务名称
      */
-    String value() default StringUtils.EMPTY;
+    String value();
 }

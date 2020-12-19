@@ -30,7 +30,7 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-public class ResultMessageVO<T> implements Serializable {
+public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 7781316982699830573L;
 
@@ -40,31 +40,31 @@ public class ResultMessageVO<T> implements Serializable {
 
     private T data;     //数据
 
-    public ResultMessageVO() {
+    public Result() {
     }
 
-    public ResultMessageVO(ResultCodeEnum rspCode) {
+    public Result(ResultCodeEnum rspCode) {
         this.code = rspCode.getCode();
         this.msg = rspCode.getMsg();
     }
 
-    public ResultMessageVO(String code, String msg) {
+    public Result(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public ResultMessageVO(ResultCodeEnum rspCode, String msg) {
+    public Result(ResultCodeEnum rspCode, String msg) {
         this.code = rspCode.getCode();
         this.msg = msg;
     }
 
-    public ResultMessageVO<T> setResult(ResultCodeEnum rspCode) {
+    public Result<T> setResult(ResultCodeEnum rspCode) {
         this.code = rspCode.getCode();
         this.msg = rspCode.getMsg();
         return this;
     }
 
-    public ResultMessageVO<T> setResult(ResultCodeEnum rspCode, String msg) {
+    public Result<T> setResult(ResultCodeEnum rspCode, String msg) {
         this.code = rspCode.getCode();
         this.msg = msg;
         return this;
@@ -75,29 +75,29 @@ public class ResultMessageVO<T> implements Serializable {
         return ResultCodeEnum.SUCCESS.isEquals(code);
     }
 
-    public static <T> ResultMessageVO<T> success() {
-        return new ResultMessageVO<>(ResultCodeEnum.SUCCESS, ResultCodeEnum.SUCCESS.getMsg());
+    public static <T> Result<T> success() {
+        return new Result<>(ResultCodeEnum.SUCCESS, ResultCodeEnum.SUCCESS.getMsg());
     }
 
-    public static <T> ResultMessageVO<T> success(T data) {
-        ResultMessageVO<T> messageVO = new ResultMessageVO<>(ResultCodeEnum.SUCCESS, ResultCodeEnum.SUCCESS.getMsg());
+    public static <T> Result<T> success(T data) {
+        Result<T> messageVO = new Result<>(ResultCodeEnum.SUCCESS, ResultCodeEnum.SUCCESS.getMsg());
         messageVO.setData(data);
         return messageVO;
     }
 
-    public static <T> ResultMessageVO<T> fail(String message) {
-        return new ResultMessageVO<>(ResultCodeEnum.FAIL, message);
+    public static <T> Result<T> fail(String message) {
+        return new Result<>(ResultCodeEnum.FAIL, message);
     }
 
-    public static <T> ResultMessageVO<T> fail(ResultCodeEnum rspCode, String message) {
-        return new ResultMessageVO<>(rspCode, message);
+    public static <T> Result<T> fail(ResultCodeEnum rspCode, String message) {
+        return new Result<>(rspCode, message);
     }
 
-    public static <T> ResultMessageVO<T> fail(ResultCodeEnum rspCode) {
-        return new ResultMessageVO<>(rspCode, rspCode.getMsg());
+    public static <T> Result<T> fail(ResultCodeEnum rspCode) {
+        return new Result<>(rspCode, rspCode.getMsg());
     }
 
-    public ResultMessageVO<T> setFail(String message) {
+    public Result<T> setFail(String message) {
         return this.setResult(ResultCodeEnum.FAIL, message);
     }
 

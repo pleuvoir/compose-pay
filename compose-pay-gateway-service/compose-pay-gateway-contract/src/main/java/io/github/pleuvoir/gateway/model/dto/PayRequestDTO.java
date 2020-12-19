@@ -15,6 +15,8 @@
  */
 package io.github.pleuvoir.gateway.model.dto;
 
+import io.github.pleuvoir.gateway.utils.TOJSON;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -26,12 +28,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 支付入参父类
+ * 支付入参
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 @Data
-public class PayBaseRequestDTO implements Serializable {
+public class PayRequestDTO implements Serializable, TOJSON {
 
     private static final long serialVersionUID = -1699831686561099489L;
 
@@ -54,8 +56,9 @@ public class PayBaseRequestDTO implements Serializable {
     @NotBlank(message = "描述不能为空")
     private String body;        //描述
 
-    @Digits(integer = 10, fraction = 2)
-    @DecimalMin(value = "0.01", message = "金额必须大于或等于0.01")
+    @NotNull(message = "支付金额不能为空")
+    @Digits(integer = 16, fraction = 2, message = "支付金额不能超出16位整数和2位小数")
+    @DecimalMin(value = "0.01", message = "支付金额不能小于0.01元")
     private BigDecimal amount;        //金额
 
     @NotBlank(message = "支付种类不能为空")
@@ -67,6 +70,9 @@ public class PayBaseRequestDTO implements Serializable {
     @Length(max = 256)
     @NotBlank(message = "商户通知地址不能为空")
     private String notifyUrl;    //商户通知地址
+
+    @Length(max = 256)
+    private String paySuccessUrl;    //支付成功跳转地址
 
     private String ip;
 
