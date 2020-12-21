@@ -38,6 +38,11 @@ public class MerPayServiceImpl implements IMerPayService {
     }
 
     @Override
+    public MerPayPO getByTransUniqueId(Long transUniqueId) {
+        return null;
+    }
+
+    @Override
     public Integer save(MerPayPO merPayPO) {
         return merPayDao.insert(merPayPO);
     }

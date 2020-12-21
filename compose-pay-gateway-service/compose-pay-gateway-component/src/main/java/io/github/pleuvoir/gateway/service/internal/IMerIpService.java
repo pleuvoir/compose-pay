@@ -13,29 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.pleuvoir.gateway.constants;
+package io.github.pleuvoir.gateway.service.internal;
 
-import lombok.Getter;
+import io.github.pleuvoir.gateway.exception.BusinessException;
 
 /**
- * 支付方式
+ * 商户IP服务
  *
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
-public enum PayWayEnum {
+public interface IMerIpService {
 
     /**
-     * 扫码支付
+     * IP限制，判断用户是否绑定IP
      */
-    SCAN_CODE("01"),
-
-    ;
-
-    @Getter
-    private String code;    //编号，数据库中存储的值
-
-
-    PayWayEnum(String code) {
-        this.code = code;
-    }
+    void ipLimit(String mid, String ip) throws BusinessException;
 }

@@ -19,7 +19,7 @@ import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import io.github.pleuvoir.gateway.dao.mer.MerIpDao;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerIpPO;
-import io.github.pleuvoir.gateway.service.internal.MerIpService;
+import io.github.pleuvoir.gateway.service.internal.IMerIpService;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +29,7 @@ import org.springframework.stereotype.Service;
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
  */
 @Service
-public class MerIpServiceIImpl implements MerIpService {
+public class MerIpServiceIImpl implements IMerIpService {
 
     @Resource
     private MerIpDao merIpDao;

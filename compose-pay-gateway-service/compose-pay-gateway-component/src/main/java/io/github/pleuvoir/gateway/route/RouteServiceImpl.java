@@ -21,6 +21,7 @@ import io.github.pleuvoir.gateway.model.po.MerChannelPO;
 import io.github.pleuvoir.gateway.model.po.MerSignFeePO;
 import io.github.pleuvoir.gateway.service.internal.MerChannelService;
 import io.github.pleuvoir.gateway.service.internal.MerSignFeeService;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class RouteServiceImpl implements RouteService {
 
-    @Autowired
+    @Resource
     private MerChannelService merChannelService;
-    @Autowired
+    @Resource
     private MerSignFeeService signFeeService;
 
     @Override
@@ -67,7 +68,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
 
-    void logException(String mid, String payType, String payWay, String message) {
+    private void logException(String mid, String payType, String payWay, String message) {
         log.warn("-=- 渠道路由异常<{}>，mid={}，payType={}，payWay={}", message, mid, payType, payWay);
     }
 

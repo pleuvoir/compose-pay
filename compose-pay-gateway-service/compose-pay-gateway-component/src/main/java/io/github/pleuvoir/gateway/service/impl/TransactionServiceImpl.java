@@ -21,8 +21,8 @@ import io.github.pleuvoir.gateway.model.po.MerchantPO;
 import io.github.pleuvoir.gateway.service.ITransactionService;
 import io.github.pleuvoir.gateway.service.internal.IMerPayService;
 import io.github.pleuvoir.gateway.utils.AssertUtil;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TransactionServiceImpl implements ITransactionService {
 
-    @Autowired
+    @Resource
     private IMerPayService merPayService;
 
 
@@ -45,7 +45,7 @@ public class TransactionServiceImpl implements ITransactionService {
     }
 
     @Override
-    public MerPayPO queryOrderbyES() {
+    public MerPayPO queryOrderByES() {
         return null;
     }
 }

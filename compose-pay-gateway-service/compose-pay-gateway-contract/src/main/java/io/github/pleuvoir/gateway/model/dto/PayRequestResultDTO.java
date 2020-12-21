@@ -42,9 +42,9 @@ public class PayRequestResultDTO implements Serializable {
     private Long transUniqueId;
 
     /**
-     * 支付系统唯一流水号
+     * 平台流水号
      */
-    private Long payId;
+    private Long serialNo;
 
     /**
      * 支付成功跳转地址

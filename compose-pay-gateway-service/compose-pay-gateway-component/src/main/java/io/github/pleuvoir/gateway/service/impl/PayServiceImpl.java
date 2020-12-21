@@ -24,7 +24,6 @@ import io.github.pleuvoir.channel.common.ServiceIdEnum;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.request.PaymentDTO;
 import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
-import io.github.pleuvoir.gateway.common.utils.IdUtils;
 import io.github.pleuvoir.gateway.common.utils.PayIdUtils;
 import io.github.pleuvoir.gateway.constants.PayTypeEnum;
 import io.github.pleuvoir.gateway.constants.PayWayEnum;
@@ -38,10 +37,13 @@ import io.github.pleuvoir.gateway.model.po.MerchantPO;
 import io.github.pleuvoir.gateway.route.RouteService;
 import io.github.pleuvoir.gateway.service.IPayService;
 import io.github.pleuvoir.gateway.service.ITransactionService;
+import io.github.pleuvoir.gateway.service.internal.IMerIpService;
+import io.github.pleuvoir.gateway.service.internal.IMerPayService;
 import io.github.pleuvoir.gateway.service.internal.impl.BaseServiceImpl;
+import io.github.pleuvoir.gateway.utils.AssertUtil;
+import java.util.Objects;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -59,14 +61,13 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
     private RouteService routeService;
     @Resource
     private ITransactionService transactionService;
+    @Resource
+    private IMerPayService merPayService;
+    @Resource
+    private IMerIpService merIpService;
 
     @Override
     public PayRequestResultDTO pay(PayRequestDTO payRequestDTO) throws BusinessException {
-
-        // 判断支付种类是否正确
-        if (!this.validatePayType(payRequestDTO.getPayType())) {
-            throw new BusinessException(ResultCodeEnum.INVALID_PAY_TYPE);
-        }
 
         PayTypeEnum payTypeEnum = PayTypeEnum.toEnum(payRequestDTO.getPayType());
         if (payTypeEnum == null) {
@@ -76,16 +77,26 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
         //检查商户并校验状态
         MerchantPO merchantPO = checkMerchant(payRequestDTO.getMid());
 
-        //渠道路由
-        MerChannelPO merChannelPO = routeService.find(merchantPO.getMid(), payTypeEnum.getCode(), PayWayEnum.SCAN_CODE.getCode());
-        if (merChannelPO == null) {
+        //检查商户入口IP是否绑定
+        merIpService.ipLimit(payRequestDTO.getMid(), payRequestDTO.getIp());
+
+        //检查是否已有存在的唯一流水号
+        MerPayPO prev = merPayService.getByTransUniqueId(payRequestDTO.getTransUniqueId());
+        if (Objects.nonNull(prev)) {
             throw new BusinessException(ResultCodeEnum.NOT_FOUND_CHANNEL_MID);
         }
 
-        long payId = PayIdUtils.getPayId(payRequestDTO.getTransUniqueId());
+        //渠道路由
+        MerChannelPO merChannelPO = routeService.find(payRequestDTO.getMid(), payTypeEnum.getCode(), PayWayEnum.SCAN_CODE.getCode());
+        if (merChannelPO == null) {
+            throw new BusinessException(ResultCodeEnum.TRADE_ALREADY_EXIST);
+        }
+
+        long serialNo = PayIdUtils.getSerialNo(payRequestDTO.getTransUniqueId());
         //创建支付订单
-        MerPayPO merPayPO = this.installMerPayPO(payRequestDTO, merChannelPO,payId);
-        MerPayPO order = transactionService.createOrder(merPayPO, merchantPO);
+        MerPayPO merPayPO = this.installMerPayPO(payRequestDTO, merChannelPO, serialNo);
+        Integer ret = merPayService.save(merPayPO);
+        AssertUtil.assertOne(ret, "创建支付订单失败");
 
         PaymentDTO paymentDTO = new PaymentDTO();
         paymentDTO.setChannel(ChannelEnum.toEnum(merChannelPO.getChannelCode().toString()));
@@ -101,10 +112,9 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
             PayRequestResultDTO requestResultDTO = new PayRequestResultDTO();
             requestResultDTO.setMid(payRequestDTO.getMid());
             requestResultDTO.setTransUniqueId(payRequestDTO.getTransUniqueId());
-            requestResultDTO.setPayId(payId);
+            requestResultDTO.setSerialNo(serialNo);
             requestResultDTO.setParamStr("");
             requestResultDTO.setPaySuccessUrl(payRequestDTO.getPaySuccessUrl());
-
             return requestResultDTO;
 
         } catch (ChannelServiceException e) {
@@ -120,10 +130,9 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
     }
 
 
-    private MerPayPO installMerPayPO(PayRequestDTO payRequestDTO, MerChannelPO merChannelPO,long payId) {
+    private MerPayPO installMerPayPO(PayRequestDTO payRequestDTO, MerChannelPO merChannelPO, long serialNo) {
         MerPayPO payPO = new MerPayPO();
-        payPO.setId(payId);
-        payPO.setSerialNo(1L);  //保证两个分到一张表中
+        payPO.setSerialNo(serialNo);  //保证两个分到一张表中
         payPO.setTransUniqueId(payRequestDTO.getTransUniqueId()); //保证两个分到一张表中
         payPO.setOrderNo(payRequestDTO.getOrderNo());
         payPO.setPayType(payRequestDTO.getPayType());
@@ -139,12 +148,4 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
         return payPO;
     }
 
-
-    /**
-     * 判断支付种类是否正确
-     */
-    private boolean validatePayType(String payType) {
-        return StringUtils.equals(PayTypeEnum.TYPE_ALIPAY.getName(), payType)
-                || StringUtils.equals(PayTypeEnum.TYPE_WECHAT.getName(), payType);
-    }
 }

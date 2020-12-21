@@ -15,7 +15,9 @@
  */
 package io.github.pleuvoir.gateway.service.internal;
 
+import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerPayPO;
+import io.github.pleuvoir.gateway.model.po.MerchantPO;
 
 /**
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
@@ -29,9 +31,18 @@ public interface IMerPayService {
      */
     MerPayPO getBySerialNo(String serialNo);
 
+
+    /**
+     * 根据交易唯一流水号查询支付订单
+     *
+     * @param transUniqueId 交易唯一流水号
+     */
+    MerPayPO getByTransUniqueId(Long transUniqueId);
+
     /**
      * 保存支付订单
      */
     Integer save(MerPayPO merPayPO);
+
 
 }

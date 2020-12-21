@@ -26,5 +26,5 @@ public interface ITransactionService {
 
     MerPayPO createOrder(MerPayPO order, MerchantPO merchant) throws BusinessException;
 
-    MerPayPO queryOrderbyES();
+    MerPayPO queryOrderByES();
 }

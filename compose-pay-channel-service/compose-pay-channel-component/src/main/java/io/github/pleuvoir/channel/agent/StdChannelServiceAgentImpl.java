@@ -3,12 +3,19 @@ package io.github.pleuvoir.channel.agent;
 import com.alibaba.dubbo.config.annotation.Service;
 import io.github.pleuvoir.channel.dispatch.ServiceDispatcher;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
-import io.github.pleuvoir.channel.model.request.*;
-import io.github.pleuvoir.channel.model.response.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import io.github.pleuvoir.channel.model.request.PayQueryDTO;
+import io.github.pleuvoir.channel.model.request.PaymentCloseDTO;
+import io.github.pleuvoir.channel.model.request.PaymentDTO;
+import io.github.pleuvoir.channel.model.request.RefundDTO;
+import io.github.pleuvoir.channel.model.request.RefundQueryDTO;
+import io.github.pleuvoir.channel.model.response.PayQueryResultDTO;
+import io.github.pleuvoir.channel.model.response.PaymentCloseResultDTO;
+import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
+import io.github.pleuvoir.channel.model.response.RefundQueryResultDTO;
+import io.github.pleuvoir.channel.model.response.RefundResultDTO;
+import javax.annotation.Resource;
 import javax.validation.Valid;
+import org.springframework.stereotype.Component;
 
 /**
  * 标准通道服务实现
@@ -19,7 +26,7 @@ import javax.validation.Valid;
 @Service
 public class StdChannelServiceAgentImpl implements IStdChannelServiceAgent {
 
-    @Autowired
+    @Resource
     private ServiceDispatcher dispatcher;
 
     @Override

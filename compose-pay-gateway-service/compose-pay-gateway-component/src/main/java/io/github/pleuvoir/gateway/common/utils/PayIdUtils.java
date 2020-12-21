@@ -31,9 +31,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class PayIdUtils {
 
     /**
-     * 支付流水号作为水平分表键。 其中transUniqueId hash后截取末7位作为分表基因。最大支持128分表
+     * 平台流水号作为水平分表键。 其中transUniqueId hash后截取末7位作为分表基因。最大支持128分表
      */
-    public static long getPayId(Long transUniqueId) {
+    public static long getSerialNo(Long transUniqueId) {
         try {
             //获取64位
             long preID = IdUtils.nextId();
@@ -44,7 +44,7 @@ public class PayIdUtils {
             //57位拼上hash后的低7位
             return preID | (hashcode & 127);
         } catch (Exception e) {
-            log.error("生成支付流水号失败", e);
+            log.error("生成平台流水号失败", e);
         }
         return 0;
     }
