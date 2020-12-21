@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.common;
+package io.github.pleuvoir.pay.common.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

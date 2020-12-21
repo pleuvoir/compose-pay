@@ -16,7 +16,6 @@
 package io.github.pleuvoir.gateway.service.internal.impl;
 
 import io.github.pleuvoir.gateway.common.Const;
-import io.github.pleuvoir.gateway.constants.PayWayEnum;
 import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerSignFeePO;

@@ -20,9 +20,16 @@
         <lang3.version>3.7</lang3.version>
         <lombok.version>1.18.2</lombok.version>
         <hibernate.validator>6.0.17.Final</hibernate.validator>
+        <paycommon.version>1.0.0</paycommon.version>
     </properties>
 
     <dependencies>
+        <!-- 公共包-->
+        <dependency>
+            <groupId>io.github.pleuvoir</groupId>
+            <artifactId>compose-pay-common</artifactId>
+            <version>${paycommon.version}</version>
+        </dependency>
         <!-- Commons -->
         <dependency>
             <groupId>com.alibaba</groupId>

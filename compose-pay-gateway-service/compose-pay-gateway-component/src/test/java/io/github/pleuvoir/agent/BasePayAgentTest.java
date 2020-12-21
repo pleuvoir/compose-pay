@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import io.github.pleuvoir.BaseTest;
-import io.github.pleuvoir.gateway.agent.BasePayAgent;
+import io.github.pleuvoir.gateway.agent.IPayAgent;
 
 /**
  * @author pleuvoir
@@ -28,7 +28,7 @@ public class BasePayAgentTest extends BaseTest {
 
 
     @Autowired
-    BasePayAgent agent;
+    IPayAgent agent;
 
     @Test
     public void test() {

@@ -1,4 +1,4 @@
-package io.github.pleuvoir.channel.common;
+package io.github.pleuvoir.pay.common.enums;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
@@ -10,9 +10,9 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum ChannelEnum {
 
-    MOCK(0),
     WECHAT(1),
-    ALIPAY(2);
+    ALIPAY(2),
+    MOCK(3);
 
     @Getter
     private Integer code;
@@ -26,7 +26,7 @@ public enum ChannelEnum {
      *
      * @param code 通道编号
      */
-    public static ChannelEnum toEnumByCode(Integer code) {
+    public static ChannelEnum toEnum(Integer code) {
         for (ChannelEnum item : ChannelEnum.values()) {
             if (item.getCode() == code) {
                 return item;
@@ -40,7 +40,7 @@ public enum ChannelEnum {
      *
      * @param channel 类型的字符串（忽略大小写，剔除空格）
      */
-    public static ChannelEnum toEnumByName(String channel) {
+    public static ChannelEnum toEnum(String channel) {
         return ChannelEnum.valueOf(StringUtils.upperCase(StringUtils.trim(channel)));
     }
 }

@@ -77,4 +77,10 @@ public class PayRequestDTO implements Serializable, TOJSON {
     private String ip;
 
 
+    /**
+     * 通道服务编码
+     */
+    @NotEmpty
+    private Integer mappingCode;
+
 }

@@ -8,8 +8,9 @@
   <groupId>io.github.pleuvoir</groupId>
   <artifactId>compose-pay-common</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
   <inceptionYear>2020</inceptionYear>
-  <name>compose-pay</name>
+  <name>compose-pay-common</name>
   <description>HA distributed payment gateway.</description>
   <url>https://github.com/pleuvoir/compose-pay</url>
 
@@ -136,51 +137,30 @@
         </configuration>
       </plugin>
 
-      <!--license-->
       <plugin>
-        <groupId>com.mycila</groupId>
-        <artifactId>license-maven-plugin</artifactId>
-        <version>${license-maven-plugin.version}</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.1</version>
+        <configuration>
+          <attach>true</attach>
+        </configuration>
         <executions>
           <execution>
             <phase>compile</phase>
             <goals>
-              <goal>remove</goal>
-              <goal>format</goal>
+              <goal>jar</goal>
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <quiet>true</quiet>
-          <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
-          <properties>
-            <owner>pleuvoir</owner>
-            <email>pleuvior@foxmail.com</email>
-          </properties>
-          <excludes>
-            <exclude>*.sh</exclude>
-            <exclude>*.yml</exclude>
-            <exclude>.editorconfig</exclude>
-            <exclude>.gitignore</exclude>
-            <exclude>LICENSE</exclude>
-            <exclude>**/*.md</exclude>
-            <exclude>**/*.xml</exclude>
-            <exclude>**/codestyle/HEADER</exclude>
-            <exclude>**/.gitkeep</exclude>
-            <exclude>**/mvnw</exclude>
-            <exclude>**/.mvn/**</exclude>
-            <exclude>**/.gitkeep</exclude>
-            <exclude>**/spring.factories</exclude>
-            <exclude>**/resources/template/**</exclude>
-          </excludes>
-          <strictCheck>true</strictCheck>
-          <mapping>
-            <java>SLASHSTAR_STYLE</java>
-          </mapping>
-        </configuration>
       </plugin>
-    </plugins>
 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.2</version>
+      </plugin>
+
+    </plugins>
   </build>
 
 </project>

@@ -15,9 +15,17 @@
  */
 package io.github.pleuvoir.gateway.service.impl;
 
+import io.github.pleuvoir.pay.common.enums.ChannelServiceIdMappingEnum;
+import java.util.Objects;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.fastjson.JSON;
+
 import io.github.pleuvoir.channel.agent.IStdChannelServiceAgent;
 import io.github.pleuvoir.channel.common.ChannelEnum;
 import io.github.pleuvoir.channel.common.ServiceIdEnum;
@@ -26,7 +34,6 @@ import io.github.pleuvoir.channel.model.request.PaymentDTO;
 import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
 import io.github.pleuvoir.gateway.common.utils.PayIdUtils;
 import io.github.pleuvoir.gateway.constants.PayTypeEnum;
-import io.github.pleuvoir.gateway.constants.PayWayEnum;
 import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.dto.PayRequestDTO;
@@ -41,10 +48,7 @@ import io.github.pleuvoir.gateway.service.internal.IMerIpService;
 import io.github.pleuvoir.gateway.service.internal.IMerPayService;
 import io.github.pleuvoir.gateway.service.internal.impl.BaseServiceImpl;
 import io.github.pleuvoir.gateway.utils.AssertUtil;
-import java.util.Objects;
-import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 /**
  * 预支付服务
@@ -87,10 +91,12 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
         }
 
         //渠道路由
-        MerChannelPO merChannelPO = routeService.find(payRequestDTO.getMid(), payTypeEnum.getCode(), PayWayEnum.SCAN_CODE.getCode());
+        MerChannelPO merChannelPO = routeService.find(payRequestDTO.getMid(), payTypeEnum.getCode(), null);
         if (merChannelPO == null) {
             throw new BusinessException(ResultCodeEnum.TRADE_ALREADY_EXIST);
         }
+        
+        
 
         long serialNo = PayIdUtils.getSerialNo(payRequestDTO.getTransUniqueId());
         //创建支付订单
@@ -98,9 +104,14 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
         Integer ret = merPayService.save(merPayPO);
         AssertUtil.assertOne(ret, "创建支付订单失败");
 
+        ChannelServiceIdMappingEnum mappingEnum = ChannelServiceIdMappingEnum.toEnum(payRequestDTO.getMappingCode());
+        if(mappingEnum == null){
+            throw new BusinessException(ResultCodeEnum.NO_FUNCTION_PROVIDE);
+        }
+
         PaymentDTO paymentDTO = new PaymentDTO();
         paymentDTO.setChannel(ChannelEnum.toEnum(merChannelPO.getChannelCode().toString()));
-        paymentDTO.setServiceId(ServiceIdEnum.SCAN_CODE);
+        paymentDTO.setServiceId(mappingEnum.getServiceIdEnum());
 
         try {
             log.info("请求通道服务，预支付 入参 paymentDTO：{}", JSON.toJSONString(paymentDTO));

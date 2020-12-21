@@ -32,7 +32,8 @@ public enum ResultCodeEnum {
     VERIFY_FAILED(3, "验签失败"),
     LACK_PARAM(4, "缺少参数"),
     PARAM_ERROR(5, "参数错误"),
-    INVALID_PAY_TYPE(6, "无效的支付方式"),
+    NO_FUNCTION_PROVIDE(6, "不支持的功能"),
+    INVALID_PAY_TYPE(7, "无效的支付方式"),
     CHANNEL_SERVICE_EXCEPTION(100, "通道服务异常"),
 
 

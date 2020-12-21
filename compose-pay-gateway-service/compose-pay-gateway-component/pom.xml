@@ -41,11 +41,11 @@
       <version>${paychannel.version}</version>
     </dependency>
     <!-- 公共包-->
-<!--    <dependency>-->
-<!--      <groupId>io.github.pleuvoir</groupId>-->
-<!--      <artifactId>compose-pay-common</artifactId>-->
-<!--      <version>${paycommon.version}</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>io.github.pleuvoir</groupId>
+      <artifactId>compose-pay-common</artifactId>
+      <version>${paycommon.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>io.github.pleuvoir</groupId>
