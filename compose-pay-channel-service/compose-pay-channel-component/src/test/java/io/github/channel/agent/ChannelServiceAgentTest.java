@@ -2,10 +2,10 @@ package io.github.channel.agent;
 
 import io.github.channel.BaseTest;
 import io.github.pleuvoir.channel.agent.IStdChannelServiceAgent;
-import io.github.pleuvoir.channel.common.ChannelEnum;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.request.PaymentDTO;
 import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
+import io.github.pleuvoir.pay.common.enums.ChannelEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

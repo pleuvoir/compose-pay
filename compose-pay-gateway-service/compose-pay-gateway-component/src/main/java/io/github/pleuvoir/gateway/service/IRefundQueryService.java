@@ -15,9 +15,9 @@
  */
 package io.github.pleuvoir.gateway.service;
 
-import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.dto.RefundQueryDTO;
 import io.github.pleuvoir.gateway.model.dto.RefundQueryResultDTO;
+import io.github.pleuvoir.pay.common.exception.BusinessException;
 import java.util.List;
 
 /**

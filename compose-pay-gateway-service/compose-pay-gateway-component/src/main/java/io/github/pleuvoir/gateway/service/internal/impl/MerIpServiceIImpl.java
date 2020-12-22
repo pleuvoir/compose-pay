@@ -15,11 +15,11 @@
  */
 package io.github.pleuvoir.gateway.service.internal.impl;
 
-import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
 import io.github.pleuvoir.gateway.dao.mer.MerIpDao;
-import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerIpPO;
 import io.github.pleuvoir.gateway.service.internal.IMerIpService;
+import io.github.pleuvoir.pay.common.enums.ResultCodeEnum;
+import io.github.pleuvoir.pay.common.exception.BusinessException;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 

@@ -29,7 +29,7 @@
     <mybatis-plus.version>2.3.1</mybatis-plus.version>
     <sharding-sphere.version>4.0.0-RC1</sharding-sphere.version>
     <paychannel.version>1.0.0</paychannel.version>
-    <paycommon.version>1.0.0</paycommon.version>
+
   </properties>
 
   <dependencies>
@@ -40,12 +40,7 @@
       <artifactId>compose-pay-channel-contract</artifactId>
       <version>${paychannel.version}</version>
     </dependency>
-    <!-- 公共包-->
-    <dependency>
-      <groupId>io.github.pleuvoir</groupId>
-      <artifactId>compose-pay-common</artifactId>
-      <version>${paycommon.version}</version>
-    </dependency>
+
 
     <dependency>
       <groupId>io.github.pleuvoir</groupId>

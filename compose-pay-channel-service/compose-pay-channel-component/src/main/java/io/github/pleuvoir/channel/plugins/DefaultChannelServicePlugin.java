@@ -2,8 +2,8 @@ package io.github.pleuvoir.channel.plugins;
 
 import com.google.common.collect.Table;
 import com.google.common.collect.Tables;
-import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.ServiceIdEnum;
+import io.github.pleuvoir.pay.common.enums.ChannelEnum;
+import io.github.pleuvoir.pay.common.enums.ServiceIdEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.dom4j.Document;
@@ -83,7 +83,7 @@ public class DefaultChannelServicePlugin implements ChannelServicePlugin {
 
     private ChannelEnum parseChannel(Element rootElem) {
         String channel = rootElem.elementTextTrim(ELEM_CHANNEL);
-        return ChannelEnum.toEnumByName(channel);
+        return ChannelEnum.toEnum(channel);
     }
 
     private Resource[] scanning() {

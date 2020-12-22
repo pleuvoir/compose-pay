@@ -15,12 +15,12 @@
  */
 package io.github.pleuvoir.gateway.service.impl;
 
-import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerPayPO;
 import io.github.pleuvoir.gateway.model.po.MerchantPO;
 import io.github.pleuvoir.gateway.service.ITransactionService;
 import io.github.pleuvoir.gateway.service.internal.IMerPayService;
 import io.github.pleuvoir.gateway.utils.AssertUtil;
+import io.github.pleuvoir.pay.common.exception.BusinessException;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

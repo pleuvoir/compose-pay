@@ -25,7 +25,7 @@ import io.github.pleuvoir.gateway.model.dto.RefundApplyDTO;
 import io.github.pleuvoir.gateway.model.dto.RefundApplyResultDTO;
 import io.github.pleuvoir.gateway.model.dto.RefundQueryDTO;
 import io.github.pleuvoir.gateway.model.dto.RefundQueryResultDTO;
-import io.github.pleuvoir.gateway.model.vo.Result;
+import io.github.pleuvoir.pay.common.model.Result;
 import java.util.List;
 
 /**

@@ -1,8 +1,8 @@
 package io.github.pleuvoir.channel.plugins;
 
-import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.ServiceIdEnum;
 
+import io.github.pleuvoir.pay.common.enums.ChannelEnum;
+import io.github.pleuvoir.pay.common.enums.ServiceIdEnum;
 import java.util.Map;
 import java.util.Set;
 

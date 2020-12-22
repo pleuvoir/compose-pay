@@ -16,8 +16,8 @@
 package io.github.pleuvoir.gateway.utils;
 
 
-import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
-import io.github.pleuvoir.gateway.exception.BusinessException;
+import io.github.pleuvoir.pay.common.enums.ResultCodeEnum;
+import io.github.pleuvoir.pay.common.exception.BusinessException;
 
 /**
  * 断言工具，判断失败时抛出{@link BusinessException}

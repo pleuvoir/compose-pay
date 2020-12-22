@@ -16,13 +16,13 @@
 package io.github.pleuvoir.gateway.service.internal.impl;
 
 import io.github.pleuvoir.gateway.common.Const;
-import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
-import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerSignFeePO;
 import io.github.pleuvoir.gateway.model.po.MerchantPO;
 import io.github.pleuvoir.gateway.service.internal.BaseService;
 import io.github.pleuvoir.gateway.service.internal.MerSignFeeService;
 import io.github.pleuvoir.gateway.service.internal.MerchantService;
+import io.github.pleuvoir.pay.common.enums.ResultCodeEnum;
+import io.github.pleuvoir.pay.common.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

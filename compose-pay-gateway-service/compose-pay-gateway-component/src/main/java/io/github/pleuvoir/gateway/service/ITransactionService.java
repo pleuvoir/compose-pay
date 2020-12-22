@@ -15,9 +15,9 @@
  */
 package io.github.pleuvoir.gateway.service;
 
-import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerPayPO;
 import io.github.pleuvoir.gateway.model.po.MerchantPO;
+import io.github.pleuvoir.pay.common.exception.BusinessException;
 
 /**
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>

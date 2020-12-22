@@ -17,8 +17,8 @@ package io.github.pleuvoir.gateway.common.aop;
 
 import io.github.pleuvoir.gateway.common.utils.HibernateValidatorUtils;
 import io.github.pleuvoir.gateway.common.utils.ValidationResult;
-import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
-import io.github.pleuvoir.gateway.model.vo.Result;
+import io.github.pleuvoir.pay.common.enums.ResultCodeEnum;
+import io.github.pleuvoir.pay.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

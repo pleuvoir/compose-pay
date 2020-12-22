@@ -18,10 +18,8 @@ package io.github.pleuvoir.gateway.model.po;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import io.github.pleuvoir.gateway.common.utils.ToJSON;
-import lombok.Data;
-
 import java.math.BigDecimal;
+import lombok.Data;
 
 /**
  * 支付流水表
@@ -30,7 +28,7 @@ import java.math.BigDecimal;
  */
 @Data
 @TableName("t_mer_pay")
-public class MerPayPO implements ToJSON {
+public class MerPayPO {
 
     /**
      * 支付状态 - 待支付
@@ -41,11 +39,6 @@ public class MerPayPO implements ToJSON {
      * 支付状态 - 已支付
      */
     public static final Integer PAY_STATUS_PAID = 2;
-
-    /**
-     * 退款状态 - 初始
-     */
-    public static final Integer REFUND_STATUS_INIT = 1;
 
 
     @TableId("id")
@@ -68,15 +61,6 @@ public class MerPayPO implements ToJSON {
 
     @TableField("channel_code")
     private Integer channelCode; //通道编号
-
-    @TableField("pay_type")
-    private String payType; //支付种类
-
-    @TableField("pay_way")
-    private String payWay; //支付方式
-
-    @TableField("pay_scene")
-    private String payScene; //支付产品
 
     @TableField("channel_mid")
     private String channelMid; //通道商户号
@@ -101,8 +85,5 @@ public class MerPayPO implements ToJSON {
 
     @TableField("pay_status")
     private Integer payStatus; //支付状态
-
-    @TableField("refund_status")
-    private Integer refundStatus; //退款状态
 
 }

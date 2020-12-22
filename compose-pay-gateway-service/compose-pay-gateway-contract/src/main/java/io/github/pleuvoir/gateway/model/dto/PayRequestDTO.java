@@ -61,12 +61,6 @@ public class PayRequestDTO implements Serializable, TOJSON {
     @DecimalMin(value = "0.01", message = "支付金额不能小于0.01元")
     private BigDecimal amount;        //金额
 
-    @NotBlank(message = "支付种类不能为空")
-    private String payType;
-
-    @NotBlank(message = "支付方式不能为空")
-    private String payWay;
-
     @Length(max = 256)
     @NotBlank(message = "商户通知地址不能为空")
     private String notifyUrl;    //商户通知地址

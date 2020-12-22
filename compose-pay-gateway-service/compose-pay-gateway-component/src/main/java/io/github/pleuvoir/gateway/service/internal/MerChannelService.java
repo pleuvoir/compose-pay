@@ -15,7 +15,6 @@
  */
 package io.github.pleuvoir.gateway.service.internal;
 
-import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.po.MerChannelPO;
 
 import java.util.List;

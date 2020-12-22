@@ -1,9 +1,9 @@
 package io.github.pleuvoir.channel.common.aop;
 
-import io.github.pleuvoir.channel.common.ReturnCodeEnum;
 import io.github.pleuvoir.channel.common.util.HibernateValidatorUtils;
 import io.github.pleuvoir.channel.common.util.ValidationResult;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
+import io.github.pleuvoir.pay.common.enums.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -36,7 +36,7 @@ public class ValidationAspect {
                 Object val = args[i];
                 ValidationResult validationResult = HibernateValidatorUtils.validateEntity(val);
                 if (validationResult.isHasErrors()) {
-                    throw new ChannelServiceException(ReturnCodeEnum.PARAM_ERROR, validationResult.getErrorMessageOneway());
+                    throw new ChannelServiceException(ResultCodeEnum.PARAM_ERROR, validationResult.getErrorMessageOneway());
                 }
             }
         }

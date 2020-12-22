@@ -1,8 +1,8 @@
 package io.github.pleuvoir.channel.model.shared;
 
-import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.ServiceIdEnum;
 import io.github.pleuvoir.channel.model.ChannelMerDTO;
+import io.github.pleuvoir.pay.common.enums.ChannelEnum;
+import io.github.pleuvoir.pay.common.enums.ServiceIdEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -2,13 +2,13 @@ package io.github.pleuvoir.channel.dispatch;
 
 import com.alibaba.fastjson.JSON;
 import io.github.pleuvoir.channel.channels.IChannelService;
-import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.ReturnCodeEnum;
-import io.github.pleuvoir.channel.common.ServiceIdEnum;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.factory.IChannelServiceFactory;
 import io.github.pleuvoir.channel.model.shared.AbstractReqModel;
 import io.github.pleuvoir.channel.model.shared.AbstractRspModel;
+import io.github.pleuvoir.pay.common.enums.ChannelEnum;
+import io.github.pleuvoir.pay.common.enums.ResultCodeEnum;
+import io.github.pleuvoir.pay.common.enums.ServiceIdEnum;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +36,7 @@ public class ServiceDispatcher {
 
         if (channelService == null) {
             log.error("获取通道服务失败 :) channel={}，serviceId={}", JSON.toJSONString(channel), JSON.toJSONString(serviceId));
-            throw new ChannelServiceException(ReturnCodeEnum.ERROR, "获取通道服务失败");
+            throw new ChannelServiceException(ResultCodeEnum.ERROR, "获取通道服务失败");
         }
         log.info("获取通道服务成功。channelService={}，serviceId={}", channelService.getClass().getSimpleName(),
                 JSON.toJSONString(serviceId));

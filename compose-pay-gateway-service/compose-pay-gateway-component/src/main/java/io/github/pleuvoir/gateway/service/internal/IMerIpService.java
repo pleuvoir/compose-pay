@@ -15,7 +15,8 @@
  */
 package io.github.pleuvoir.gateway.service.internal;
 
-import io.github.pleuvoir.gateway.exception.BusinessException;
+
+import io.github.pleuvoir.pay.common.exception.BusinessException;
 
 /**
  * 商户IP服务

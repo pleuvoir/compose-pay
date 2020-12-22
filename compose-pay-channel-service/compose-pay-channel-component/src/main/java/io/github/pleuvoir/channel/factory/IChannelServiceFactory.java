@@ -1,8 +1,8 @@
 package io.github.pleuvoir.channel.factory;
 
 import io.github.pleuvoir.channel.channels.IChannelService;
-import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.ServiceIdEnum;
+import io.github.pleuvoir.pay.common.enums.ChannelEnum;
+import io.github.pleuvoir.pay.common.enums.ServiceIdEnum;
 
 /**
  * 通道服务工厂

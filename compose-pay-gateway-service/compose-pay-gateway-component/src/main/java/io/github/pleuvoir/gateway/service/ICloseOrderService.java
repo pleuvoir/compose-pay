@@ -15,10 +15,9 @@
  */
 package io.github.pleuvoir.gateway.service;
 
-import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.dto.CloseOrderDTO;
 import io.github.pleuvoir.gateway.model.dto.CloseOrderResultDTO;
-import io.github.pleuvoir.gateway.model.vo.Result;
+import io.github.pleuvoir.pay.common.exception.BusinessException;
 
 /**
  * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>

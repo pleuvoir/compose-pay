@@ -15,40 +15,32 @@
  */
 package io.github.pleuvoir.gateway.service.impl;
 
-import io.github.pleuvoir.pay.common.enums.ChannelServiceIdMappingEnum;
-import java.util.Objects;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.rpc.RpcException;
 import com.alibaba.fastjson.JSON;
-
 import io.github.pleuvoir.channel.agent.IStdChannelServiceAgent;
-import io.github.pleuvoir.channel.common.ChannelEnum;
-import io.github.pleuvoir.channel.common.ServiceIdEnum;
 import io.github.pleuvoir.channel.exception.ChannelServiceException;
 import io.github.pleuvoir.channel.model.request.PaymentDTO;
 import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
 import io.github.pleuvoir.gateway.common.utils.PayIdUtils;
-import io.github.pleuvoir.gateway.constants.PayTypeEnum;
-import io.github.pleuvoir.gateway.constants.ResultCodeEnum;
-import io.github.pleuvoir.gateway.exception.BusinessException;
 import io.github.pleuvoir.gateway.model.dto.PayRequestDTO;
 import io.github.pleuvoir.gateway.model.dto.PayRequestResultDTO;
 import io.github.pleuvoir.gateway.model.po.MerChannelPO;
 import io.github.pleuvoir.gateway.model.po.MerPayPO;
 import io.github.pleuvoir.gateway.model.po.MerchantPO;
-import io.github.pleuvoir.gateway.route.RouteService;
 import io.github.pleuvoir.gateway.service.IPayService;
 import io.github.pleuvoir.gateway.service.ITransactionService;
 import io.github.pleuvoir.gateway.service.internal.IMerIpService;
 import io.github.pleuvoir.gateway.service.internal.IMerPayService;
 import io.github.pleuvoir.gateway.service.internal.impl.BaseServiceImpl;
 import io.github.pleuvoir.gateway.utils.AssertUtil;
+import io.github.pleuvoir.pay.common.enums.ChannelServiceIdMappingEnum;
+import io.github.pleuvoir.pay.common.enums.ResultCodeEnum;
+import io.github.pleuvoir.pay.common.exception.BusinessException;
+import java.util.Objects;
+import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
  * 预支付服务
@@ -62,8 +54,6 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
     @Reference(version = "${dubbo.service.channel}")
     private IStdChannelServiceAgent channelServiceAgent;
     @Resource
-    private RouteService routeService;
-    @Resource
     private ITransactionService transactionService;
     @Resource
     private IMerPayService merPayService;
@@ -73,10 +63,6 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
     @Override
     public PayRequestResultDTO pay(PayRequestDTO payRequestDTO) throws BusinessException {
 
-        PayTypeEnum payTypeEnum = PayTypeEnum.toEnum(payRequestDTO.getPayType());
-        if (payTypeEnum == null) {
-            throw new BusinessException(ResultCodeEnum.INVALID_PAY_TYPE);
-        }
 
         //检查商户并校验状态
         MerchantPO merchantPO = checkMerchant(payRequestDTO.getMid());
@@ -91,7 +77,7 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
         }
 
         //渠道路由
-        MerChannelPO merChannelPO = routeService.find(payRequestDTO.getMid(), payTypeEnum.getCode(), null);
+        MerChannelPO merChannelPO = null;
         if (merChannelPO == null) {
             throw new BusinessException(ResultCodeEnum.TRADE_ALREADY_EXIST);
         }
@@ -110,8 +96,9 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
         }
 
         PaymentDTO paymentDTO = new PaymentDTO();
-        paymentDTO.setChannel(ChannelEnum.toEnum(merChannelPO.getChannelCode().toString()));
+        paymentDTO.setChannel(mappingEnum.getChannelEnum());
         paymentDTO.setServiceId(mappingEnum.getServiceIdEnum());
+
 
         try {
             log.info("请求通道服务，预支付 入参 paymentDTO：{}", JSON.toJSONString(paymentDTO));
@@ -146,11 +133,7 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
         payPO.setSerialNo(serialNo);  //保证两个分到一张表中
         payPO.setTransUniqueId(payRequestDTO.getTransUniqueId()); //保证两个分到一张表中
         payPO.setOrderNo(payRequestDTO.getOrderNo());
-        payPO.setPayType(payRequestDTO.getPayType());
-        payPO.setPayWay(payRequestDTO.getPayWay());
-        payPO.setPayScene(null);
         payPO.setPayStatus(MerPayPO.PAY_STATUS_WAIT);
-        payPO.setRefundStatus(MerPayPO.REFUND_STATUS_INIT);
         payPO.setSubject(payRequestDTO.getSubject());
         payPO.setBody(payRequestDTO.getBody());
         payPO.setTotalAmount(payRequestDTO.getAmount());
