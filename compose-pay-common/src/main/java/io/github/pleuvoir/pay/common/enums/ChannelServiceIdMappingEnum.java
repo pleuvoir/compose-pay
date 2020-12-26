@@ -9,7 +9,7 @@ public enum ChannelServiceIdMappingEnum {
 
 
     MOCK_SCAN_CODE(31, "模拟通道扫码支付", ChannelEnum.MOCK, ServiceIdEnum.SCAN_CODE),
-    MOCK_APP(32, "模拟通道扫码支付", ChannelEnum.MOCK, ServiceIdEnum.APP),
+    MOCK_APP(32, "模拟通道APP支付", ChannelEnum.MOCK, ServiceIdEnum.APP),
 
     WECHAT_APP(12, "微信APP支付", ChannelEnum.WECHAT, ServiceIdEnum.APP),
 
@@ -35,7 +35,6 @@ public enum ChannelServiceIdMappingEnum {
         this.channelEnum = channelEnum;
         this.serviceIdEnum = serviceIdEnum;
     }
-
 
     /**
      * 获取通道服务ID映射枚举

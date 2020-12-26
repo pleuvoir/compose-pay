@@ -13,4 +13,9 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class PaymentResultDTO extends AbstractRspModel {
+
+    /**
+     * 发起支付需要的参数信息字符串
+     */
+    private String paramStr;
 }

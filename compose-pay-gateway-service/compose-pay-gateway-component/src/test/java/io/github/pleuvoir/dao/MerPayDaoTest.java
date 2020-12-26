@@ -31,29 +31,29 @@ import org.junit.Test;
  */
 public class MerPayDaoTest extends BaseTest {
 
-  @Resource
-  private IMerPayDao dao;
+    @Resource
+    private IMerPayDao dao;
 
-  @Resource
-  private ShardingDataSource dataSource;
+    @Resource
+    private ShardingDataSource dataSource;
 
-  @Test
-  public void createOrderTest() throws InterruptedException {
+    @Test
+    public void createOrderTest() throws InterruptedException {
 
-    Map<String, DataSource> dataSourceMap = dataSource.getDataSourceMap();
+        Map<String, DataSource> dataSourceMap = dataSource.getDataSourceMap();
 
-    DruidDataSource m1 = (DruidDataSource) dataSourceMap.get("m1");
-    System.out.println(StringUtils.repeat("*", 20));
+        DruidDataSource m1 = (DruidDataSource) dataSourceMap.get("m1");
+        System.out.println(StringUtils.repeat("*", 20));
 
-    for (int i = 0; i < 4; i++) {
-      MerPayPO merPayPO = new MerPayPO();
-      merPayPO.setSerialNo((long) i);
+        for (int i = 0; i < 4; i++) {
+            MerPayPO merPayPO = new MerPayPO();
+            merPayPO.setSerialNo((long) i);
 
-      Integer ret = dao.insert(merPayPO);
-      System.out.println(ret > 0);
+            Integer ret = dao.insert(merPayPO);
+            System.out.println(ret > 0);
+        }
+
+        Thread.currentThread().join();
+
     }
-
-    Thread.currentThread().join();
-
-  }
 }

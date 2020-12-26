@@ -63,7 +63,6 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
     @Override
     public PayRequestResultDTO pay(PayRequestDTO payRequestDTO) throws BusinessException {
 
-
         //检查商户并校验状态
         MerchantPO merchantPO = checkMerchant(payRequestDTO.getMid());
 
@@ -81,24 +80,20 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
         if (merChannelPO == null) {
             throw new BusinessException(ResultCodeEnum.TRADE_ALREADY_EXIST);
         }
-        
-        
 
         long serialNo = PayIdUtils.getSerialNo(payRequestDTO.getTransUniqueId());
         //创建支付订单
         MerPayPO merPayPO = this.installMerPayPO(payRequestDTO, merChannelPO, serialNo);
-        Integer ret = merPayService.save(merPayPO);
-        AssertUtil.assertOne(ret, "创建支付订单失败");
+        AssertUtil.assertOne(merPayService.save(merPayPO), "创建支付订单失败");
 
         ChannelServiceIdMappingEnum mappingEnum = ChannelServiceIdMappingEnum.toEnum(payRequestDTO.getMappingCode());
-        if(mappingEnum == null){
+        if (mappingEnum == null) {
             throw new BusinessException(ResultCodeEnum.NO_FUNCTION_PROVIDE);
         }
 
         PaymentDTO paymentDTO = new PaymentDTO();
         paymentDTO.setChannel(mappingEnum.getChannelEnum());
         paymentDTO.setServiceId(mappingEnum.getServiceIdEnum());
-
 
         try {
             log.info("请求通道服务，预支付 入参 paymentDTO：{}", JSON.toJSONString(paymentDTO));
@@ -111,7 +106,7 @@ public class PayServiceImpl extends BaseServiceImpl implements IPayService {
             requestResultDTO.setMid(payRequestDTO.getMid());
             requestResultDTO.setTransUniqueId(payRequestDTO.getTransUniqueId());
             requestResultDTO.setSerialNo(serialNo);
-            requestResultDTO.setParamStr("");
+            requestResultDTO.setParamStr(resultDTO.getParamStr());
             requestResultDTO.setPaySuccessUrl(payRequestDTO.getPaySuccessUrl());
             return requestResultDTO;
 
