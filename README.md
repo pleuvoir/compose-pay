@@ -17,20 +17,22 @@
 2. 后台管理
 3. 后端服务
 
+该项目的初衷是为企业提灵活可扩展的支付服务，方便对接三方支付通道，并完成支付功能的收口。因此不是简单的`SDK`唤起支付。实现难度低于聚合支付，因此没有复杂的支付路由、商户进件、轮询以及风控规则的设计。
+
+一切都是为了方便业务快速对接支付相关功能，并做支付相关数据的落地。
+
 ## 功能
 
-1. 传统支付
-2. 聚合码
+1. 微信/支付宝 三方支付
+2. 聚合码（待定）
 
 ## 项目结构
 
 |              模块              |      名称      | 简介 | 备注 |
 | :----------------------------: | :------------: | :--: | :--: |
-|     `compose-pay-open-api`     | 支付 HTTP 服务 | WEB  |      |
+|     `compose-pay-open-api`     | 支付 HTTP 服务站点层 | WEB  |      |
 | `compose-pay-gateway-service`  |  支付网关服务  | RPC  |      |
 | ` compose-pay-channel-service` |  三方通道服务  | RPC  |      |
-|   `compose-pay-risk-service`   |    风控服务    | RPC  |      |
-|   `compose-pay-router-service`   |    支付路由服务    | RPC  |     TODO  |
 |    `compose-pay-job-admin`     | 定时任务控制台 | WEB  |      |
 |       `compose-pay-job`        |    定时任务    | WEB  |      |
 |     `compose-pay-manager`      |  运营管理平台  | WEB  |      |
@@ -49,9 +51,8 @@
 | [Redis](https://redis.io/) | key-value 数据库 |  |
 | [Elasticsearch](https://www.elastic.co/cn/) | 分布式搜索引擎 |  |
 | [RocketMQ](http://dubbo.apache.org/) | 消息中间件 |  |
-| [Seata](https://github.com/seata/seata) | 分布式事务中间件 | 待引入 |
 | [XXL-Job](http://www.xuxueli.com/xxl-job/) | 分布式任务调度平台 |  |
-| [sharding-jdbc]() | 分库分表中间件 | 待引入|
+| [sharding-jdbc]() | 分库分表中间件 | |
 | [Lombok](https://github.com/rzwitserloot/lombok) | 简化对象封装工具 | |
 | [Hibernator-Validator](http://hibernate.org/validator) | 验证框架 | |
 
