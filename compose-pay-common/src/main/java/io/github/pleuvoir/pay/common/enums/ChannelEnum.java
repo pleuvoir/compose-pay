@@ -28,7 +28,7 @@ public enum ChannelEnum {
      */
     public static ChannelEnum toEnum(Integer code) {
         for (ChannelEnum item : ChannelEnum.values()) {
-            if (item.getCode() == code) {
+            if (item.getCode().equals(code)) {
                 return item;
             }
         }
