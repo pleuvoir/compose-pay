@@ -31,6 +31,7 @@
 |              模块              |      名称      | 简介 | 备注 |
 | :----------------------------: | :------------: | :--: | :--: |
 |     `compose-pay-open-api`     | 支付 HTTP 服务站点层 | WEB  |      |
+| `compose-pay-common`  |  支付公共包  | JAR  |      |
 | `compose-pay-gateway-service`  |  支付网关服务  | RPC  |      |
 | ` compose-pay-channel-service` |  三方通道服务  | RPC  |      |
 |    `compose-pay-job-admin`     | 定时任务控制台 | WEB  |      |
