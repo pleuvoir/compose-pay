@@ -8,7 +8,7 @@
 
 [我将系统设计的过程写在这里了](https://juejin.im/post/5efeb940f265da22e27a7538)
 
-[我将工作日志记录在这里了](https://github.com/pleuvoir/compose-pay/blob/main/CHANGELOG.md)
+[我将工作日志记录在这里了](https://github.com/pleuvoir/compose-pay/blob/master/CHANGELOG.md)
 
 
 ## 介绍
