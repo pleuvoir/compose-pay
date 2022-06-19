@@ -5,7 +5,7 @@ import com.google.common.collect.Tables;
 import io.github.pleuvoir.channel.channels.IChannelService;
 import io.github.pleuvoir.channel.plugins.ChannelServicePlugin;
 import io.github.pleuvoir.pay.common.enums.ChannelEnum;
-import io.github.pleuvoir.pay.common.enums.ServiceIdEnum;
+import io.github.pleuvoir.pay.common.enums.ServiceTypeEnum;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 默认的通道道服务工厂<br>
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Slf4j
 public class DefaultChannelServiceFactory implements IChannelServiceFactory, InitializingBean, ApplicationContextAware {
@@ -31,19 +31,20 @@ public class DefaultChannelServiceFactory implements IChannelServiceFactory, Ini
     private ChannelServicePlugin channelServicePlugin;
 
 
-    private Table<ChannelEnum, ServiceIdEnum, IChannelService> channelTransServiceTable = Tables.newCustomTable(new ConcurrentHashMap<>(), ConcurrentHashMap::new);
+    private Table<ChannelEnum, ServiceTypeEnum, IChannelService> channelTransServiceTable = Tables
+            .newCustomTable(new ConcurrentHashMap<>(), ConcurrentHashMap::new);
 
     /**
      * 获取通道服务处理类
      *
-     * @param channel   通道枚举
-     * @param serviceId 服务类别
+     * @param channel         通道枚举
+     * @param serviceType 服务类别
      */
     @Override
-    public IChannelService getChannelService(ChannelEnum channel, ServiceIdEnum serviceId) {
-        IChannelService channelService = channelTransServiceTable.get(channel, serviceId);
+    public IChannelService getChannelService(ChannelEnum channel, ServiceTypeEnum serviceType) {
+        IChannelService channelService = channelTransServiceTable.get(channel, serviceType);
         if (channelService == null) {
-            log.error("获取通道服务失败，channel={}，scene={}", channel, serviceId);
+            log.error("获取通道服务失败，channel={}，serviceType={}", channel, serviceType);
         }
         return channelService;
     }
@@ -52,11 +53,11 @@ public class DefaultChannelServiceFactory implements IChannelServiceFactory, Ini
     public void afterPropertiesSet() {
         BeanDefinitionRegistry beanRegistry = (BeanDefinitionRegistry) applicationContext;
         channelServicePlugin.getChannels().forEach((ChannelEnum channel) -> {
-            channelServicePlugin.getServiceMap(channel).forEach((ServiceIdEnum serviceId, Class<?> service) -> {
+            channelServicePlugin.getServiceMap(channel).forEach((ServiceTypeEnum serviceType, Class<?> service) -> {
                 String serviceName = channel.name() + "_" + service.getSimpleName();
                 BeanDefinitionBuilder beanBuilder = BeanDefinitionBuilder.genericBeanDefinition(service);
                 beanRegistry.registerBeanDefinition(serviceName, beanBuilder.getBeanDefinition());
-                channelTransServiceTable.put(channel, serviceId, (IChannelService) applicationContext.getBean(serviceName));
+                channelTransServiceTable.put(channel, serviceType, (IChannelService) applicationContext.getBean(serviceName));
             });
         });
     }

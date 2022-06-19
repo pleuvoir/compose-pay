@@ -9,7 +9,7 @@ import java.util.Map;
  * 接收通道的通知参数<br>
  * 包含header、body以及查询参数
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 public class NotifyParamDTO {

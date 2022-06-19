@@ -20,7 +20,7 @@ import lombok.Getter;
 /**
  * 业务结果码
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public enum ResultCodeEnum {
 
@@ -32,6 +32,7 @@ public enum ResultCodeEnum {
     VERIFY_FAILED(3, "验签失败"),
     LACK_PARAM(4, "缺少参数"),
     PARAM_ERROR(5, "参数错误"),
+    NO_PRODUCT_PROVIDE(7, "不支持的支付产品"),
     NO_FUNCTION_PROVIDE(6, "不支持的功能"),
     CHANNEL_SERVICE_EXCEPTION(100, "通道服务异常"),
 

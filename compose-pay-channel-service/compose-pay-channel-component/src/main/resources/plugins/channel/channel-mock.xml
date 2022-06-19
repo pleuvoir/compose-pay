@@ -1,6 +1,10 @@
 <plugin-channel>
     <channel>mock</channel>
+    <desc>模拟通道</desc>
+
     <service>
+        <!-- 支付 -->
+        <bean id="pay" class="io.github.pleuvoir.channel.channels.mock.MockPay"/>
         <!-- 支付结果查询 -->
         <bean id="pay_query" class="io.github.pleuvoir.channel.channels.mock.MockPayQuery"/>
     </service>

@@ -15,10 +15,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 /**
  * 通道服务配置
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Configuration
-@EnableDubbo(scanBasePackages = {"io.github.pleuvoir.channel"})
+//@EnableDubbo(scanBasePackages = {"io.github.pleuvoir.channel"})
 @ComponentScan("io.github.pleuvoir.channel.*")
 public class PayChannelConfiguration {
 
@@ -29,7 +29,7 @@ public class PayChannelConfiguration {
     @Bean(name = "channelServicePlugin", initMethod = "load")
     public ChannelServicePlugin channelServicePlugin() {
         ChannelServicePlugin servicePlugin = new DefaultChannelServicePlugin();
-        servicePlugin.setLocation("classpath:config/plugins/channel/*.xml");
+        servicePlugin.setLocation("classpath:plugins/channel/*.xml");
         return servicePlugin;
     }
 

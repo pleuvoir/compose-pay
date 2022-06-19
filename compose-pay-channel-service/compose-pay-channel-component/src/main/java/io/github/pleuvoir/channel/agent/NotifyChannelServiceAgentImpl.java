@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 /**
  * 通道通知服务
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Slf4j
 @Component

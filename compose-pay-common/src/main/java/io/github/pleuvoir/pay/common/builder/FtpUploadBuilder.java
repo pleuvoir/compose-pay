@@ -245,7 +245,7 @@ public class FtpUploadBuilder {
     /**
      * 关闭连接
      */
-    public void disconnect() {
+    private void disconnect() {
         if (client != null && client.isConnected()) {
             try {
                 client.disconnect();

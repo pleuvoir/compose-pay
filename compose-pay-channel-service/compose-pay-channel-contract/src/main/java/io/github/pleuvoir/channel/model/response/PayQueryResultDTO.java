@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 /**
  * 订单查询结果
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

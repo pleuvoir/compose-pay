@@ -2,19 +2,6 @@
     <channel>wechat</channel>
     <service>
 
-
-        <!-- JSAPI扫码支付 -->
-        <bean id="scan_code" class="io.github.pleuvoir.channel.channels.wechat.WechatScanCode"/>
-
-        <!-- JSAPI公众号支付 -->
-        <bean id="gz" class="io.github.pleuvoir.channel.channels.wechat.WechatGz"/>
-
-        <!-- APP支付 -->
-        <bean id="app" class="io.github.pleuvoir.channel.channels.wechat.WechatApp"/>
-
-        <!-- 手机网站支付 -->
-        <bean id="mobile_h5" class="io.github.pleuvoir.channel.channels.wechat.WechatMobileH5"/>
-
         <!-- 支付结果查询 -->
         <bean id="pay_query" class="io.github.pleuvoir.channel.channels.wechat.WechatPayQuery"/>
 

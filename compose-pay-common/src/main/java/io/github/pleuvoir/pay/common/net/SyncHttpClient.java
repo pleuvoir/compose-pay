@@ -54,7 +54,7 @@ import org.apache.http.util.EntityUtils;
 /**
  * 同步HTTP请求客户端，该类建议以spring bean的形式进行初始化
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Slf4j
 public class SyncHttpClient {

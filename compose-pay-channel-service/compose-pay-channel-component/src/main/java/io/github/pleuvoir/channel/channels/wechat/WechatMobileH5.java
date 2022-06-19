@@ -11,11 +11,10 @@ import io.github.pleuvoir.channel.channels.IChannelService;
  * <p>使用场景：
  * 主要用于触屏版的手机浏览器请求微信支付的场景。可以方便的从外部浏览器唤起微信支付。
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
-public class WechatMobileH5 implements IChannelService<PaymentDTO, PaymentResultDTO> {
+public class WechatMobileH5  {
 
-    @Override
     public PaymentResultDTO invoke(PaymentDTO request) throws ChannelServiceException {
         return null;
     }

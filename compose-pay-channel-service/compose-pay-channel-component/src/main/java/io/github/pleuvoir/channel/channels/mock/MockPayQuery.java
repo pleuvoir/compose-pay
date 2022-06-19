@@ -8,7 +8,7 @@ import io.github.pleuvoir.channel.channels.IChannelService;
 /**
  * 模拟支付结果查询
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public class MockPayQuery implements IChannelService<PayQueryDTO, PayQueryResultDTO> {
 

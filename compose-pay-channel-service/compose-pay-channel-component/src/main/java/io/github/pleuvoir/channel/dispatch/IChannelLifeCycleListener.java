@@ -6,7 +6,7 @@ import io.github.pleuvoir.channel.model.shared.AbstractRspModel;
 /**
  * 通道请求生命周期监听器
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public interface IChannelLifeCycleListener {
 

@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 通知处理结果
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 public class NotifyParamResultDTO {

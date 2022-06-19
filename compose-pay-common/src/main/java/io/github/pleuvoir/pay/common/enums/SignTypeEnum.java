@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 对外接口的签名类型
  *
- * @author pleuvoir
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public enum SignTypeEnum {
     /**

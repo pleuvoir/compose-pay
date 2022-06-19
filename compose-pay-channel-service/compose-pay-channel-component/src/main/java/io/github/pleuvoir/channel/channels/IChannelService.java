@@ -7,7 +7,7 @@ import io.github.pleuvoir.channel.model.shared.AbstractRspModel;
 /**
  * 抽象通道服务接口
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public interface IChannelService<T extends AbstractReqModel, R extends AbstractRspModel> {
 

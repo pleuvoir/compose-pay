@@ -11,11 +11,10 @@ import io.github.pleuvoir.channel.channels.IChannelService;
  * <p>使用场景：
  * 商家APP集成支付宝提供的支付能力，在线上轻松收款：用户在商家APP消费，自动跳转支付宝完成付款，付款后自动跳回。
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
-public class AlipayApp implements IChannelService<PaymentDTO, PaymentResultDTO> {
+public class AlipayApp {
 
-    @Override
     public PaymentResultDTO invoke(PaymentDTO request) throws ChannelServiceException {
         return null;
     }

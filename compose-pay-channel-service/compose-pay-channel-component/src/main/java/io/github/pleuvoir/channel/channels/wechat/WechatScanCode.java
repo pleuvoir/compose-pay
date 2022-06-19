@@ -14,11 +14,10 @@ import io.github.pleuvoir.channel.model.response.PaymentResultDTO;
  *
  * <p>和原生扫码的区别是：原生不需要输入金额，这种的需要用户输入支付金额
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
-public class WechatScanCode implements IChannelService<PaymentDTO, PaymentResultDTO> {
+public class WechatScanCode  {
 
-    @Override
     public PaymentResultDTO invoke(PaymentDTO request) throws ChannelServiceException {
         return null;
     }

@@ -11,12 +11,11 @@ import io.github.pleuvoir.channel.channels.IChannelService;
  * <p>使用场景：
  * 公众号场景：用户在微信公众账号内进入商家公众号，打开某个主页面，完成支付
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
-public class WechatGz implements IChannelService<PaymentDTO, PaymentResultDTO> {
+public class WechatGz  {
 
-    @Override
-    public PaymentResultDTO invoke(PaymentDTO request) throws ChannelServiceException {
+    public PaymentResultDTO invoke(PaymentDTO request)  {
         return null;
     }
 }
