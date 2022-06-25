@@ -43,6 +43,7 @@ public enum ResultCodeEnum {
     IP_NO_BIND(103, "商户IP未绑定"),
     MER_UN_SIGN_ERROR(104, "商户未签约该支付种类和支付方式"),
     NOT_FOUND_CHANNEL_MID(105, "未获取到通道商户号"),
+    NOT_FOUND_CHANNEL(106, "未找到对应的商户信息，请检查商户配置信息"),
 
 
     //201-300 支付
