@@ -1,7 +1,7 @@
 package io.github.channel;
 
 import io.github.pleuvoir.channel.channels.IChannelService;
-import io.github.pleuvoir.channel.factory.DefaultChannelServiceFactory;
+import io.github.pleuvoir.channel.factory.PluginChannelServiceFactory;
 import io.github.pleuvoir.pay.common.enums.ChannelEnum;
 import io.github.pleuvoir.pay.common.enums.ServiceTypeEnum;
 import javax.annotation.Resource;
@@ -14,7 +14,7 @@ import org.junit.Test;
 public class FactoryTest extends BaseTest {
 
     @Resource
-    private DefaultChannelServiceFactory channelServiceFactory;
+    private PluginChannelServiceFactory channelServiceFactory;
 
     @Test
     public void test(){

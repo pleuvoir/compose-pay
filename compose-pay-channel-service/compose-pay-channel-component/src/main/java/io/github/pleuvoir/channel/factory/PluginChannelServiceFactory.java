@@ -18,12 +18,15 @@ import org.springframework.context.ApplicationContextAware;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 默认的通道道服务工厂<br>
+ * 插件通道服务工厂<br>
  *
  * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Slf4j
-public class DefaultChannelServiceFactory implements IChannelServiceFactory, InitializingBean, ApplicationContextAware {
+public class PluginChannelServiceFactory implements IChannelServiceFactory, InitializingBean, ApplicationContextAware {
+
+
+    public static final String BEAN_NAME = "annotationChannelServiceFactory";
 
     private ApplicationContext applicationContext;
 

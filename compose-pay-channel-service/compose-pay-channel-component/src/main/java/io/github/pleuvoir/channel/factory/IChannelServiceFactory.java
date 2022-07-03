@@ -15,4 +15,5 @@ public interface IChannelServiceFactory {
      * 通过通道和服务类别获取通道服务，未获取到时返回null
      */
     IChannelService getChannelService(ChannelEnum channel, ServiceTypeEnum serviceType);
+
 }

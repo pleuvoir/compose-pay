@@ -1,8 +1,9 @@
 package io.github.pleuvoir.channel;
 
-import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import io.github.pleuvoir.channel.common.util.ApplicationContextHelper;
 import io.github.pleuvoir.channel.common.util.RetryRejectedExecutionHandler;
-import io.github.pleuvoir.channel.factory.DefaultChannelServiceFactory;
+import io.github.pleuvoir.channel.factory.AnnotationChannelServiceFactory;
+import io.github.pleuvoir.channel.factory.PluginChannelServiceFactory;
 import io.github.pleuvoir.channel.factory.IChannelServiceFactory;
 import io.github.pleuvoir.channel.plugins.ChannelServicePlugin;
 import io.github.pleuvoir.channel.plugins.DefaultChannelServicePlugin;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Service;
 
 /**
  * 通道服务配置
@@ -34,13 +36,28 @@ public class PayChannelConfiguration {
     }
 
     /**
-     * 通道服务工厂
+     * 插件通道服务工厂
      */
-    @Bean
-    public IChannelServiceFactory channelServiceFactory(ChannelServicePlugin servicePlugin) {
-        DefaultChannelServiceFactory channelServiceFactory = new DefaultChannelServiceFactory();
+    @Bean(name = PluginChannelServiceFactory.BEAN_NAME)
+    public PluginChannelServiceFactory pluginChannelServiceFactory(ChannelServicePlugin servicePlugin) {
+        PluginChannelServiceFactory channelServiceFactory = new PluginChannelServiceFactory();
         channelServiceFactory.setChannelServicePlugin(servicePlugin);
         return channelServiceFactory;
+    }
+
+
+    /**
+     * 注解通道服务工厂
+     */
+    @Bean(name = AnnotationChannelServiceFactory.BEAN_NAME, initMethod = "initialization")
+    public AnnotationChannelServiceFactory annotationChannelServiceFactory() {
+        return new AnnotationChannelServiceFactory();
+    }
+
+
+    @Bean
+    public ApplicationContextHelper applicationContextHelper(){
+        return new ApplicationContextHelper();
     }
 
     /**
