@@ -24,26 +24,26 @@ import org.springframework.stereotype.Service;
 @ComponentScan("io.github.pleuvoir.channel.*")
 public class PayChannelConfiguration {
 
-
-    /**
-     * 通道服务插件配置
-     */
-    @Bean(name = "channelServicePlugin", initMethod = "load")
-    public ChannelServicePlugin channelServicePlugin() {
-        ChannelServicePlugin servicePlugin = new DefaultChannelServicePlugin();
-        servicePlugin.setLocation("classpath:plugins/channel/*.xml");
-        return servicePlugin;
-    }
-
-    /**
-     * 插件通道服务工厂
-     */
-    @Bean(name = PluginChannelServiceFactory.BEAN_NAME)
-    public PluginChannelServiceFactory pluginChannelServiceFactory(ChannelServicePlugin servicePlugin) {
-        PluginChannelServiceFactory channelServiceFactory = new PluginChannelServiceFactory();
-        channelServiceFactory.setChannelServicePlugin(servicePlugin);
-        return channelServiceFactory;
-    }
+//
+//    /**
+//     * 通道服务插件配置
+//     */
+//    @Bean(name = "channelServicePlugin", initMethod = "load")
+//    public ChannelServicePlugin channelServicePlugin() {
+//        ChannelServicePlugin servicePlugin = new DefaultChannelServicePlugin();
+//        servicePlugin.setLocation("classpath:plugins/channel/*.xml");
+//        return servicePlugin;
+//    }
+//
+//    /**
+//     * 插件通道服务工厂
+//     */
+//    @Bean(name = PluginChannelServiceFactory.BEAN_NAME)
+//    public PluginChannelServiceFactory pluginChannelServiceFactory(ChannelServicePlugin servicePlugin) {
+//        PluginChannelServiceFactory channelServiceFactory = new PluginChannelServiceFactory();
+//        channelServiceFactory.setChannelServicePlugin(servicePlugin);
+//        return channelServiceFactory;
+//    }
 
 
     /**
