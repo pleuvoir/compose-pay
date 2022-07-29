@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractChannelTemplate<T extends AbstractReqModel, R extends AbstractRspModel> implements
         IChannelService<T, R> {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public R invoke(T request) throws ChannelServiceException {

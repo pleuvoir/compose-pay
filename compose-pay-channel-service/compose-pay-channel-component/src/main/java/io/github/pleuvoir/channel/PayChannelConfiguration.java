@@ -3,16 +3,11 @@ package io.github.pleuvoir.channel;
 import io.github.pleuvoir.channel.common.util.ApplicationContextHelper;
 import io.github.pleuvoir.channel.common.util.RetryRejectedExecutionHandler;
 import io.github.pleuvoir.channel.factory.AnnotationChannelServiceFactory;
-import io.github.pleuvoir.channel.factory.PluginChannelServiceFactory;
-import io.github.pleuvoir.channel.factory.IChannelServiceFactory;
-import io.github.pleuvoir.channel.plugins.ChannelServicePlugin;
-import io.github.pleuvoir.channel.plugins.DefaultChannelServicePlugin;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Service;
 
 /**
  * 通道服务配置
@@ -24,26 +19,6 @@ import org.springframework.stereotype.Service;
 @ComponentScan("io.github.pleuvoir.channel.*")
 public class PayChannelConfiguration {
 
-//
-//    /**
-//     * 通道服务插件配置
-//     */
-//    @Bean(name = "channelServicePlugin", initMethod = "load")
-//    public ChannelServicePlugin channelServicePlugin() {
-//        ChannelServicePlugin servicePlugin = new DefaultChannelServicePlugin();
-//        servicePlugin.setLocation("classpath:plugins/channel/*.xml");
-//        return servicePlugin;
-//    }
-//
-//    /**
-//     * 插件通道服务工厂
-//     */
-//    @Bean(name = PluginChannelServiceFactory.BEAN_NAME)
-//    public PluginChannelServiceFactory pluginChannelServiceFactory(ChannelServicePlugin servicePlugin) {
-//        PluginChannelServiceFactory channelServiceFactory = new PluginChannelServiceFactory();
-//        channelServiceFactory.setChannelServicePlugin(servicePlugin);
-//        return channelServiceFactory;
-//    }
 
 
     /**
