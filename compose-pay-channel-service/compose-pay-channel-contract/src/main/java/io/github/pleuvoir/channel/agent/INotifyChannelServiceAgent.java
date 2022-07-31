@@ -14,4 +14,9 @@ public interface INotifyChannelServiceAgent {
      * 处理通道支付结果通知
      */
     NotifyParamResultDTO payNotifyReceive(NotifyParamDTO notifyParamDTO);
+
+    /**
+     * 接收退款通知
+     */
+    NotifyParamResultDTO refundReceive(NotifyParamDTO notifyParamDTO);
 }

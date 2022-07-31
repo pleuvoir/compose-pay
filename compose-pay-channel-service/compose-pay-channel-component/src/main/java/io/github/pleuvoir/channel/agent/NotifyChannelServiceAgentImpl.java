@@ -14,11 +14,15 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@Service
 public class NotifyChannelServiceAgentImpl implements INotifyChannelServiceAgent {
 
     @Override
     public NotifyParamResultDTO payNotifyReceive(@Valid NotifyParamDTO notifyParamDTO) {
+        return null;
+    }
+
+    @Override
+    public NotifyParamResultDTO refundReceive(NotifyParamDTO notifyParamDTO) {
         return null;
     }
 

@@ -27,6 +27,13 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>io.github.pleuvoir</groupId>
+            <artifactId>compose-pay-gateway-contract</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <!-- Commons -->
         <dependency>
             <groupId>com.google.guava</groupId>
