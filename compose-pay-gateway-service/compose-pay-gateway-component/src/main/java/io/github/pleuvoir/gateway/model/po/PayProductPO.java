@@ -24,7 +24,7 @@ import lombok.Data;
 /**
  * 支付产品
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 @TableName("p_pay_product")

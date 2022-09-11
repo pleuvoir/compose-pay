@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 /**
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public class AllSpringbeanTest extends BaseTest {
 

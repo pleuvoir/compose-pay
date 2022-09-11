@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 @AllArgsConstructor

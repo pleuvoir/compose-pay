@@ -22,7 +22,7 @@ import io.github.pleuvoir.pay.common.exception.BusinessException;
 /**
  * 断言工具，判断失败时抛出{@link BusinessException}
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public class AssertUtil {
 

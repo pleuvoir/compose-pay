@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * 商户签约支付产品
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Service
 public class MerSignFeeServiceImpl implements MerSignFeeService {

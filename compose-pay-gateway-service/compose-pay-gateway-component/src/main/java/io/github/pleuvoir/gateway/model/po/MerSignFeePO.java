@@ -25,7 +25,7 @@ import java.math.BigDecimal;
 /**
  * 商户签约支付产品手续费表
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 @TableName("t_mer_sign_fee")

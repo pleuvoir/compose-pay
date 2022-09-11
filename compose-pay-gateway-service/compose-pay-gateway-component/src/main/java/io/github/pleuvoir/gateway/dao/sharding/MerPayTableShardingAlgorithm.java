@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * 复合分表规则
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Slf4j
 public class MerPayTableShardingAlgorithm implements ComplexKeysShardingAlgorithm<Long> {

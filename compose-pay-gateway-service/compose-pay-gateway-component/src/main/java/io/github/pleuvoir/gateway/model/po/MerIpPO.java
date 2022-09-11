@@ -23,7 +23,7 @@ import lombok.Data;
 /**
  * 商户IP
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 @TableName("t_mer_ip")

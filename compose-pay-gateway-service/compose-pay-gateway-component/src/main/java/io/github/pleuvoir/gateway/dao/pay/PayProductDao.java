@@ -19,7 +19,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import io.github.pleuvoir.gateway.model.po.PayProductPO;
 
 /**
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public interface PayProductDao extends BaseMapper<PayProductPO> {
 

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 /**
  * 异步持久化
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 public class RedpackPersistDTO implements Serializable {

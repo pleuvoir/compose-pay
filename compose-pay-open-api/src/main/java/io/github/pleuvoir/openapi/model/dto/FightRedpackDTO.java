@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 抢红包
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Data
 public class FightRedpackDTO {

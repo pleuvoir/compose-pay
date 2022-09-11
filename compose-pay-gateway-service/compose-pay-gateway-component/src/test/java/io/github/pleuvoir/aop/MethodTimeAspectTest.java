@@ -18,7 +18,7 @@ package io.github.pleuvoir.aop;
 import java.util.regex.Pattern;
 
 /**
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public class MethodTimeAspectTest {
 

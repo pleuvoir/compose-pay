@@ -21,7 +21,7 @@ import io.github.pleuvoir.pay.common.exception.BusinessException;
 /**
  * 商户IP服务
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public interface IMerIpService {
 

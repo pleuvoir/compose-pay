@@ -27,7 +27,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.List;
 
 /**
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Service
 public class MerChannelServiceImpl implements MerChannelService {

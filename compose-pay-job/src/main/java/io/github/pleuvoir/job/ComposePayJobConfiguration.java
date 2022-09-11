@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 任务调度配置
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Slf4j
 @Configuration

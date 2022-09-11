@@ -20,7 +20,7 @@ import io.github.pleuvoir.gateway.model.dto.PayQueryResultDTO;
 import io.github.pleuvoir.pay.common.exception.BusinessException;
 
 /**
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public interface IPayQueryService {
 

@@ -25,7 +25,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * <p>
  * 可参考  https://juejin.cn/post/6844904200346796046
  *
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 @Slf4j
 public class PayIdUtils {

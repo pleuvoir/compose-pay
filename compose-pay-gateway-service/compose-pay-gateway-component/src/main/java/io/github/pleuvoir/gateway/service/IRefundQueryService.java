@@ -21,7 +21,7 @@ import io.github.pleuvoir.pay.common.exception.BusinessException;
 import java.util.List;
 
 /**
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public interface IRefundQueryService {
 

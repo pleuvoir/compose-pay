@@ -20,7 +20,7 @@ import io.github.pleuvoir.gateway.model.po.MerSignFeePO;
 import java.util.List;
 
 /**
- * @author <a href="mailto:fuwei@daojia-inc.com">pleuvoir</a>
+ * @author <a href="mailto:pleuvior@foxmail.com">pleuvoir</a>
  */
 public interface MerSignFeeService {
 
